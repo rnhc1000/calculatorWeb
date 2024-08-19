@@ -31,7 +31,7 @@ public class Record implements Serializable {
 
   @JoinColumn (name = "operation_id")
   @ManyToOne (cascade = CascadeType.ALL)
-  private Long operationId;
+  private Operation operationId;
 
   @CreationTimestamp
   private Instant createdAt;
@@ -41,7 +41,7 @@ public class Record implements Serializable {
   private User userId;
 
   public Record(Long recordId, BigDecimal amount, BigDecimal balance,
-                String operationResponse, Long operationId, Instant createdAt,
+                String operationResponse, Operation operationId, Instant createdAt,
                 User userId) {
     this.recordId = recordId;
     this.amount = amount;
