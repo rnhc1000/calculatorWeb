@@ -18,7 +18,7 @@ public class OpenApiConfiguration {
     server.setDescription("Development");
 
     Contact myContact = new Contact();
-    myContact.setName("Ricardo Ferreira");
+    myContact.setName(":Ricardo Ferreira");
     myContact.setEmail("ricardo@ferreiras.dev.br");
 
     Info information = new Info()

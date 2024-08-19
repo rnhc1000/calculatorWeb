@@ -1,7 +1,9 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
+import br.dev.ferreiras.calculatorWeb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorWeb.entity.User;
 import br.dev.ferreiras.calculatorWeb.repository.UserRepository;
+import br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,12 +23,12 @@ public class UserService {
   }
 
   @Transactional (readOnly = true)
-  public UserResponseDto getUserById(Long userId) {
+  public String getUserById(Long userId) {
 
     User user = userRepository.findById(userId).orElseThrow(
             () -> new ResourceNotFoundException("Resource not found!"));
 
-    return MapperMessages.INSTANCE.userEntityToDto(user);
+    return user.toString();
   }
 
 }
