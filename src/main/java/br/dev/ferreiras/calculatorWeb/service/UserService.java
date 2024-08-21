@@ -1,16 +1,15 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
-import br.dev.ferreiras.calculatorWeb.dto.CredentialsRequestDto;
+import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.entity.User;
+import br.dev.ferreiras.calculatorWeb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorWeb.repository.UserRepository;
 import br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,33 +21,43 @@ public class UserService implements IUserService {
   private UserRepository userRepository;
 
   @Autowired
+  private RoleRepository roleRepository;
+
+  @Autowired
   private JwtEncoder jwtEncoder;
 
 //  public UserService(CredentialsRequestDto credentialsRequestDto) {
 //  }
 
   @Override
-  public User findById(UUID userId) {
+  public User getUserId(UUID userId) {
     return userRepository.findById(userId).orElseThrow(
             () -> new ResourceNotFoundException("Resource not found!"));
   }
 
   @Override
-  public User save(User user) {
-    return null;
+  public User saveUser(User user) {
+
+    return userRepository.save(user);
   }
 
   @Override
-  public Iterable<User> findAll() {
-    return null;
+  public List<User> findAllUsers() {
+
+    return userRepository.findAll();
   }
 
   @Override
   public Optional<User> getUsername(String username) {
+
     return userRepository.findByUsername(username);
   }
 
+  @Override
+  public Role getRole() {
 
+    return roleRepository.findByRole(Role.Roles.ROLE_USER.name());
+  }
   //  @Override
 //  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //    User user = userRepository.findByEmail(username);

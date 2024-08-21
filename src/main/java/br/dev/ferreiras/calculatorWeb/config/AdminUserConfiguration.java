@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.util.Set;
 
+@Configuration
 public class AdminUserConfiguration implements CommandLineRunner {
   private final static Logger logger = LoggerFactory.getLogger(AdminUserConfiguration.class);
 
@@ -22,9 +23,6 @@ public class AdminUserConfiguration implements CommandLineRunner {
   private UserRepository userRepository;
 
   private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-  public AdminUserConfiguration() {
-  }
 
   public AdminUserConfiguration(RoleRepository roleRepository,
                                 UserRepository userRepository,
