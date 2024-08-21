@@ -22,7 +22,8 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
         corsRegistry.addMapping("/**").allowedOrigins(
                 "http://127.0.0.1:3000",
                 "http://127.0.0.1:4200",
-                "http://api.random.org:443"
+                "http://api.random.org:443",
+                "http://192.168.15.11:5000"
         );
       };
     };

@@ -1,1 +1,2 @@
-INSERT INTO  user (user_id, username, password, status) VALUES (1, 'ricardo@ferreiras.dev.br', 'password' ,'active');
+INSERT INTO tb_roles(role_id, role) VALUES ( 1, 'ROLE_ADMIN');
+INSERT INTO tb_roles(role_id, role) VALUES ( 2, 'ROLE_USER');

@@ -17,6 +17,10 @@ public class Operation implements Serializable {
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long id;
 
+  @Column (name = "ops", nullable = false)
+  private String operation;
+
+  @Column (nullable = false)
   private BigDecimal cost;
 
 //  @ElementCollection (targetClass = Operations.class)

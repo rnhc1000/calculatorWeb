@@ -2,7 +2,6 @@ package br.dev.ferreiras.calculatorWeb.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -13,13 +12,12 @@ import java.time.Instant;
 @Getter
 @Entity
 @Table (name = "tb_records")
-public class Record implements Serializable {
-
+public class Records implements Serializable {
 
   private static final long serialVersionUUID = 1L;
 
   @Id
-  @GeneratedValue (strategy = GenerationType.IDENTITY)
+  @GeneratedValue (strategy = GenerationType.SEQUENCE)
   private Long recordId;
 
   @NotNull
@@ -30,7 +28,6 @@ public class Record implements Serializable {
   private String operationResponse;
 
   @JoinColumn (name = "operation_id")
-  @ManyToOne (cascade = CascadeType.ALL)
   private Operation operationId;
 
   @CreationTimestamp
@@ -38,21 +35,21 @@ public class Record implements Serializable {
 
   @ManyToOne (cascade = CascadeType.ALL)
   @JoinColumn (name = "user_id")
-  private User userId;
+  private User user;
 
-  public Record(Long recordId, BigDecimal amount, BigDecimal balance,
+  public Records(Long recordId, BigDecimal amount, BigDecimal balance,
                 String operationResponse, Operation operationId, Instant createdAt,
-                User userId) {
+                User user) {
     this.recordId = recordId;
     this.amount = amount;
     this.balance = balance;
     this.operationResponse = operationResponse;
     this.operationId = operationId;
     this.createdAt = createdAt;
-    this.userId = userId;
+    this.user = user;
   }
 
-  public Record() {
+  public Records() {
   }
 
 }
