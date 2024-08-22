@@ -7,8 +7,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -25,6 +25,7 @@ import java.security.interfaces.RSAPublicKey;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
   @Value ("${jwt.public.key}")
@@ -38,11 +39,8 @@ public class SecurityConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
     httpSecurity.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/login").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/swagger-ui/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/api-docs/**").permitAll()
-                        .requestMatchers(HttpMethod.GET,"/actuator/**").permitAll()
+                        .requestMatchers( "/", "/login", "/swagger-ui/**", "/api-docs/**",
+                                "/actuator/**", "/users", "/users/**", "/random").permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))

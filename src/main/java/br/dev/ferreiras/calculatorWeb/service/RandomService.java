@@ -1,14 +1,13 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
 import br.dev.ferreiras.calculatorWeb.dto.RandomApiRequestDto;
-import br.dev.ferreiras.calculatorWeb.dto.RandomApiResponseDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-
-import java.util.Objects;
 
 @Service
 public class RandomService {
@@ -16,16 +15,7 @@ public class RandomService {
 //  @Autowired
 //  private WebClient.Builder builder;
 
-  RandomApiRequestDto randomApiRequestDto = new RandomApiRequestDto(
-          "b720e6c8-5bd7-4c80-ab27-60a893668157",
-          "2.0",
-          "generateStrings",
-          "57",
-          "1",
-          "12",
-          "abcdefghijklmnopqrstuvwxyz",
-          true
-  );
+  private RandomApiRequestDto randomApiRequestDto;
 
 
   public RandomService() {
@@ -51,12 +41,12 @@ public class RandomService {
     rootNode.put("method", "generateStrings");
     rootNode.put("id", 57);
 
-    String requestBody =  objectMapper.writeValueAsString(rootNode);
+    String requestBody = objectMapper.writeValueAsString(rootNode);
     System.out.println(requestBody);
     return requestBody;
   }
 
-  public RandomApiResponseDto makeApiRequest()  {
+  public String makeApiRequest() {
 
     String requestBody = null;
     try {
@@ -95,18 +85,36 @@ public class RandomService {
 //
     WebClient webClient = WebClient.create("https://api.random.org");
 
-    return Objects.requireNonNull(webClient.post()
-                                           .uri("/json-rpc/4/invoke")
-                                           .bodyValue(requestBody)
-                                           .retrieve()
-                                           .bodyToMono(RandomApiResponseDto.class)
-                                           .block());
+    String response = String.valueOf(webClient.post()
+                                              .uri("/json-rpc/4/invoke")
+                                              .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                                              .contentType(MediaType.APPLICATION_JSON)
+                                              .bodyValue(requestBody)
+                                              .retrieve()
+                                              .bodyToMono(String.class)
+                                              .block());
+
+//    String objects = response.block();
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    return response;
+
+
 //  public RandomService(WebClient.Builder webClientBuilder) {
 //    WebClient webClient = webClientBuilder
 //            .baseUrl("https://api.random.org/json-rpc/4/invoke")
 //            .defaultHeader("X-API-KEY", "b720e6c8-5bd7-4c80-ab27-60a893668157")
 //            .build();
 //  }
+    /*
+    WebClient webClient = WebClient.create();
+String responseJson = webClient.get()
+                               .uri("https://petstore.swagger.io/v2/pet/findByStatus?status=available")
+                               .exchange()
+                               .block()
+                               .bodyToMono(String.class)
+                               .block();
+     */
   }
 }
 

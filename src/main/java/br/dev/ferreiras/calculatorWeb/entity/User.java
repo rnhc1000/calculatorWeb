@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Instant;
@@ -30,7 +31,7 @@ public class User {
 
   @Column (nullable = false)
   @NotBlank
-  @Size (min = 8, max = 40)
+  @Size (min = 10, max = 100)
   private String password;
 
   @Column (nullable = false)
@@ -46,6 +47,19 @@ public class User {
           inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   private Set<Role> roles;
+
+  public User(UUID userId, String username, String password, String status, Instant createdAt, Set<Role> roles) {
+    this.userId = userId;
+    this.username = username;
+    this.password = password;
+    this.status = status;
+    this.createdAt = createdAt;
+    this.roles = roles;
+  }
+
+  public User() {
+
+  }
 
   public UUID getUserId() {
 
@@ -65,12 +79,12 @@ public class User {
     this.username = username;
   }
 
-  public @NotBlank @Size (min = 8, max = 40) String getPassword() {
+  public @NotBlank @Size (min = 10, max = 100) String getPassword() {
 
     return password;
   }
 
-  public void setPassword(@NotBlank @Size (min = 8, max = 40) String password) {
+  public void setPassword(@NotBlank @Size (min = 10, max = 100) String password) {
     this.password = password;
   }
 
@@ -98,8 +112,8 @@ public class User {
     this.roles = roles;
   }
 
-  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, PasswordEncoder passwordEncoder) {
+  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, BCryptPasswordEncoder passwordEncoder) {
 
-   return passwordEncoder.matches(loginRequestDto.password(), this.password);
+   return passwordEncoder.matches(loginRequestDto.password(), this.getPassword());
   }
 }

@@ -1,10 +1,11 @@
 package br.dev.ferreiras.calculatorWeb.controller;
 
-import br.dev.ferreiras.calculatorWeb.dto.CredentialsRequestDto;
+import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto;
 import br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto;
 import br.dev.ferreiras.calculatorWeb.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,15 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.Instant;
+import java.util.stream.Collectors;
 
 @RestController
 public class TokenController {
+
+  private static final Logger logger = LoggerFactory.getLogger(TokenController.class);
 
   private final JwtEncoder jwtEncoder;
 
   private final UserService userService;
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
   public TokenController(JwtEncoder jwtEncoder,
                          BCryptPasswordEncoder bCryptPasswordEncoder,
@@ -34,14 +39,25 @@ public class TokenController {
     this.userService = userService;
   }
 
+  private static String apply(Role Role) {
+    return Role.getClass().getName();
+  }
 
   @PostMapping ("/login")
   public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
     var user = userService.getUsername(loginRequestDto.username());
 
     if (user.isEmpty() || user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
+      logger.info("Password mismatch....");
       throw new BadCredentialsException("User or Password invalid!!!");
     }
+
+    var scopes = user.get().getRoles()
+            .stream()
+            .map(Role::getRole)
+            .collect(Collectors.joining(" "));
+
+    logger.info("{} ", scopes);
 
     var expiresIn = 300L;
     var now = Instant.now();
@@ -50,6 +66,7 @@ public class TokenController {
                              .subject(user.get().getUserId().toString())
                              .issuedAt(now)
                              .expiresAt(now.plusSeconds(expiresIn))
+                             .claim("scope", scopes)
                              .build();
 
     var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

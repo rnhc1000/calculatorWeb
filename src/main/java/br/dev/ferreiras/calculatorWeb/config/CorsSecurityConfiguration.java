@@ -1,5 +1,6 @@
 package br.dev.ferreiras.calculatorWeb.config;
 
+import jakarta.annotation.Nonnull;
 import lombok.NonNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,16 +17,13 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
 
   @Bean
   public WebMvcConfigurer corsMessageConfiguration() {
-
     return new WebMvcConfigurer() {
-      public void addCorsMapping(@NonNull CorsRegistry corsRegistry) {
-        corsRegistry.addMapping("/**").allowedOrigins(
-                "http://127.0.0.1:3000",
-                "http://127.0.0.1:4200",
-                "http://api.random.org:443",
-                "http://192.168.15.11:5000"
-        );
-      };
+
+      @Override
+      public void addCorsMappings( @Nonnull CorsRegistry corsRegistry) {
+        corsRegistry.addMapping("/**").allowedOrigins("http://192.168.15.11:5000",
+                "http://127.0.0.1:80");
+      }
     };
   }
 
