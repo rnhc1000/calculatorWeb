@@ -26,8 +26,6 @@ public class UserService implements IUserService {
   @Autowired
   private JwtEncoder jwtEncoder;
 
-//  public UserService(CredentialsRequestDto credentialsRequestDto) {
-//  }
 
   @Override
   public User getUserId(UUID userId) {

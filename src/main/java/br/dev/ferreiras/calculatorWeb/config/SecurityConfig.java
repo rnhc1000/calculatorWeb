@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -34,13 +33,13 @@ public class SecurityConfig {
   @Value ("${jwt.private.key}")
   private  RSAPrivateKey rsaPrivateKey;
 
-
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
     httpSecurity.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers( "/", "/login", "/swagger-ui/**", "/api-docs/**",
-                                "/actuator/**", "/users", "/users/**", "/random").permitAll()
+                                "/actuator/**", "/users", "/users/**", "/random",
+                                "/operations").permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
@@ -48,7 +47,6 @@ public class SecurityConfig {
 
     return httpSecurity.build();
   }
-
 
   @Bean
   public JwtEncoder jwtEncoder() {
@@ -66,6 +64,7 @@ public class SecurityConfig {
 
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
+
     return new BCryptPasswordEncoder();
   }
 }
