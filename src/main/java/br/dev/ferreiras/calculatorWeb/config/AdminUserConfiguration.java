@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
 
@@ -53,6 +54,7 @@ public class AdminUserConfiguration implements CommandLineRunner {
               user.setUsername("admin@calculatorweb.com");
               user.setPassword(bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
               user.setRoles(Set.of(roleAdmin));
+              user.setBalance(new BigDecimal("1000.00"));
               user.setStatus("ACTIVE");
               user.setCreatedAt(Instant.now());
 

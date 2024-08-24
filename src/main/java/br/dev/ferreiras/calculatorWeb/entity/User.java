@@ -5,22 +5,23 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tb_users")
+@Table (name = "tb_users")
 public class User {
   private static final long serialVersionUUID = 1L;
 
   @Id
   @GeneratedValue (strategy = GenerationType.UUID)
-  @Column(name = "user_id")
+  @Column (name = "user_id")
   private UUID userId;
 
   @NotBlank
@@ -37,24 +38,38 @@ public class User {
   @Column (nullable = false)
   private String status;
 
+  private BigDecimal balance;
+
   @CreationTimestamp
   private Instant createdAt;
 
-  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable (
           name = "tb_users_roles",
-          joinColumns = @JoinColumn(name = "user_id"),
-          inverseJoinColumns = @JoinColumn(name = "role_id")
+          joinColumns = @JoinColumn (name = "user_id"),
+          inverseJoinColumns = @JoinColumn (name = "role_id")
   )
   private Set<Role> roles;
 
-  public User(UUID userId, String username, String password, String status, Instant createdAt, Set<Role> roles) {
+  public User(UUID userId, Set<Role> roles, String username, String password,
+              String status, BigDecimal balance, Instant createdAt) {
     this.userId = userId;
+    this.roles = roles;
     this.username = username;
     this.password = password;
     this.status = status;
+    this.balance = balance;
     this.createdAt = createdAt;
-    this.roles = roles;
+  }
+
+  @Column(nullable = false, precision = 2)
+  public BigDecimal getBalance() {
+
+    return balance;
+  }
+
+  public void setBalance(BigDecimal balance) {
+    this.balance = balance;
   }
 
   public User() {
@@ -114,6 +129,6 @@ public class User {
 
   public boolean isLoginCorrect(LoginRequestDto loginRequestDto, BCryptPasswordEncoder passwordEncoder) {
 
-   return passwordEncoder.matches(loginRequestDto.password(), this.getPassword());
+    return passwordEncoder.matches(loginRequestDto.password(), this.getPassword());
   }
 }

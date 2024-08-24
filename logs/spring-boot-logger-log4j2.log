@@ -1,85 +1,236 @@
-2024-08-21 18:42:06,477 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
-2024-08-21 18:42:06,569 INFO o.s.b.StartupInfoLogger [restartedMain] Starting CalculatorWebApplication using Java 21.0.4 with PID 654361 (/home/rferreira/dev/calculatorWeb/build/classes/java/main started by rferreira in /home/rferreira/dev/calculatorWeb)
-2024-08-21 18:42:06,597 DEBUG o.s.b.StartupInfoLogger [restartedMain] Running with Spring Boot v3.3.2, Spring v6.1.11
-2024-08-21 18:42:06,600 INFO o.s.b.SpringApplication [restartedMain] The following 1 profile is active: "dev"
-2024-08-21 18:42:06,829 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-08-21 18:42:10,031 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-08-21 18:42:10,489 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 437 ms. Found 3 JPA repository interfaces.
-2024-08-21 18:42:12,591 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port 8095 (http)
-2024-08-21 18:42:12,612 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8095"]
-2024-08-21 18:42:12,617 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2024-08-21 18:42:12,618 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.26]
-2024-08-21 18:42:12,692 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2024-08-21 18:42:12,696 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 5862 ms
-2024-08-21 18:42:13,126 DEBUG o.s.b.w.s.ServletContextInitializerBeans [restartedMain] Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
-2024-08-21 18:42:13,126 DEBUG o.s.b.w.s.ServletContextInitializerBeans [restartedMain] Mapping servlets: dispatcherServlet urls=[/]
-2024-08-21 18:42:13,180 DEBUG o.s.w.f.GenericFilterBean [restartedMain] Filter 'webMvcObservationFilter' configured for use
-2024-08-21 18:42:13,779 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2024-08-21 18:42:14,492 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@18399bb1
-2024-08-21 18:42:14,496 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2024-08-21 18:42:14,749 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Database: jdbc:mysql://127.0.0.1:3306/calculator (MySQL 8.0)
-2024-08-21 18:42:15,008 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Successfully validated 2 migrations (execution time 00:00.108s)
-2024-08-21 18:42:15,038 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Current version of schema `calculator`: 0.1
-2024-08-21 18:42:15,045 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Schema `calculator` is up to date. No migration necessary.
-2024-08-21 18:42:15,377 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-08-21 18:42:15,528 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.5.2.Final
-2024-08-21 18:42:15,634 INFO o.h.c.i.RegionFactoryInitiator [restartedMain] HHH000026: Second-level cache disabled
-2024-08-21 18:42:16,206 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-08-21 18:42:18,238 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-08-21 18:42:18,337 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-08-21 18:42:19,567 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-08-21 18:42:19,984 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [restartedMain] 11 mappings in 'requestMappingHandlerMapping'
-2024-08-21 18:42:20,397 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
-2024-08-21 18:42:20,679 INFO o.s.b.a.e.w.EndpointLinksResolver [restartedMain] Exposing 1 endpoint beneath base path '/actuator'
-2024-08-21 18:42:21,373 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
-2024-08-21 18:42:21,461 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
-2024-08-21 18:42:22,332 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2024-08-21 18:42:22,476 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8095"]
-2024-08-21 18:42:22,503 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port 8095 (http) with context path '/'
-2024-08-21 18:42:22,539 INFO o.s.b.StartupInfoLogger [restartedMain] Started CalculatorWebApplication in 16.943 seconds (process running for 18.547)
-2024-08-21 18:42:22,554 INFO b.d.f.c.CalculatorWebApplication [restartedMain] Calculator Web started running at 2024-08-21T18:42:22.554354912, zone America/Sao_Paulo, running java version 21.0.4
-2024-08-21 18:42:22,878 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] RoleAdmin:-> br.dev.ferreiras.calculatorWeb.entity.Role@f95ea4e
-2024-08-21 18:42:22,952 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] UserAdmin:-> Optional[br.dev.ferreiras.calculatorWeb.entity.User@6f159da9]
-2024-08-21 18:42:22,954 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] Administrator already exists!
-2024-08-21 18:43:03,042 INFO o.a.j.l.DirectJDKLog [http-nio-8095-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-08-21 18:43:03,043 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Initializing Servlet 'dispatcherServlet'
-2024-08-21 18:43:03,044 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected StandardServletMultipartResolver
-2024-08-21 18:43:03,044 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected AcceptHeaderLocaleResolver
-2024-08-21 18:43:03,045 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected FixedThemeResolver
-2024-08-21 18:43:03,047 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@3379105
-2024-08-21 18:43:03,049 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@18e1feb7
-2024-08-21 18:43:03,051 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
-2024-08-21 18:43:03,051 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed initialization in 8 ms
-2024-08-21 18:43:03,166 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/login", parameters={}
-2024-08-21 18:43:03,171 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-21 18:43:03,265 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$9aJUF/wOhGGdpGycywrtru5IrxGcGOiW.e (truncated)...]
-2024-08-21 18:43:03,444 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-1] ROLE_ADMIN 
-2024-08-21 18:43:03,578 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-21 18:43:03,581 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-21 18:43:03,600 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
-2024-08-21 18:43:05,935 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/random", parameters={}
-2024-08-21 18:43:05,936 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#getRandomString(String)
-2024-08-21 18:43:05,943 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to ["{}"]
-2024-08-21 18:43:06,002 INFO b.d.f.c.c.UserController [http-nio-8095-exec-2] {"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghijklmnopqrstuvwxyz"},"jsonrpc":"2.0","method":"generateStrings","id":57}
-2024-08-21 18:43:06,592 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] [7086fab7] HTTP POST https://api.random.org/json-rpc/4/invoke
-2024-08-21 18:43:08,300 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [7086fab7] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
-2024-08-21 18:43:08,743 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-2] [7086fab7] [9c30b434-1, L:/192.168.15.11:48812 - R:api.random.org/172.66.43.252:443] Response 200 OK
-2024-08-21 18:43:08,771 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [7086fab7] [9c30b434-1, L:/192.168.15.11:48812 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["tpyfwmskkdpy"],"completionTime":"2024-08-21 21:43:08Z" (truncated)..."
-2024-08-21 18:43:08,776 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [text/plain, */*, application/json, application/*+json]
-2024-08-21 18:43:08,777 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing ["{"jsonrpc":"2.0","result":{"random":{"data":["tpyfwmskkdpy"],"completionTime":"2024-08-21 21:43:08Z" (truncated)..."]
-2024-08-21 18:43:08,780 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
-2024-08-21 19:21:44,718 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/login", parameters={masked}
-2024-08-21 19:21:44,750 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-21 19:21:44,907 DEBUG o.s.w.m.s.InvocableHandlerMethod [http-nio-8095-exec-3] Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto> br.dev.ferreiras.calculatorWeb.controller.TokenController.login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto): Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported
-2024-08-21 19:21:44,968 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-3] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
-2024-08-21 19:21:44,975 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 415 UNSUPPORTED_MEDIA_TYPE
-2024-08-21 19:21:46,554 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/login", parameters={masked}
-2024-08-21 19:21:46,558 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-21 19:21:46,567 DEBUG o.s.w.m.s.InvocableHandlerMethod [http-nio-8095-exec-4] Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto> br.dev.ferreiras.calculatorWeb.controller.TokenController.login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto): Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported
-2024-08-21 19:21:46,568 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-4] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
-2024-08-21 19:21:46,570 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 415 UNSUPPORTED_MEDIA_TYPE
-2024-08-21 19:21:47,392 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] POST "/login", parameters={masked}
-2024-08-21 19:21:47,401 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-21 19:21:47,404 DEBUG o.s.w.m.s.InvocableHandlerMethod [http-nio-8095-exec-5] Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto> br.dev.ferreiras.calculatorWeb.controller.TokenController.login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto): Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported
-2024-08-21 19:21:47,405 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-5] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
-2024-08-21 19:21:47,407 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 415 UNSUPPORTED_MEDIA_TYPE
+2024-08-23 19:07:38,111 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-08-23 19:07:38,206 INFO o.s.b.StartupInfoLogger [restartedMain] Starting CalculatorWebApplication using Java 21.0.4 with PID 206865 (/home/rferreira/dev/calculatorWeb/build/classes/java/main started by rferreira in /home/rferreira/dev/calculatorWeb)
+2024-08-23 19:07:38,220 DEBUG o.s.b.StartupInfoLogger [restartedMain] Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-08-23 19:07:38,223 INFO o.s.b.SpringApplication [restartedMain] The following 1 profile is active: "dev"
+2024-08-23 19:07:38,566 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-08-23 19:07:42,657 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-08-23 19:07:42,973 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 293 ms. Found 3 JPA repository interfaces.
+2024-08-23 19:07:45,700 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port 8095 (http)
+2024-08-23 19:07:45,748 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8095"]
+2024-08-23 19:07:45,754 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2024-08-23 19:07:45,760 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-08-23 19:07:45,883 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2024-08-23 19:07:45,894 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 7309 ms
+2024-08-23 19:07:46,504 DEBUG o.s.b.w.s.ServletContextInitializerBeans [restartedMain] Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-08-23 19:07:46,505 DEBUG o.s.b.w.s.ServletContextInitializerBeans [restartedMain] Mapping servlets: dispatcherServlet urls=[/]
+2024-08-23 19:07:46,593 DEBUG o.s.w.f.GenericFilterBean [restartedMain] Filter 'webMvcObservationFilter' configured for use
+2024-08-23 19:07:47,203 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2024-08-23 19:07:48,034 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@79ff2ec4
+2024-08-23 19:07:48,039 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2024-08-23 19:07:48,203 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Database: jdbc:mysql://127.0.0.1:3306/calculator (MySQL 8.0)
+2024-08-23 19:07:48,564 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Successfully validated 2 migrations (execution time 00:00.138s)
+2024-08-23 19:07:48,604 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Current version of schema `calculator`: 0.1
+2024-08-23 19:07:48,612 INFO o.f.c.i.l.s.Slf4jLog [restartedMain] Schema `calculator` is up to date. No migration necessary.
+2024-08-23 19:07:48,981 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-08-23 19:07:49,122 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-08-23 19:07:49,228 INFO o.h.c.i.RegionFactoryInitiator [restartedMain] HHH000026: Second-level cache disabled
+2024-08-23 19:07:50,047 INFO o.s.o.j.p.SpringPersistenceUnitInfo [restartedMain] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-08-23 19:07:52,671 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-08-23 19:07:52,863 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-08-23 19:07:54,798 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-08-23 19:07:55,410 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [restartedMain] 12 mappings in 'requestMappingHandlerMapping'
+2024-08-23 19:07:55,895 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [restartedMain] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-08-23 19:07:56,248 INFO o.s.b.a.e.w.EndpointLinksResolver [restartedMain] Exposing 1 endpoint beneath base path '/actuator'
+2024-08-23 19:07:57,068 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [restartedMain] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-08-23 19:07:57,169 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [restartedMain] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-08-23 19:07:58,988 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2024-08-23 19:07:59,298 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8095"]
+2024-08-23 19:07:59,370 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port 8095 (http) with context path '/'
+2024-08-23 19:07:59,426 INFO o.s.b.StartupInfoLogger [restartedMain] Started CalculatorWebApplication in 22.408 seconds (process running for 24.742)
+2024-08-23 19:07:59,451 INFO b.d.f.c.CalculatorWebApplication [restartedMain] Calculator Web started running at 2024-08-23T19:07:59.451022844, zone America/Sao_Paulo, running java version 21.0.4
+2024-08-23 19:07:59,888 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] RoleAdmin:-> br.dev.ferreiras.calculatorWeb.entity.Role@27bcc764
+2024-08-23 19:07:59,947 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] UserAdmin:-> Optional[br.dev.ferreiras.calculatorWeb.entity.User@2f9353e8]
+2024-08-23 19:07:59,948 INFO b.d.f.c.c.AdminUserConfiguration [restartedMain] Administrator already exists!
+2024-08-23 19:08:27,065 INFO o.a.j.l.DirectJDKLog [http-nio-8095-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-08-23 19:08:27,067 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-08-23 19:08:27,070 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected StandardServletMultipartResolver
+2024-08-23 19:08:27,074 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected AcceptHeaderLocaleResolver
+2024-08-23 19:08:27,075 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected FixedThemeResolver
+2024-08-23 19:08:27,078 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@2c7a59fc
+2024-08-23 19:08:27,080 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@4244e619
+2024-08-23 19:08:27,081 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-08-23 19:08:27,081 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed initialization in 12 ms
+2024-08-23 19:08:27,202 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/operations", parameters={}
+2024-08-23 19:08:27,208 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:08:27,294 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=2000, operandTwo=757, operator=squareRoot]]
+2024-08-23 19:08:27,327 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2024-08-23 19:08:27,332 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [OperationsResponseDto[result=45]]
+2024-08-23 19:08:27,366 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
+2024-08-23 19:08:48,266 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/operations", parameters={}
+2024-08-23 19:08:48,268 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:08:48,273 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=757, operandTwo=757, operator=squareRoot]]
+2024-08-23 19:08:48,275 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2024-08-23 19:08:48,276 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [OperationsResponseDto[result=28]]
+2024-08-23 19:08:48,281 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
+2024-08-23 19:09:12,861 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/operations", parameters={}
+2024-08-23 19:09:12,864 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:09:12,867 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=16, operandTwo=757, operator=squareRoot]]
+2024-08-23 19:09:12,869 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json] and supported [application/json, application/*+json]
+2024-08-23 19:09:12,879 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [OperationsResponseDto[result=4]]
+2024-08-23 19:09:12,892 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
+2024-08-23 19:17:22,324 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/login", parameters={}
+2024-08-23 19:17:22,325 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:17:22,335 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:17:22,347 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-6] ROLE_ADMIN 
+2024-08-23 19:17:22,521 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:17:22,523 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:17:22,530 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
+2024-08-23 19:17:53,754 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/login", parameters={}
+2024-08-23 19:17:53,757 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:17:53,761 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:17:53,772 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-9] ROLE_ADMIN 
+2024-08-23 19:17:53,800 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:17:53,801 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:17:53,804 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
+2024-08-23 19:19:44,063 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/login", parameters={}
+2024-08-23 19:19:44,064 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:19:44,066 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:19:44,077 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-3] ROLE_ADMIN 
+2024-08-23 19:19:44,095 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:19:44,096 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:19:44,098 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
+2024-08-23 19:26:07,701 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] POST "/login", parameters={masked}
+2024-08-23 19:26:07,702 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:26:07,708 DEBUG o.s.w.m.s.InvocableHandlerMethod [http-nio-8095-exec-5] Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto> br.dev.ferreiras.calculatorWeb.controller.TokenController.login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto): Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported
+2024-08-23 19:26:07,712 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-5] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2024-08-23 19:26:07,712 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 415 UNSUPPORTED_MEDIA_TYPE
+2024-08-23 19:26:41,764 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/login", parameters={masked}
+2024-08-23 19:26:41,766 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:26:41,768 DEBUG o.s.w.m.s.InvocableHandlerMethod [http-nio-8095-exec-6] Could not resolve parameter [0] in public org.springframework.http.ResponseEntity<br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto> br.dev.ferreiras.calculatorWeb.controller.TokenController.login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto): Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported
+2024-08-23 19:26:41,769 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-6] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded;charset=UTF-8' is not supported]
+2024-08-23 19:26:41,770 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 415 UNSUPPORTED_MEDIA_TYPE
+2024-08-23 19:27:44,944 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/login", parameters={}
+2024-08-23 19:27:44,946 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:27:44,948 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:27:44,960 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-7] ROLE_ADMIN 
+2024-08-23 19:27:44,973 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:27:44,974 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:27:44,977 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
+2024-08-23 19:27:57,563 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] GET "/users", parameters={}
+2024-08-23 19:27:57,568 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#listUsers()
+2024-08-23 19:27:57,711 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:27:57,712 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [[br.dev.ferreiras.calculatorWeb.entity.User@2fbc657a, br.dev.ferreiras.calculatorWeb.entity.User@260 (truncated)...]
+2024-08-23 19:27:57,749 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-23 19:29:07,684 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/login", parameters={}
+2024-08-23 19:29:07,685 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:29:07,687 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:29:07,701 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-1] ROLE_ADMIN 
+2024-08-23 19:29:07,712 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:29:07,713 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:29:07,716 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
+2024-08-23 19:29:11,887 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/users", parameters={}
+2024-08-23 19:29:11,888 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#newUser(UserResponseDto)
+2024-08-23 19:29:11,909 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [UserResponseDto[username=rnhc1000@hotmail.com, password=@c4lc5l4t0r@, status=ACTIVE, balance=150.00]]
+2024-08-23 19:29:12,315 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:29:12,317 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Nothing to write: null body
+2024-08-23 19:29:12,318 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
+2024-08-23 19:29:33,956 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/login", parameters={}
+2024-08-23 19:29:33,958 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:29:33,961 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:29:33,974 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] ROLE_ADMIN 
+2024-08-23 19:29:33,985 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:29:33,985 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:29:33,990 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
+2024-08-23 19:29:36,779 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] GET "/users", parameters={}
+2024-08-23 19:29:36,780 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#listUsers()
+2024-08-23 19:29:36,807 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-5] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:29:36,808 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] Writing [[br.dev.ferreiras.calculatorWeb.entity.User@386d95cc, br.dev.ferreiras.calculatorWeb.entity.User@74f (truncated)...]
+2024-08-23 19:29:36,811 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
+2024-08-23 19:30:15,675 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/login", parameters={}
+2024-08-23 19:30:15,676 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:30:15,678 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:30:15,689 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-7] ROLE_ADMIN 
+2024-08-23 19:30:15,697 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:30:15,697 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:30:15,700 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
+2024-08-23 19:30:18,775 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/operations", parameters={}
+2024-08-23 19:30:18,776 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:30:18,778 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=2000, operandTwo=757, operator=multiplication]]
+2024-08-23 19:30:18,779 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:30:18,780 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=1514000]]
+2024-08-23 19:30:18,781 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-23 19:30:43,552 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/login", parameters={}
+2024-08-23 19:30:43,553 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:30:43,556 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:30:43,571 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_ADMIN 
+2024-08-23 19:30:43,580 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:30:43,582 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:30:43,585 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
+2024-08-23 19:30:46,419 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/operations", parameters={}
+2024-08-23 19:30:46,421 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:30:46,423 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=2000, operandTwo=757, operator=division]]
+2024-08-23 19:30:46,425 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:30:46,427 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [OperationsResponseDto[result=2.65]]
+2024-08-23 19:30:46,429 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
+2024-08-23 19:31:13,660 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/login", parameters={}
+2024-08-23 19:31:13,663 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:31:13,666 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:31:13,687 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-3] ROLE_ADMIN 
+2024-08-23 19:31:13,694 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:31:13,695 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:31:13,701 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
+2024-08-23 19:31:16,832 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/random", parameters={masked}
+2024-08-23 19:31:16,834 WARN o.s.w.s.h.AbstractHandlerExceptionResolver [http-nio-8095-exec-4] Resolved [org.springframework.web.HttpMediaTypeNotSupportedException: Content-Type 'application/x-www-form-urlencoded' is not supported]
+2024-08-23 19:31:16,835 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 415 UNSUPPORTED_MEDIA_TYPE
+2024-08-23 19:31:16,840 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] "ERROR" dispatch for POST "/error", parameters={masked}
+2024-08-23 19:31:16,841 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2024-08-23 19:31:16,852 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:31:16,854 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [{timestamp=Fri Aug 23 19:31:16 BRT 2024, status=415, error=Unsupported Media Type, trace=org.springf (truncated)...]
+2024-08-23 19:31:16,875 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Exiting from "ERROR" dispatch, status 415
+2024-08-23 19:33:59,985 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/login", parameters={}
+2024-08-23 19:33:59,986 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 19:33:59,988 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 19:34:00,002 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-6] ROLE_ADMIN 
+2024-08-23 19:34:00,010 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:34:00,011 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 19:34:00,012 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
+2024-08-23 19:34:08,000 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] GET "/users", parameters={}
+2024-08-23 19:34:08,002 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#listUsers()
+2024-08-23 19:34:08,037 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:34:08,038 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [[br.dev.ferreiras.calculatorWeb.entity.User@12c11b59, br.dev.ferreiras.calculatorWeb.entity.User@29e (truncated)...]
+2024-08-23 19:34:08,040 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
+2024-08-23 19:34:47,590 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/operations", parameters={}
+2024-08-23 19:34:47,593 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-23 19:34:47,596 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=2000, operandTwo=757, operator=division]]
+2024-08-23 19:34:47,597 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:34:47,598 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=2.65]]
+2024-08-23 19:34:47,600 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-23 19:34:52,072 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] GET "/users", parameters={}
+2024-08-23 19:34:52,074 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#listUsers()
+2024-08-23 19:34:52,103 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 19:34:52,105 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [[br.dev.ferreiras.calculatorWeb.entity.User@7c00dfa3, br.dev.ferreiras.calculatorWeb.entity.User@340 (truncated)...]
+2024-08-23 19:34:52,109 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
+2024-08-23 19:34:58,994 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/random", parameters={}
+2024-08-23 19:34:58,995 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.RandomController#getRandomString(String)
+2024-08-23 19:34:58,997 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to ["{}"]
+2024-08-23 19:34:59,004 INFO b.d.f.c.c.RandomController [http-nio-8095-exec-10] {"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghijklmnopqrstuvwxyz"},"jsonrpc":"2.0","method":"generateStrings","id":57}
+2024-08-23 19:34:59,578 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] [5d5d0234] HTTP POST https://api.random.org/json-rpc/4/invoke
+2024-08-23 19:35:03,503 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [5d5d0234] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
+2024-08-23 19:35:03,993 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-2] [5d5d0234] [87801d18-1, L:/192.168.15.11:54586 - R:api.random.org/172.66.43.252:443] Response 200 OK
+2024-08-23 19:35:04,035 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [5d5d0234] [87801d18-1, L:/192.168.15.11:54586 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["ccxavomhgsjr"],"completionTime":"2024-08-23 22:35:03Z" (truncated)..."
+2024-08-23 19:35:04,041 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [text/plain, */*, application/json, application/*+json]
+2024-08-23 19:35:04,041 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing ["{"jsonrpc":"2.0","result":{"random":{"data":["ccxavomhgsjr"],"completionTime":"2024-08-23 22:35:03Z" (truncated)..."]
+2024-08-23 19:35:04,044 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
+2024-08-23 20:10:47,811 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/login", parameters={}
+2024-08-23 20:10:47,815 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-23 20:10:47,818 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=$2a$10$8A/PfK3ScSNCDggO7fybCuf6uP1jX.BSr1 (truncated)...]
+2024-08-23 20:10:47,867 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-2] ROLE_ADMIN 
+2024-08-23 20:10:47,879 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 20:10:47,880 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
+2024-08-23 20:10:47,882 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
+2024-08-23 20:10:51,501 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/random", parameters={}
+2024-08-23 20:10:51,502 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.RandomController#getRandomString(String)
+2024-08-23 20:10:51,504 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to ["{}"]
+2024-08-23 20:10:51,507 INFO b.d.f.c.c.RandomController [http-nio-8095-exec-3] {"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghijklmnopqrstuvwxyz"},"jsonrpc":"2.0","method":"generateStrings","id":57}
+2024-08-23 20:10:51,510 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] [35f230b6] HTTP POST https://api.random.org/json-rpc/4/invoke
+2024-08-23 20:10:51,950 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-3] [35f230b6] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
+2024-08-23 20:10:52,338 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-3] [35f230b6] [c6424e9e-1, L:/192.168.15.11:36344 - R:api.random.org/172.66.43.252:443] Response 200 OK
+2024-08-23 20:10:52,342 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-3] [35f230b6] [c6424e9e-1, L:/192.168.15.11:36344 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["ucuaeclmzsmq"],"completionTime":"2024-08-23 23:10:52Z" (truncated)..."
+2024-08-23 20:10:52,343 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [text/plain, */*, application/json, application/*+json]
+2024-08-23 20:10:52,344 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing ["{"jsonrpc":"2.0","result":{"random":{"data":["ucuaeclmzsmq"],"completionTime":"2024-08-23 23:10:52Z" (truncated)..."]
+2024-08-23 20:10:52,346 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
+2024-08-23 20:10:58,942 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] GET "/users", parameters={}
+2024-08-23 20:10:58,944 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#listUsers()
+2024-08-23 20:10:58,968 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-23 20:10:58,969 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [[br.dev.ferreiras.calculatorWeb.entity.User@6335d4b6, br.dev.ferreiras.calculatorWeb.entity.User@2fb (truncated)...]
+2024-08-23 20:10:58,972 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK

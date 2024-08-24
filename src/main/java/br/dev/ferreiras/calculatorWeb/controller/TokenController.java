@@ -1,8 +1,8 @@
 package br.dev.ferreiras.calculatorWeb.controller;
 
-import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto;
 import br.dev.ferreiras.calculatorWeb.dto.LoginResponseDto;
+import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,18 +47,18 @@ public class TokenController {
   public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
     var user = userService.getUsername(loginRequestDto.username());
 
-    if (user.isEmpty() || user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
+    if (user.isEmpty() && user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
       logger.info("Password mismatch....");
       throw new BadCredentialsException("User or Password invalid!!!");
     }
 
     var scopes = user.get().getRoles()
-            .stream()
-            .map(Role::getRole)
-            .collect(Collectors.joining(" "));
+                     .stream()
+                     .map(Role::getRole)
+                     .collect(Collectors.joining(" "));
 
     logger.info("{} ", scopes);
-
+    var username = user.get().getUsername();
     var expiresIn = 300L;
     var now = Instant.now();
     var claims = JwtClaimsSet.builder()
@@ -67,13 +67,11 @@ public class TokenController {
                              .issuedAt(now)
                              .expiresAt(now.plusSeconds(expiresIn))
                              .claim("scope", scopes)
+                             .claim("username", username)
                              .build();
 
     var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
-//    CredentialsRequestDto credentialsDto = userService.validUser(user.get());
 
     return ResponseEntity.ok(new LoginResponseDto(jwtValue, expiresIn));
   }
-
-
 }
