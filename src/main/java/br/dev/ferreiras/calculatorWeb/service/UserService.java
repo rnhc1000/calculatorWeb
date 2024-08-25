@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -34,9 +35,8 @@ public class UserService implements IUserService {
   }
 
   @Override
-  public User saveUser(User user) {
-
-    return userRepository.save(user);
+  public void saveUser(User user) {
+    userRepository.save(user);
   }
 
   @Override
@@ -51,10 +51,16 @@ public class UserService implements IUserService {
     return userRepository.findByUsername(username);
   }
 
+
   @Override
   public Role getRole() {
 
     return roleRepository.findByRole(Role.Roles.ROLE_USER.name());
+  }
+
+  @Override
+  public int updateBalance(String username, BigDecimal balance) {
+    return userRepository.saveBalance(username, balance);
   }
   //  @Override
 //  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,10 +1,9 @@
 package br.dev.ferreiras.calculatorWeb.controller;
 
+import br.dev.ferreiras.calculatorWeb.dto.LoadBalanceRequestDto;
 import br.dev.ferreiras.calculatorWeb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorWeb.entity.User;
-import br.dev.ferreiras.calculatorWeb.service.RandomService;
 import br.dev.ferreiras.calculatorWeb.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -33,6 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
   @Autowired
   private UserService userService;
 
+
 //  @Autowired
 //  private RandomService randomService;
 
@@ -49,6 +49,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
           @ApiResponse (responseCode = "422", description = "User already exists!",
                   content = @Content)})
   @ResponseStatus
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
   @PostMapping ("/users")
   public ResponseEntity<Void> newUser(@RequestBody UserResponseDto userResponseDto) {
 
@@ -67,6 +68,16 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
     return ResponseEntity.ok().build();
   }
 
+  @Operation (summary = "List registered users")
+  @ApiResponses (value = {
+          @ApiResponse (responseCode = "200", description = "List of Registered Users",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = UserController.class))}),
+          @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "404", description = "Users not found",
+                  content = @Content)})
+  @ResponseStatus
   @GetMapping("/users")
   @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
   public ResponseEntity<List<User>> listUsers() {
@@ -97,6 +108,36 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
             user.get().getStatus(),
             user.get().getBalance())
     );
+  }
+
+  @Operation (summary = "Load wallet of a user")
+  @ApiResponses (value = {
+          @ApiResponse (responseCode = "201", description = "Wallet loaded",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = UserController.class))}),
+          @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "422", description = "User not found!",
+                  content = @Content)})
+  @ResponseStatus
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  @PostMapping(value="/setBalance")
+  public ResponseEntity<Integer> loadBalance(@RequestBody LoadBalanceRequestDto loadBalanceDto) {
+
+    var useCheck = loadBalanceDto.username();
+    logger.info("username, {}", useCheck);
+    if (!userService.getUsername(useCheck).isPresent()) {
+
+      logger.info("User does not exist!");
+      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    String username = loadBalanceDto.username();
+    BigDecimal balance = loadBalanceDto.balance();
+
+    int response = userService.updateBalance(username, balance);
+
+    return ResponseEntity.ok(response);
   }
 
 //  @Operation (summary = "Get a random string")

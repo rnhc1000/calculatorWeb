@@ -19,11 +19,11 @@ import java.util.Set;
 public class AdminUserConfiguration implements CommandLineRunner {
   private final static Logger logger = LoggerFactory.getLogger(AdminUserConfiguration.class);
 
-  private RoleRepository roleRepository;
+  private final RoleRepository roleRepository;
 
-  private UserRepository userRepository;
+  private final UserRepository userRepository;
 
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public AdminUserConfiguration(RoleRepository roleRepository,
                                 UserRepository userRepository,
