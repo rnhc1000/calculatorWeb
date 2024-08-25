@@ -23,7 +23,7 @@ public class OperationsController {
   @Autowired
   private OperationsService operationsService;
 
-  @Operation (summary = "Given two operands and one operator return a value")
+  @Operation (summary = "Given one or two operands and the operator return a value")
   @ApiResponses (value = {
           @ApiResponse (responseCode = "200", description = "Got the result",
                   content = {@Content (mediaType = "application/json",

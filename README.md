@@ -18,7 +18,7 @@ This is how we faced the challenge of creating a Web Calculator
 
 ## _Overview_
 
-This app has been coded using Spring Boot, Spring JPA, MapStruct, Jackson,
+This app has been coded using Java 21, Spring Boot, Spring JPA, Flyway, Jackson,
 Lombok, OpenAPI, MySQL.
 
 - src
@@ -29,7 +29,7 @@ Lombok, OpenAPI, MySQL.
             - controller
             - dto
             - entity
-                - enums
+            - enums
             - mapper
             - repository
             - services

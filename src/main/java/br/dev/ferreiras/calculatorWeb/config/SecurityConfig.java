@@ -39,7 +39,7 @@ public class SecurityConfig {
     httpSecurity.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers( "/", "/login", "/swagger-ui/**", "/api-docs/**",
                                 "/actuator/**", "/users", "/users/**", "/random",
-                                "/operations").permitAll()
+                                "/operations", "setBalance").permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
