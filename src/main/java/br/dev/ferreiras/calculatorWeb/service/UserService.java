@@ -31,15 +31,6 @@ public class UserService implements IUserService {
   @Autowired
   private OperationsRepository operationsRepository;
 
-  public UserService() {
-  }
-
-  public UserService(UserRepository userRepository, RoleRepository roleRepository, JwtEncoder jwtEncoder, OperationsRepository operationsRepository) {
-    this.userRepository = userRepository;
-    this.roleRepository = roleRepository;
-    this.jwtEncoder = jwtEncoder;
-    this.operationsRepository = operationsRepository;
-  }
 
   @Override
   public User getUserId(UUID userId) {
@@ -61,9 +52,9 @@ public class UserService implements IUserService {
   @Override
   public Optional<User> getUsername(String username) {
 
-    return Optional.ofNullable(userRepository.findByUsername(username).orElseThrow(
-            () -> new ResourceNotFoundException("Resource not found!")));
+    return userRepository.findByUsername(username);
   }
+
 
   @Override
   public Role getRole() {
@@ -73,7 +64,6 @@ public class UserService implements IUserService {
 
   @Override
   public int updateBalance(String username, BigDecimal balance) {
-
     return userRepository.saveBalance(username, balance);
   }
 
@@ -85,9 +75,13 @@ public class UserService implements IUserService {
 
   @Override
   public BigDecimal getOperationCostById(Long operationId) {
-
     return operationsRepository.findOperationsCostById(operationId);
   }
+
+  public BigDecimal getOperationCostByOperation(String operation) {
+    return operationsRepository.findOperationsCostByOperation(operation);
+  }
+
 
 
   //  @Override
