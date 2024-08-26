@@ -1,30 +1,35 @@
 package br.dev.ferreiras.calculatorWeb.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
 @Entity
-@Table (name="tb_operation")
+@Table (name = "tb_operations")
 public class Operation implements Serializable {
 
   private static final long serialVersionUUID = 1L;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  private Long id;
-
-  @Column (name = "ops", nullable = false)
-  private String operation;
+  @GeneratedValue (strategy = GenerationType.SEQUENCE)
+  @Column (name = "operation_id")
+  private Long operationId;
 
   @Column (nullable = false)
   private BigDecimal cost;
 
-//  @ElementCollection (targetClass = Operations.class)
-//  @Enumerated(EnumType.STRING)
-//  private  Operations operations;
-
+  @NotBlank
+  @Size (min = 7, max = 20)
+  @Column (unique = true)
+  private String operation;
 }

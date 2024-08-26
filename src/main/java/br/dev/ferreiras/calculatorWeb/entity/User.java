@@ -50,6 +50,16 @@ public class User {
   )
   private Set<Role> roles;
 
+//  @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//  @JoinTable (
+//          name = "tb_users_operations",
+//          joinColumns = @JoinColumn (name = "user_id"),
+//          inverseJoinColumns = @JoinColumn (name = "operation_id")
+//  )
+//  private Set<Operation> operations;
+
+
+
   public User(UUID userId, Set<Role> roles, String username, String password,
               String status, BigDecimal balance, Instant createdAt) {
     this.userId = userId;
@@ -126,8 +136,8 @@ public class User {
     this.roles = roles;
   }
 
-  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, BCryptPasswordEncoder passwordEncoder) {
+  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, BCryptPasswordEncoder bCryptPasswordEncoder) {
 
-    return passwordEncoder.matches(loginRequestDto.password(), this.getPassword());
+    return bCryptPasswordEncoder.matches(loginRequestDto.password(), this.getPassword());
   }
 }

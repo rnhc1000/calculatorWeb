@@ -23,4 +23,12 @@ public interface UserRepository extends JpaRepository<User, UUID> {
           """
   )
   int saveBalance(String username, BigDecimal balance);
+
+  @Query("""
+          SELECT balance b from User u WHERE u.username = :username
+          """)
+  BigDecimal findByUsernameBalance(String username);
+
+
+
 }

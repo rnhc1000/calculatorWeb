@@ -15,4 +15,7 @@ public interface IUserService {
   Optional<User> getUsername(String username);
   Role getRole();
   int updateBalance(String username, BigDecimal balance);
+  BigDecimal getBalance(String username);
+  BigDecimal getOperationCostById(Long id);
+
 }

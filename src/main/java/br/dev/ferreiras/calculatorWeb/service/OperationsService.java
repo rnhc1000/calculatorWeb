@@ -1,27 +1,54 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
-import lombok.extern.slf4j.Slf4j;
+
+import br.dev.ferreiras.calculatorWeb.controller.UserController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-@Slf4j
+
 @Service
 public class OperationsService {
 
+  private final RandomService randomService;
+  private final UserService userService;
+  private static final Logger logger = LoggerFactory.getLogger(OperationsService.class);
 
-  private RandomService randomService;
+  public OperationsService(UserService userService, RandomService randomService) {
+    this.userService = userService;
+    this.randomService = randomService;
+  }
 
-  public BigDecimal executeOperations(BigDecimal operandOne, BigDecimal operandTwo, String operator) {
+  public BigDecimal executeOperations(
+          BigDecimal operandOne, BigDecimal operandTwo, String operator, String username) {
 
     BigDecimal result = new BigDecimal("0");
     if (operator == null) return new BigDecimal("0.0");
     try {
       switch (operator) {
 
-        case "addition" -> result = addOperands(operandOne, operandTwo);
+        case "addition" -> {
+          var user = userService.getUsername(username);
+          logger.info("usuario: {}", user);
+          var balance = userService.getBalance(username);
+          logger.info("balance: {}", balance);
+
+          var cost = userService.getOperationCostById(1L);
+          logger.info("cost: {}", cost);
+
+          if ( balance.compareTo(cost) == 0 ) {
+            balance = balance.subtract(cost);
+            userService.updateBalance(username, balance);
+            result = addOperands(operandOne, operandTwo);
+          } else {
+            result = BigDecimal.valueOf(-1L);
+          }
+
+        }
         case "subtraction" -> result = subtractOperands(operandOne,operandTwo);
         case "multiplication" -> result = multiplyOperands(operandOne,operandTwo);
         case "division" -> result = divideOperands(operandOne, operandTwo);

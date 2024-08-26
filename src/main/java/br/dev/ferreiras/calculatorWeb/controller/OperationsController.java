@@ -3,6 +3,7 @@ package br.dev.ferreiras.calculatorWeb.controller;
 import br.dev.ferreiras.calculatorWeb.dto.OperationsRequestDto;
 import br.dev.ferreiras.calculatorWeb.dto.OperationsResponseDto;
 import br.dev.ferreiras.calculatorWeb.service.OperationsService;
+import br.dev.ferreiras.calculatorWeb.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -23,6 +24,9 @@ public class OperationsController {
   @Autowired
   private OperationsService operationsService;
 
+  @Autowired
+  private UserService userService;
+
   @Operation (summary = "Given one or two operands and the operator return a value")
   @ApiResponses (value = {
           @ApiResponse (responseCode = "200", description = "Got the result",
@@ -38,7 +42,9 @@ public class OperationsController {
     BigDecimal result = operationsService.executeOperations(
             operationsRequestDto.operandOne(),
             operationsRequestDto.operandTwo(),
-            operationsRequestDto.operator());
+            operationsRequestDto.operator(),
+            operationsRequestDto.username()
+    );
 
     return ResponseEntity.ok(new OperationsResponseDto(result));
   }
