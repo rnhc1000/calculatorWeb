@@ -1,6 +1,7 @@
 package br.dev.ferreiras.calculatorWeb.controller;
 
 import br.dev.ferreiras.calculatorWeb.dto.LoadBalanceRequestDto;
+import br.dev.ferreiras.calculatorWeb.dto.LoadBalanceResponseDto;
 import br.dev.ferreiras.calculatorWeb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorWeb.entity.User;
 import br.dev.ferreiras.calculatorWeb.service.UserService;
@@ -140,6 +141,32 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
     return ResponseEntity.ok(response);
   }
 
+  @Operation (summary = "Get balance of an user")
+  @ApiResponses (value = {
+          @ApiResponse (responseCode = "201", description = "Balance returned",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = UserController.class))}),
+          @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "422", description = "User not found!",
+                  content = @Content)})
+  @ResponseStatus
+  @RequestMapping(value = "/balance", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+  public ResponseEntity<LoadBalanceResponseDto> getBalance(@RequestBody LoadBalanceRequestDto loadBalanceRequestDto) {
+
+    var useCheck = loadBalanceRequestDto.username();
+    logger.info("Username to know the balance, {}", useCheck);
+    if (!userService.getUsername(useCheck).isPresent()) {
+
+      logger.info("Username does not exist!");
+      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    String username = loadBalanceRequestDto.username();
+    BigDecimal balance = userService.getBalance(username);
+
+    return ResponseEntity.ok(new LoadBalanceResponseDto(username, balance));
+  }
 //  @Operation (summary = "Get a random string")
 //  @ApiResponses (value = {
 //          @ApiResponse (responseCode = "200", description = "Get a random string through random.org",

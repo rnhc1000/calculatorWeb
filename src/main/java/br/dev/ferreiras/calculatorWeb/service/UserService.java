@@ -2,6 +2,7 @@ package br.dev.ferreiras.calculatorWeb.service;
 
 import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.entity.User;
+import br.dev.ferreiras.calculatorWeb.repository.OperationsRepository;
 import br.dev.ferreiras.calculatorWeb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorWeb.repository.UserRepository;
 import br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException;
@@ -27,6 +28,18 @@ public class UserService implements IUserService {
   @Autowired
   private JwtEncoder jwtEncoder;
 
+  @Autowired
+  private OperationsRepository operationsRepository;
+
+  public UserService() {
+  }
+
+  public UserService(UserRepository userRepository, RoleRepository roleRepository, JwtEncoder jwtEncoder, OperationsRepository operationsRepository) {
+    this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
+    this.jwtEncoder = jwtEncoder;
+    this.operationsRepository = operationsRepository;
+  }
 
   @Override
   public User getUserId(UUID userId) {
@@ -48,9 +61,9 @@ public class UserService implements IUserService {
   @Override
   public Optional<User> getUsername(String username) {
 
-    return userRepository.findByUsername(username);
+    return Optional.ofNullable(userRepository.findByUsername(username).orElseThrow(
+            () -> new ResourceNotFoundException("Resource not found!")));
   }
-
 
   @Override
   public Role getRole() {
@@ -60,8 +73,23 @@ public class UserService implements IUserService {
 
   @Override
   public int updateBalance(String username, BigDecimal balance) {
+
     return userRepository.saveBalance(username, balance);
   }
+
+  @Override
+  public BigDecimal getBalance(String username) {
+
+    return userRepository.findByUsernameBalance(username);
+  }
+
+  @Override
+  public BigDecimal getOperationCostById(Long operationId) {
+
+    return operationsRepository.findOperationsCostById(operationId);
+  }
+
+
   //  @Override
 //  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //    User user = userRepository.findByEmail(username);

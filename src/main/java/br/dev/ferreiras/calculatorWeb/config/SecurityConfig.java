@@ -19,6 +19,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
@@ -31,15 +32,20 @@ public class SecurityConfig {
   private RSAPublicKey rsaPublicKey;
 
   @Value ("${jwt.private.key}")
-  private  RSAPrivateKey rsaPrivateKey;
+  private RSAPrivateKey rsaPrivateKey;
+
+
+  private static final String[] WHITELIST = {
+          "swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
+          "/swagger-resources/**", "/actuator/**", "/login","/",
+          "/home"
+  };
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
     httpSecurity.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers( "/", "/login", "/swagger-ui/**", "/api-docs/**",
-                                "/actuator/**", "/users", "/users/**", "/random",
-                                "/operations", "setBalance").permitAll()
+                        .requestMatchers(WHITELIST).permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
