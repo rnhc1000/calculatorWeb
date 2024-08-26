@@ -15,4 +15,9 @@ public interface OperationsRepository extends JpaRepository<Operation, Long> {
           SELECT cost c FROM Operation o WHERE operationId = :operationId
           """)
   BigDecimal findOperationsCostById(Long operationId);
+
+  @Query ("""
+          SELECT cost c FROM Operation o WHERE operation = :operation
+          """)
+  BigDecimal findOperationsCostByOperation(String operation);
 }
