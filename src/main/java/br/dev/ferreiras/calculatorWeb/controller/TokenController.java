@@ -24,6 +24,7 @@ import java.time.Instant;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping(path = "api/v1")
 public class TokenController {
 
   private static final Logger logger = LoggerFactory.getLogger(TokenController.class);
@@ -60,9 +61,9 @@ public class TokenController {
   public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
     var user = userService.getUsername(loginRequestDto.username());
 
-    if (user.isEmpty() || user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
+    if (user.isEmpty() || !user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
       logger.info("Password mismatch....");
-      throw new BadCredentialsException("User or Password invalid!!!");
+      throw new BadCredentialsException("User or Password Invalid!!!");
     }
 
     var scopes = user.get().getRoles()

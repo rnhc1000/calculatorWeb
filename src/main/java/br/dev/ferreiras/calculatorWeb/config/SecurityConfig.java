@@ -34,11 +34,11 @@ public class SecurityConfig {
   @Value ("${jwt.private.key}")
   private RSAPrivateKey rsaPrivateKey;
 
-
   private static final String[] WHITELIST = {
+
           "swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
-          "/swagger-resources/**", "/actuator/**", "/login","/",
-          "/home"
+          "/swagger-resources/**", "/actuator/**", "/api/v1/login","/",
+          "/api/v1/home"
   };
 
   @Bean
@@ -56,6 +56,7 @@ public class SecurityConfig {
 
   @Bean
   public JwtEncoder jwtEncoder() {
+
     JWK jwk = new RSAKey.Builder(this.rsaPublicKey).privateKey(this.rsaPrivateKey).build();
     var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
 

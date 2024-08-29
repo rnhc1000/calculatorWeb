@@ -27,15 +27,12 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
+@RequestMapping(path = "api/v1")
 public class UserController {
 private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
   @Autowired
   private UserService userService;
-
-
-//  @Autowired
-//  private RandomService randomService;
 
   @Autowired
   private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -46,6 +43,8 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
                   content = {@Content (mediaType = "application/json",
                           schema = @Schema (implementation = UserController.class))}),
           @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "403", description = "Access Denied!",
                   content = @Content),
           @ApiResponse (responseCode = "422", description = "User already exists!",
                   content = @Content)})
@@ -76,6 +75,8 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
                           schema = @Schema (implementation = UserController.class))}),
           @ApiResponse (responseCode = "401", description = "Not authorized",
                   content = @Content),
+          @ApiResponse (responseCode = "403", description = "Access Denied!",
+                  content = @Content),
           @ApiResponse (responseCode = "404", description = "Users not found",
                   content = @Content)})
   @ResponseStatus
@@ -93,6 +94,8 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
                   content = {@Content (mediaType = "application/json",
                           schema = @Schema (implementation = UserController.class))}),
           @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "403", description = "Access Denied!",
                   content = @Content),
           @ApiResponse (responseCode = "404", description = "User not found",
                   content = @Content)})
@@ -117,6 +120,8 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
                   content = {@Content (mediaType = "application/json",
                           schema = @Schema (implementation = UserController.class))}),
           @ApiResponse (responseCode = "401", description = "Not authorized",
+                  content = @Content),
+          @ApiResponse (responseCode = "403", description = "Access Denied!",
                   content = @Content),
           @ApiResponse (responseCode = "422", description = "User not found!",
                   content = @Content)})
@@ -156,7 +161,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 
     var useCheck = loadBalanceRequestDto.username();
     logger.info("Username to know the balance, {}", useCheck);
-    if (!userService.getUsername(useCheck).isPresent()) {
+    if (userService.getUsername(useCheck).isEmpty()) {
 
       logger.info("Username does not exist!");
       throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
@@ -167,33 +172,5 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 
     return ResponseEntity.ok(new LoadBalanceResponseDto(username, balance));
   }
-//  @Operation (summary = "Get a random string")
-//  @ApiResponses (value = {
-//          @ApiResponse (responseCode = "200", description = "Get a random string through random.org",
-//                  content = {@Content (mediaType = "application/json"
-////                          schema = @Schema (implementation = UserController.class)
-//                  )}),
-//          @ApiResponse (responseCode = "401", description = "Not Authorized",
-//                  content = @Content),
-//          @ApiResponse (responseCode = "404", description = "endpoint not found",
-//                  content = @Content),
-//          @ApiResponse (responseCode = "415", description = "media not supported",
-//                  content = @Content)
-//  })
-//  @ResponseStatus
-//  @PostMapping (value = "/random", consumes = {"application/json"})
-//  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-//  public ResponseEntity<String> getRandomString(@RequestBody String randomApiRequestDto)  {
-//
-//    try {
-//      randomApiRequestDto = randomService.prepareRequestBody();
-//    } catch (JsonProcessingException e) {
-//      throw new RuntimeException(e);
-//    }
-//
-//    logger.info("{}", randomApiRequestDto);
-//    String list  = randomService.makeApiRequest();
-//
-//    return ResponseEntity.ok(list);
-//  }
+
 }

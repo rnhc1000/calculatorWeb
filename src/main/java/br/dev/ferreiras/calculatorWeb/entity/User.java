@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -20,7 +21,6 @@ public class User {
 
   @Id
   @GeneratedValue (strategy = GenerationType.UUID)
-  @Column (name = "user_id")
   private UUID userId;
 
   @NotBlank
@@ -50,16 +50,6 @@ public class User {
   )
   private Set<Role> roles;
 
-//  @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//  @JoinTable (
-//          name = "tb_users_operations",
-//          joinColumns = @JoinColumn (name = "user_id"),
-//          inverseJoinColumns = @JoinColumn (name = "operation_id")
-//  )
-//  private Set<Operation> operations;
-
-
-
   public User(UUID userId, Set<Role> roles, String username, String password,
               String status, BigDecimal balance, Instant createdAt) {
     this.userId = userId;
@@ -82,7 +72,6 @@ public class User {
   }
 
   public User() {
-
   }
 
   public UUID getUserId() {
@@ -136,8 +125,8 @@ public class User {
     this.roles = roles;
   }
 
-  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public boolean isLoginCorrect(LoginRequestDto loginRequestDto, PasswordEncoder passwordEncoder) {
 
-    return bCryptPasswordEncoder.matches(loginRequestDto.password(), this.getPassword());
+    return passwordEncoder.matches(loginRequestDto.password(), this.password);
   }
 }

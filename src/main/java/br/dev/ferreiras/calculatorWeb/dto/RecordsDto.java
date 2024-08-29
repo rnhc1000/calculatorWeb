@@ -1,4 +1,10 @@
 package br.dev.ferreiras.calculatorWeb.dto;
 
-public record RecordsDto() {
+import java.util.List;
+
+public record RecordsDto(List<RecordItemsDto> records,
+                         int page,
+                         int size,
+                         int totalPages,
+                         long totalRecords){
 }

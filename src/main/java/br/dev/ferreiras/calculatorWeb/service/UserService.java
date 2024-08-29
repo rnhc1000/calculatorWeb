@@ -7,6 +7,8 @@ import br.dev.ferreiras.calculatorWeb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorWeb.repository.UserRepository;
 import br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +84,15 @@ public class UserService implements IUserService {
     return operationsRepository.findOperationsCostByOperation(operation);
   }
 
+  protected Optional<User> authenticated() {
+    try {
+      String username = SecurityContextHolder.getContext().getAuthentication().getName();
+      return userRepository.findByUsername(username);
+    }
+    catch (Exception e) {
+      throw new UsernameNotFoundException("Invalid user");
+    }
+  }
 
 
   //  @Override
