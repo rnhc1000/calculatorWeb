@@ -3,6 +3,7 @@ package br.dev.ferreiras.calculatorWeb.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Getter
+@Setter
 @Entity
 @Table (name = "tb_records")
 public class Records implements Serializable {
@@ -20,36 +22,46 @@ public class Records implements Serializable {
   @GeneratedValue (strategy = GenerationType.SEQUENCE)
   private Long recordId;
 
+  private String username;
+
+  private BigDecimal operandOne;
+
+  private BigDecimal operandTwo;
+
+  private String operator;
+
+  private String result;
+
   @NotNull
-  private BigDecimal amount;
-
-  private BigDecimal balance;
-
-  private String operationResponse;
-
-  @JoinColumn (name = "operation_id")
-  private Operation operationId;
+  private BigDecimal cost;
 
   @CreationTimestamp
   private Instant createdAt;
 
-  @ManyToOne (cascade = CascadeType.ALL)
-  @JoinColumn (name = "user_id")
-  private User user;
+//  @ManyToOne(fetch = FetchType.LAZY, cascade =  CascadeType.ALL)
+//  @JoinColumn(name = "user_id")
+//  private User user;
 
-  public Records(Long recordId, BigDecimal amount, BigDecimal balance,
-                String operationResponse, Operation operationId, Instant createdAt,
-                User user) {
-    this.recordId = recordId;
-    this.amount = amount;
-    this.balance = balance;
-    this.operationResponse = operationResponse;
-    this.operationId = operationId;
-    this.createdAt = createdAt;
-    this.user = user;
+  @PrePersist
+  public void prePersist() {
+    if (operandOne == null) operandOne = new BigDecimal("0.000");
+    if (operandTwo == null) operandTwo = new BigDecimal("0.000");
   }
 
   public Records() {
   }
 
+  public Records(Long recordId, String username, BigDecimal operandOne,
+                 BigDecimal operandTwo, String operator, String result,
+                 BigDecimal cost) {
+
+    this.recordId = recordId;
+    this.username = username;
+    this.operandOne = operandOne;
+    this.operandTwo = operandTwo;
+    this.operator = operator;
+    this.result = result;
+    this.cost = cost;
+
+  }
 }

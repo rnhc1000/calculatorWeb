@@ -17,7 +17,7 @@ public class OpenApiConfiguration {
   @Bean
   public OpenAPI defineOpenApi() {
     Server server = new Server();
-    server.setUrl("http://127.0.0.1:8095/");
+    server.setUrl("http://192.168.15.11:8095/");
     server.setDescription("Development");
 
     Contact myContact = new Contact();
@@ -27,7 +27,7 @@ public class OpenApiConfiguration {
     Info information = new Info()
             .title("Web Calculator")
             .version("1.0")
-            .description("API Calculator!")
+            .description("WebCalculatorAPI exposes endpoints to do maths at the backend and being persisted into a database")
             .contact(myContact);
 
     return new OpenAPI()
