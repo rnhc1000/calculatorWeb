@@ -43,7 +43,7 @@ public class TokenService {
 
     logger.info("{} ", scopes);
     var username = user.getUsername();
-    var expiresIn = 300L;
+    var expiresIn = 3600L;
     var now = Instant.now();
     var claims = JwtClaimsSet.builder()
                              .issuer("calculatorWebBackend")
