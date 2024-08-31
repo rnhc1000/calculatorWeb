@@ -1,384 +1,121 @@
-2024-08-30 09:56:35,420 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/login", parameters={}
-2024-08-30 09:56:35,440 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 09:56:35,472 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 09:56:35,963 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-7] ROLE_USER 
-2024-08-30 09:56:35,980 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 09:56:35,984 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 09:56:35,988 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 09:56:47,548 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/operations", parameters={}
-2024-08-30 09:56:47,549 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 09:56:47,554 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=12, operandTwo=8, operator=division, username=ricardo@ferreiras.dev. (truncated)...]
-2024-08-30 09:56:47,568 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] usuario: ricardo@ferreiras.dev.br
-2024-08-30 09:56:47,575 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] balance: 6.00
-2024-08-30 09:56:47,581 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] cost: 14.00
-2024-08-30 09:56:47,583 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 09:56:47,585 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=-1]]
-2024-08-30 09:56:47,590 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 11:35:46,731 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/api/v1/login", parameters={}
-2024-08-30 11:35:46,734 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 11:35:46,769 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 11:35:46,951 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-1] ROLE_USER 
-2024-08-30 11:35:46,957 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 11:35:46,964 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 11:35:46,972 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
-2024-08-30 16:02:50,054 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/login", parameters={}
-2024-08-30 16:02:50,057 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:02:50,073 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:02:50,259 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-7] ROLE_USER 
-2024-08-30 16:02:50,272 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:02:50,285 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:02:50,287 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 16:03:48,862 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/api/v1/login", parameters={}
-2024-08-30 16:03:48,864 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:03:48,867 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:03:48,990 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-6] ROLE_USER 
-2024-08-30 16:03:48,999 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:03:49,000 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:03:49,004 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
-2024-08-30 16:08:35,754 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
-2024-08-30 16:08:35,756 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:08:35,759 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:08:35,883 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
-2024-08-30 16:08:35,893 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:08:35,896 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:08:35,899 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 16:16:43,484 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/login", parameters={}
-2024-08-30 16:16:43,487 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:16:43,489 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:16:43,607 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-9] ROLE_USER 
-2024-08-30 16:16:43,612 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:16:43,613 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:16:43,616 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
-2024-08-30 16:18:07,102 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/api/v1/login", parameters={}
-2024-08-30 16:18:07,103 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:18:07,104 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:18:07,213 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-1] ROLE_USER 
-2024-08-30 16:18:07,218 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:18:07,219 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:18:07,221 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
-2024-08-30 16:21:11,021 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
-2024-08-30 16:21:11,023 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:21:11,024 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:21:11,130 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
-2024-08-30 16:21:11,136 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:21:11,136 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:21:11,140 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 16:26:08,731 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/api/v1/login", parameters={}
-2024-08-30 16:26:08,732 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:26:08,734 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:26:08,851 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-6] ROLE_USER 
-2024-08-30 16:26:08,856 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:26:08,857 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:26:08,859 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
-2024-08-30 16:29:28,504 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/login", parameters={}
-2024-08-30 16:29:28,507 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:29:28,523 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:29:28,628 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-8] ROLE_USER 
-2024-08-30 16:29:28,633 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:29:28,634 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:29:28,637 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 16:30:55,410 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/login", parameters={}
-2024-08-30 16:30:55,411 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:30:55,412 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:30:55,519 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-9] ROLE_USER 
-2024-08-30 16:30:55,524 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:30:55,524 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:30:55,527 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
-2024-08-30 16:47:12,952 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/login", parameters={}
-2024-08-30 16:47:12,954 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:47:12,956 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:47:13,075 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] ROLE_USER 
-2024-08-30 16:47:13,080 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:47:13,081 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:47:13,083 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 16:50:11,750 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/api/v1/login", parameters={}
-2024-08-30 16:50:11,751 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:50:11,752 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:50:11,877 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-2] ROLE_USER 
-2024-08-30 16:50:11,883 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:50:11,884 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:50:11,885 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
-2024-08-30 16:52:29,009 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/api/v1/login", parameters={}
-2024-08-30 16:52:29,010 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 16:52:29,028 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 16:52:29,143 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-3] ROLE_USER 
-2024-08-30 16:52:29,147 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 16:52:29,147 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 16:52:29,150 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
-2024-08-30 17:00:14,691 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/login", parameters={}
-2024-08-30 17:00:14,691 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 17:00:14,700 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 17:00:14,827 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] ROLE_USER 
-2024-08-30 17:00:14,835 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 17:00:14,836 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 17:00:14,841 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 17:09:26,301 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/login", parameters={}
-2024-08-30 17:09:26,302 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 17:09:26,304 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 17:09:26,422 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-8] ROLE_USER 
-2024-08-30 17:09:26,434 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 17:09:26,435 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 17:09:26,436 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 17:24:42,992 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
-2024-08-30 17:24:42,994 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 17:24:42,996 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 17:24:43,104 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
-2024-08-30 17:24:43,110 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 17:24:43,111 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 17:24:43,114 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 17:27:06,614 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/login", parameters={}
-2024-08-30 17:27:06,615 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 17:27:06,618 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 17:27:06,731 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-8] ROLE_USER 
-2024-08-30 17:27:06,734 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 17:27:06,735 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 17:27:06,736 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 17:27:38,579 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/operations", parameters={}
-2024-08-30 17:27:38,580 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 17:27:38,584 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=14, operandTwo=15, operator=addition, username=ricardo@ferreiras.dev (truncated)...]
-2024-08-30 17:27:38,596 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] usuario: ricardo@ferreiras.dev.br
-2024-08-30 17:27:38,606 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] balance: 6.00
-2024-08-30 17:27:38,614 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] cost: 10.00
-2024-08-30 17:27:38,619 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 17:27:38,627 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [OperationsResponseDto[result=-1]]
-2024-08-30 17:27:38,633 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
-2024-08-30 17:49:52,457 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] GET "/swagger-ui/index.html", parameters={}
-2024-08-30 17:49:52,459 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,473 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
-2024-08-30 17:49:52,611 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] GET "/swagger-ui/swagger-ui.css", parameters={}
-2024-08-30 17:49:52,612 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,612 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] GET "/swagger-ui/index.css", parameters={}
-2024-08-30 17:49:52,614 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,619 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] GET "/swagger-ui/swagger-initializer.js", parameters={}
-2024-08-30 17:49:52,620 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
-2024-08-30 17:49:52,620 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,621 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,625 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
-2024-08-30 17:49:52,626 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
-2024-08-30 17:49:52,627 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:52,640 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
-2024-08-30 17:49:52,643 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 17:49:52,660 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 17:49:52,753 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 17:49:55,262 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] GET "/api-docs/swagger-config", parameters={}
-2024-08-30 17:49:55,263 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
-2024-08-30 17:49:55,273 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [*/*] and supported [application/json]
-2024-08-30 17:49:55,273 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://192.168.15.11:8095/swagger-ui/oauth2-r (truncated)...]
-2024-08-30 17:49:55,278 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
-2024-08-30 17:49:55,289 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] GET "/swagger-ui/favicon-32x32.png", parameters={}
-2024-08-30 17:49:55,291 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:55,307 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
-2024-08-30 17:49:55,737 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] GET "/swagger-ui/favicon-32x32.png", parameters={}
-2024-08-30 17:49:55,737 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
-2024-08-30 17:49:55,737 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] GET "/api-docs", parameters={}
-2024-08-30 17:49:55,738 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
-2024-08-30 17:49:55,741 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 17:49:55,783 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, */*] and supported [application/json]
-2024-08-30 17:49:55,785 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
-2024-08-30 17:49:55,787 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 17:50:08,779 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] POST "/api/v1/login", parameters={}
-2024-08-30 17:50:08,780 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 17:50:08,782 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=@c4lc5l4t0r@]]
-2024-08-30 17:50:08,903 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-5] ROLE_ADMIN 
-2024-08-30 17:50:08,907 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-5] Using 'application/json', given [application/json] and supported [application/json]
-2024-08-30 17:50:08,908 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
-2024-08-30 17:50:08,910 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
-2024-08-30 17:51:38,048 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/setBalance", parameters={}
-2024-08-30 17:51:38,048 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.UserController#loadBalance(LoadBalanceRequestDto)
-2024-08-30 17:51:38,117 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoadBalanceRequestDto[username=ricardo@ferreiras.dev.br, balance=1000]]
-2024-08-30 17:51:38,230 INFO b.d.f.c.c.UserController [http-nio-8095-exec-7] username, ricardo@ferreiras.dev.br
-2024-08-30 17:51:38,329 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json] and supported [application/json, application/*+json]
-2024-08-30 17:51:38,329 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [1]
-2024-08-30 17:51:38,332 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 17:51:50,867 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/operations", parameters={}
-2024-08-30 17:51:50,868 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 17:51:50,870 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=14, operandTwo=12, operator=division, username=ricardo@ferreiras.dev (truncated)...]
-2024-08-30 17:51:50,881 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] usuario: ricardo@ferreiras.dev.br
-2024-08-30 17:51:50,887 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] balance: 1000.00
-2024-08-30 17:51:50,914 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] cost: 14.00
-2024-08-30 17:51:51,012 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 17:51:51,013 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [OperationsResponseDto[result=1.1667]]
-2024-08-30 17:51:51,015 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 18:04:13,440 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/operations", parameters={}
-2024-08-30 18:04:13,442 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:04:13,447 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=12, operandTwo=15, operator=subtraction, username=ricardo@ferreiras. (truncated)...]
-2024-08-30 18:04:13,469 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:04:13,472 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] balance: 986.00
-2024-08-30 18:04:13,478 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] cost: 12.00
-2024-08-30 18:04:13,518 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:04:13,519 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=-3]]
-2024-08-30 18:04:13,520 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 18:18:14,493 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/api/v1/operations", parameters={}
-2024-08-30 18:18:14,494 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:18:14,496 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=12, operandTwo=12, operator=division, username=ricardo@ferreiras.dev (truncated)...]
-2024-08-30 18:18:14,521 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:18:14,525 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] balance: 974.00
-2024-08-30 18:18:14,531 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] cost: 14.00
-2024-08-30 18:18:14,574 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:18:14,574 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [OperationsResponseDto[result=1.0000]]
-2024-08-30 18:18:14,577 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
-2024-08-30 18:18:53,006 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/login", parameters={}
-2024-08-30 18:18:53,008 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:18:53,010 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=admin@calculatorweb.com, password=@c4lc5l4t0r@]]
-2024-08-30 18:18:53,122 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] ROLE_ADMIN 
-2024-08-30 18:18:53,126 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:18:53,127 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Ij (truncated)...]
-2024-08-30 18:18:53,130 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 18:19:05,716 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/operations", parameters={}
-2024-08-30 18:19:05,716 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:19:05,723 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=28, operandTwo=37, operator=subtraction, username=admin@calculatorwe (truncated)...]
-2024-08-30 18:19:05,730 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] usuario: admin@calculatorweb.com
-2024-08-30 18:19:05,733 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] balance: 823.00
-2024-08-30 18:19:05,738 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] cost: 12.00
-2024-08-30 18:19:05,767 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:19:05,768 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [OperationsResponseDto[result=-9]]
-2024-08-30 18:19:05,771 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 18:22:44,315 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/login", parameters={}
-2024-08-30 18:22:44,315 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:22:44,317 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 18:22:44,420 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-8] ROLE_USER 
-2024-08-30 18:22:44,424 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:22:44,425 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 18:22:44,426 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
-2024-08-30 18:22:54,797 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/operations", parameters={}
-2024-08-30 18:22:54,798 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:22:54,800 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=12, operandTwo=12, operator=addition, username=ricardo@ferreiras.dev (truncated)...]
-2024-08-30 18:22:54,814 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:22:54,818 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] balance: 960.00
-2024-08-30 18:22:54,822 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] cost: 10.00
-2024-08-30 18:22:54,864 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:22:54,866 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [OperationsResponseDto[result=24]]
-2024-08-30 18:22:54,867 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
-2024-08-30 18:23:10,639 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/randomize", parameters={}
-2024-08-30 18:23:10,640 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getRandomStrings(RequestRandomDto)
-2024-08-30 18:23:10,646 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [RequestRandomDto[username=ricardo@ferreiras.dev.br, operator=random_string]]
-2024-08-30 18:23:10,659 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:23:10,663 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Balance: 950.00
-2024-08-30 18:23:10,668 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Cost: 50.00
-2024-08-30 18:23:10,770 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] [5296a69e] HTTP POST https://api.random.org/json-rpc/4/invoke
-2024-08-30 18:23:11,512 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-4] [5296a69e] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
-2024-08-30 18:23:11,977 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-4] [5296a69e] [450f6d76-1, L:/192.168.15.11:36738 - R:api.random.org/172.66.43.252:443] Response 200 OK
-2024-08-30 18:23:12,002 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-4] [5296a69e] [450f6d76-1, L:/192.168.15.11:36738 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["fetkpojwilxy"],"completionTime":"2024-08-30 21:23:11Z" (truncated)..."
-2024-08-30 18:23:12,003 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] ApiRandomResponse: {"jsonrpc":"2.0","result":{"random":{"data":["fetkpojwilxy"],"completionTime":"2024-08-30 21:23:11Z"},"bitsUsed":56,"bitsLeft":249832,"requestsLeft":997,"advisoryDelay":960},"id":57}
-2024-08-30 18:23:12,008 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Inside Jackson decoder...
-2024-08-30 18:23:12,009 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] JsonNode: "fetkpojwilxy"
-2024-08-30 18:23:12,026 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:23:12,027 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [ResponseRandomDto[random="fetkpojwilxy"]]
-2024-08-30 18:23:12,029 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 18:35:01,848 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/api/v1/operations", parameters={}
-2024-08-30 18:35:01,849 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:35:01,851 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=27.89, operandTwo=93.63, operator=multiplication, username=admin@cal (truncated)...]
-2024-08-30 18:35:01,875 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] usuario: admin@calculatorweb.com
-2024-08-30 18:35:01,879 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] balance: 811.00
-2024-08-30 18:35:01,888 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] cost: 15.00
-2024-08-30 18:35:01,922 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:35:01,923 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [OperationsResponseDto[result=2611.3407]]
-2024-08-30 18:35:01,925 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
-2024-08-30 18:39:34,508 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/login", parameters={}
-2024-08-30 18:39:34,508 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:39:34,510 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 18:39:34,612 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-7] ROLE_USER 
-2024-08-30 18:39:34,616 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:39:34,616 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 18:39:34,618 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 18:39:48,371 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/api/v1/operations", parameters={}
-2024-08-30 18:39:48,377 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:39:48,379 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=28, operandTwo=37, operator=division, username=ricardo@ferreiras.dev (truncated)...]
-2024-08-30 18:39:48,388 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:39:48,391 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] balance: 900.00
-2024-08-30 18:39:48,394 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] cost: 14.00
-2024-08-30 18:39:48,421 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:39:48,422 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [OperationsResponseDto[result=0.7568]]
-2024-08-30 18:39:48,426 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
-2024-08-30 18:40:27,235 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
-2024-08-30 18:40:27,236 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:40:27,238 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 18:40:27,355 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
-2024-08-30 18:40:27,360 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:40:27,361 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 18:40:27,363 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 18:55:19,494 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/login", parameters={}
-2024-08-30 18:55:19,495 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:55:19,496 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 18:55:19,604 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] ROLE_USER 
-2024-08-30 18:55:19,607 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:55:19,608 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 18:55:19,610 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
-2024-08-30 18:55:31,533 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/api/v1/operations", parameters={}
-2024-08-30 18:55:31,534 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:55:31,536 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=multiplication, username=ricardo@ferreir (truncated)...]
-2024-08-30 18:55:31,548 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:55:31,552 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] balance: 886.00
-2024-08-30 18:55:31,555 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] cost: 15.00
-2024-08-30 18:55:31,584 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:55:31,585 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [OperationsResponseDto[result=4389]]
-2024-08-30 18:55:31,586 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
-2024-08-30 18:56:52,915 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] POST "/api/v1/login", parameters={}
-2024-08-30 18:56:52,915 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 18:56:52,917 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 18:56:53,026 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-5] ROLE_USER 
-2024-08-30 18:56:53,030 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-5] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 18:56:53,030 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 18:56:53,031 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
-2024-08-30 18:57:03,300 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/api/v1/operations", parameters={}
-2024-08-30 18:57:03,300 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 18:57:03,302 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=multiplication, username=ricardo@ferreir (truncated)...]
-2024-08-30 18:57:03,309 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] usuario: ricardo@ferreiras.dev.br
-2024-08-30 18:57:03,313 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] balance: 871.00
-2024-08-30 18:57:03,318 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] cost: 15.00
-2024-08-30 18:57:03,347 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 18:57:03,348 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [OperationsResponseDto[result=4389]]
-2024-08-30 18:57:03,350 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
-2024-08-30 19:35:53,464 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/randomize", parameters={}
-2024-08-30 19:35:53,465 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getRandomStrings(RequestRandomDto)
-2024-08-30 19:35:53,467 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [RequestRandomDto[username=ricardo@ferreiras.dev.br, operator=random_string]]
-2024-08-30 19:35:53,493 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] Usuario: ricardo@ferreiras.dev.br
-2024-08-30 19:35:53,496 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] Balance: 856.00
-2024-08-30 19:35:53,499 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] Cost: 50.00
-2024-08-30 19:35:53,523 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] [346d6128] HTTP POST https://api.random.org/json-rpc/4/invoke
-2024-08-30 19:35:54,104 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-1] [346d6128] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
-2024-08-30 19:35:54,492 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-1] [346d6128] [f6afbec2-1, L:/192.168.15.11:57964 - R:api.random.org/172.66.40.4:443] Response 200 OK
-2024-08-30 19:35:54,496 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-1] [346d6128] [f6afbec2-1, L:/192.168.15.11:57964 - R:api.random.org/172.66.40.4:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["qovwxgfbrrjj"],"completionTime":"2024-08-30 22:35:54Z" (truncated)..."
-2024-08-30 19:35:54,497 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] ApiRandomResponse: {"jsonrpc":"2.0","result":{"random":{"data":["qovwxgfbrrjj"],"completionTime":"2024-08-30 22:35:54Z"},"bitsUsed":56,"bitsLeft":249776,"requestsLeft":996,"advisoryDelay":600},"id":57}
-2024-08-30 19:35:54,498 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] Inside Jackson decoder...
-2024-08-30 19:35:54,499 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] JsonNode: "qovwxgfbrrjj"
-2024-08-30 19:35:54,524 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 19:35:54,524 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [ResponseRandomDto[random="qovwxgfbrrjj"]]
-2024-08-30 19:35:54,527 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
-2024-08-30 19:46:31,974 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
-2024-08-30 19:46:31,975 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 19:46:31,977 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=riCARDO@FERREIRAS.DEV.BR, password=@c4lc5l4t0r@]]
-2024-08-30 19:46:32,092 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
-2024-08-30 19:46:32,097 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 19:46:32,098 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 19:46:32,100 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
-2024-08-30 19:46:48,518 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] POST "/api/v1/operations", parameters={}
-2024-08-30 19:46:48,519 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 19:46:48,521 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=subtraction, username=ricardo@ferreiras. (truncated)...]
-2024-08-30 19:46:48,533 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] usuario: ricardo@ferreiras.dev.br
-2024-08-30 19:46:48,537 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] balance: 806.00
-2024-08-30 19:46:48,541 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-3] cost: 12.00
-2024-08-30 19:46:48,579 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-3] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 19:46:48,579 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] Writing [OperationsResponseDto[result=20]]
-2024-08-30 19:46:48,581 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
-2024-08-30 21:02:55,391 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/login", parameters={}
-2024-08-30 21:02:55,397 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 21:02:55,401 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=rnhc1000@gmail.com, password=@c4lc5l4t0r@]]
-2024-08-30 21:02:55,421 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-4] Password mismatch....
-2024-08-30 21:02:55,425 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Failed to complete request: org.springframework.security.authentication.BadCredentialsException: User or Password Invalid!!!
-2024-08-30 21:03:10,603 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/api/v1/login", parameters={}
-2024-08-30 21:03:10,604 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
-2024-08-30 21:03:10,605 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
-2024-08-30 21:03:10,723 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-2] ROLE_USER 
-2024-08-30 21:03:10,727 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
-2024-08-30 21:03:10,728 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
-2024-08-30 21:03:10,730 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
-2024-08-30 21:03:20,676 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/operations", parameters={}
-2024-08-30 21:03:20,677 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
-2024-08-30 21:03:20,680 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=multiplication, username=ricardo@ferreir (truncated)...]
-2024-08-30 21:03:20,695 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] usuario: ricardo@ferreiras.dev.br
-2024-08-30 21:03:20,707 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] balance: 794.00
-2024-08-30 21:03:20,714 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] cost: 15.00
-2024-08-30 21:03:20,761 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
-2024-08-30 21:03:20,762 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=4389]]
-2024-08-30 21:03:20,764 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-31 00:07:00,035 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/login", parameters={}
+2024-08-31 00:07:00,050 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.TokenController#login(LoginRequestDto)
+2024-08-31 00:07:00,060 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [LoginRequestDto[username=ricardo@ferreiras.dev.br, password=@c4lc5l4t0r@]]
+2024-08-31 00:07:00,215 INFO b.d.f.c.c.TokenController [http-nio-8095-exec-10] ROLE_USER 
+2024-08-31 00:07:00,219 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json]
+2024-08-31 00:07:00,220 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [LoginResponseDto[accessToken=eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJjYWxjdWxhdG9yV2ViQmFja2VuZCIsInN1YiI6Im (truncated)...]
+2024-08-31 00:07:00,223 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
+2024-08-31 00:07:11,799 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/operations", parameters={}
+2024-08-31 00:07:11,805 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:07:11,808 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=28, operandTwo=57, operator=addition, username=ricardo@ferreiras.dev (truncated)...]
+2024-08-31 00:07:11,825 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:07:11,828 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] balance: 779.00
+2024-08-31 00:07:11,835 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] cost: 10.00
+2024-08-31 00:07:11,927 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:07:11,929 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=85]]
+2024-08-31 00:07:11,931 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-31 00:07:23,045 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/randomize", parameters={}
+2024-08-31 00:07:23,046 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getRandomStrings(RequestRandomDto)
+2024-08-31 00:07:23,053 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [RequestRandomDto[username=ricardo@ferreiras.dev.br, operator=random_string]]
+2024-08-31 00:07:23,076 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] Usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:07:23,083 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] Balance: 769.00
+2024-08-31 00:07:23,092 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] Cost: 50.00
+2024-08-31 00:07:23,125 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] [58e32802] HTTP POST https://api.random.org/json-rpc/4/invoke
+2024-08-31 00:07:23,762 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [58e32802] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
+2024-08-31 00:07:24,148 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-2] [58e32802] [7c7bf321-1, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Response 200 OK
+2024-08-31 00:07:24,153 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [58e32802] [7c7bf321-1, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["kwysxomqsalr"],"completionTime":"2024-08-31 03:07:23Z" (truncated)..."
+2024-08-31 00:07:24,154 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] ApiRandomResponse: {"jsonrpc":"2.0","result":{"random":{"data":["kwysxomqsalr"],"completionTime":"2024-08-31 03:07:23Z"},"bitsUsed":56,"bitsLeft":249944,"requestsLeft":999,"advisoryDelay":1580},"id":57}
+2024-08-31 00:07:24,155 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] Inside Jackson decoder...
+2024-08-31 00:07:24,155 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] JsonNode: "kwysxomqsalr"
+2024-08-31 00:07:24,171 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:07:24,172 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [ResponseRandomDto[random="kwysxomqsalr"]]
+2024-08-31 00:07:24,174 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
+2024-08-31 00:12:23,397 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] POST "/api/v1/operations", parameters={}
+2024-08-31 00:12:23,399 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:12:23,401 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=subtraction, username=ricardo@ferreiras. (truncated)...]
+2024-08-31 00:12:23,411 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:12:23,415 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] balance: 719.00
+2024-08-31 00:12:23,420 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-6] cost: 12.00
+2024-08-31 00:12:23,450 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-6] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:12:23,451 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] Writing [OperationsResponseDto[result=20]]
+2024-08-31 00:12:23,453 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
+2024-08-31 00:12:34,519 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] POST "/api/v1/randomize", parameters={}
+2024-08-31 00:12:34,520 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-10] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getRandomStrings(RequestRandomDto)
+2024-08-31 00:12:34,522 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Read "application/json;charset=UTF-8" to [RequestRandomDto[username=ricardo@ferreiras.dev.br, operator=random_string]]
+2024-08-31 00:12:34,535 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:12:34,538 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Balance: 707.00
+2024-08-31 00:12:34,542 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Cost: 50.00
+2024-08-31 00:12:34,571 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] [486f196b] HTTP POST https://api.random.org/json-rpc/4/invoke
+2024-08-31 00:12:34,572 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [486f196b] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
+2024-08-31 00:12:34,966 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-2] [486f196b] [7c7bf321-2, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Response 200 OK
+2024-08-31 00:12:34,968 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [486f196b] [7c7bf321-2, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["ljkxbtumbodq"],"completionTime":"2024-08-31 03:12:34Z" (truncated)..."
+2024-08-31 00:12:34,968 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] ApiRandomResponse: {"jsonrpc":"2.0","result":{"random":{"data":["ljkxbtumbodq"],"completionTime":"2024-08-31 03:12:34Z"},"bitsUsed":56,"bitsLeft":249888,"requestsLeft":998,"advisoryDelay":700},"id":57}
+2024-08-31 00:12:34,969 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] Inside Jackson decoder...
+2024-08-31 00:12:34,969 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-10] JsonNode: "ljkxbtumbodq"
+2024-08-31 00:12:34,980 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-10] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:12:34,981 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-10] Writing [ResponseRandomDto[random="ljkxbtumbodq"]]
+2024-08-31 00:12:34,983 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-10] Completed 200 OK
+2024-08-31 00:13:38,265 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] POST "/api/v1/operations", parameters={}
+2024-08-31 00:13:38,265 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:13:38,267 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=division, username=ricardo@ferreiras.dev (truncated)...]
+2024-08-31 00:13:38,276 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:13:38,279 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] balance: 657.00
+2024-08-31 00:13:38,282 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-8] cost: 14.00
+2024-08-31 00:13:38,311 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-8] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:13:38,313 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] Writing [OperationsResponseDto[result=1.3509]]
+2024-08-31 00:13:38,315 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-08-31 00:13:48,938 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] POST "/api/v1/randomize", parameters={}
+2024-08-31 00:13:48,939 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getRandomStrings(RequestRandomDto)
+2024-08-31 00:13:48,940 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Read "application/json;charset=UTF-8" to [RequestRandomDto[username=ricardo@ferreiras.dev.br, operator=random_string]]
+2024-08-31 00:13:48,949 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] Usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:13:48,952 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] Balance: 643.00
+2024-08-31 00:13:48,955 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] Cost: 50.00
+2024-08-31 00:13:48,978 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] [44f77125] HTTP POST https://api.random.org/json-rpc/4/invoke
+2024-08-31 00:13:48,980 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [44f77125] Writing "{"params":{"apiKey":"b720e6c8-5bd7-4c80-ab27-60a893668157","n":1,"length":12,"characters":"abcdefghi (truncated)..."
+2024-08-31 00:13:49,375 DEBUG o.s.c.l.LogFormatUtils [reactor-http-epoll-2] [44f77125] [7c7bf321-3, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Response 200 OK
+2024-08-31 00:13:49,377 DEBUG o.s.c.l.CompositeLog [reactor-http-epoll-2] [44f77125] [7c7bf321-3, L:/192.168.15.11:52462 - R:api.random.org/172.66.43.252:443] Decoded "{"jsonrpc":"2.0","result":{"random":{"data":["fxwaeodanhsk"],"completionTime":"2024-08-31 03:13:49Z" (truncated)..."
+2024-08-31 00:13:49,377 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] ApiRandomResponse: {"jsonrpc":"2.0","result":{"random":{"data":["fxwaeodanhsk"],"completionTime":"2024-08-31 03:13:49Z"},"bitsUsed":56,"bitsLeft":249832,"requestsLeft":997,"advisoryDelay":790},"id":57}
+2024-08-31 00:13:49,378 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] Inside Jackson decoder...
+2024-08-31 00:13:49,378 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-1] JsonNode: "fxwaeodanhsk"
+2024-08-31 00:13:49,391 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-1] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:13:49,392 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] Writing [ResponseRandomDto[random="fxwaeodanhsk"]]
+2024-08-31 00:13:49,394 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
+2024-08-31 00:15:04,823 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] POST "/api/v1/operations", parameters={}
+2024-08-31 00:15:04,824 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:15:04,825 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=null, operandTwo=null, operator=, username=ricardo@ferreiras.dev.br]]
+2024-08-31 00:15:04,833 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:15:04,837 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] balance: 593.00
+2024-08-31 00:15:04,840 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-9] cost: null
+2024-08-31 00:15:04,841 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:15:04,841 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [OperationsResponseDto[result=0]]
+2024-08-31 00:15:04,843 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
+2024-08-31 00:15:13,547 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] POST "/api/v1/operations", parameters={}
+2024-08-31 00:15:13,548 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:15:13,549 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=subtraction, username=ricardo@ferreiras. (truncated)...]
+2024-08-31 00:15:13,557 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:15:13,563 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] balance: 593.00
+2024-08-31 00:15:13,566 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-7] cost: 12.00
+2024-08-31 00:15:13,595 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:15:13,596 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [OperationsResponseDto[result=20]]
+2024-08-31 00:15:13,598 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
+2024-08-31 00:15:22,470 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] POST "/api/v1/operations", parameters={}
+2024-08-31 00:15:22,471 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:15:22,473 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=77, operandTwo=57, operator=multiplication, username=ricardo@ferreir (truncated)...]
+2024-08-31 00:15:22,495 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-4] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:15:22,504 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-4] balance: 581.00
+2024-08-31 00:15:22,509 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-4] cost: 15.00
+2024-08-31 00:15:22,611 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-4] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:15:22,612 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] Writing [OperationsResponseDto[result=4389]]
+2024-08-31 00:15:22,614 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
+2024-08-31 00:16:32,702 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] POST "/api/v1/operations", parameters={}
+2024-08-31 00:16:32,703 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to br.dev.ferreiras.calculatorWeb.controller.OperationsController#getResults(OperationsRequestDto)
+2024-08-31 00:16:32,704 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Read "application/json;charset=UTF-8" to [OperationsRequestDto[operandOne=28, operandTwo=57, operator=division, username=ricardo@ferreiras.dev (truncated)...]
+2024-08-31 00:16:32,713 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] usuario: ricardo@ferreiras.dev.br
+2024-08-31 00:16:32,716 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] balance: 566.00
+2024-08-31 00:16:32,722 INFO b.d.f.c.s.OperationsService [http-nio-8095-exec-2] cost: 14.00
+2024-08-31 00:16:32,834 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-2] Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2024-08-31 00:16:32,834 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] Writing [OperationsResponseDto[result=0.4913]]
+2024-08-31 00:16:32,836 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
+2024-08-31 09:22:01,458 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] GET "/swagger-ui/favicon-32x32.png", parameters={}
+2024-08-31 09:22:01,466 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-08-31 09:22:01,482 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
