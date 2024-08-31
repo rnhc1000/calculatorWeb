@@ -50,11 +50,12 @@ _Requirements_
 
 ## _Screenshot_
 
-[![](./notification.png)]()
+[![](./webCalculator.png)]()
 
 ## _Links_
 
-- Live Site URL: [http://127.0.0.1:8095/swagger-ui/index.html] 
+- Live Site URL: [https://calculatorweb.ferreiras.dev.br/swagger-ui/index.html]
+- Github URL : [https://github.com/rnhc1000/calculatorWeb]
 
 ## _Built with_
 
@@ -67,8 +68,7 @@ _Requirements_
 @Entity
 @Table (name = "tb_records")
 public class Record implements Serializable {
-
-
+  
   private static final long serialVersionUUID = 1L;
 
   @Id
@@ -117,9 +117,9 @@ public class Record implements Serializable {
 - Provide a Json to FrontEnd including
     - delivery status of each operation to frontend
     - count of operations consumed by subscriber
-- Subscriber Authentication
-    - Spring JWT-OAuth2
-- Records Pagination
+- Subscriber Authentication - OK
+    - Spring JWT-OAuth2 - OK
+- Records Pagination - OK
 
 ### _Useful resources_
 
