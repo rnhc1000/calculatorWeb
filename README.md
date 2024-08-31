@@ -24,9 +24,10 @@ Lombok, OpenAPI, MySQL.
 - src
     - main
     - java
-        - br/dev/ferreiras
+        - br.dev.ferreiras.calculatorWeb
             - config
             - controller
+              - handlers 
             - dto
             - entity
             - enums
@@ -36,13 +37,15 @@ Lombok, OpenAPI, MySQL.
                 - exceptions
     - resources
         - db.migration
+        - certs
     - test
 -
 
 _Requirements_
 
   ```
-  - MySQL Database
+  
+  - MySQL Database : http://127.0.0.1:3306
   - profile active: dev
   - service socket: 127.0.0.1:8095
 
@@ -55,11 +58,10 @@ _Requirements_
 ## _Links_
 
 - Live Site URL: [https://calculatorweb.ferreiras.dev.br/swagger-ui/index.html]
-- Github URL : [https://github.com/rnhc1000/calculatorWeb]
 
 ## _Built with_
 
-[![My Skills](https://skillicons.dev/icons?i=java,spring,redhat,aws,idea,git,github)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,gradle,docker,redhat,aws,idea,git,github,)](https://skillicons.dev)
 
 ## _How I did it_
 
