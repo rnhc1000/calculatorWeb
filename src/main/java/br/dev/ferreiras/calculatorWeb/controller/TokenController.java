@@ -73,7 +73,7 @@ public class TokenController {
 
     logger.info("{} ", scopes);
     var username = user.get().getUsername();
-    var expiresIn = 300L;
+    var expiresIn = 3600L;
     var now = Instant.now();
     var claims = JwtClaimsSet.builder()
                              .issuer("calculatorWebBackend")
@@ -86,6 +86,6 @@ public class TokenController {
 
     var jwtValue = jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
 
-    return ResponseEntity.ok(new LoginResponseDto(jwtValue, expiresIn));
+    return ResponseEntity.ok(new    LoginResponseDto(jwtValue, expiresIn));
   }
 }
