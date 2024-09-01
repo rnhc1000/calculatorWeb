@@ -69,7 +69,7 @@ _Requirements_
 @Getter
 @Entity
 @Table (name = "tb_records")
-public class Record implements Serializable {
+public class Records implements Serializable {
   
   private static final long serialVersionUUID = 1L;
 
@@ -95,7 +95,7 @@ public class Record implements Serializable {
   @JoinColumn (name = "user_id")
   private User userId;
 
-  public Record(Long recordId, BigDecimal amount, BigDecimal balance,
+  public Records(Long recordId, BigDecimal amount, BigDecimal balance,
                 String operationResponse, Long operationId, Instant createdAt,
                 User userId) {
     this.recordId = recordId;
@@ -107,7 +107,7 @@ public class Record implements Serializable {
     this.userId = userId;
   }
 
-  public Record() {
+  public Records() {
   }
 
 }
