@@ -19,6 +19,8 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.session.ForceEagerSessionCreationFilter;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -44,7 +46,8 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-    httpSecurity.authorizeHttpRequests(authorize -> authorize
+    httpSecurity.addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
+                .authorizeHttpRequests(authorize -> authorize
                           .requestMatchers(WHITELIST).permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)

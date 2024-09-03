@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
+    <Properties>
+        <Property name="APP_LOG_PATTERN">"%style{%d{dd-MM-yyyy HH:mm:ss.SSS}}{magenta} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"</Property>
+        <Property name="APP_LOG_ROOT">/tmp</Property>
+    </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout
-                    pattern="%style{%d{dd-MM-yyyy HH:mm:ss.SSS}}{magenta} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"/>
+                    pattern="${APP_LOG_PATTERN}"/>
         </Console>
 
         <RollingFile name="RollingFile"
-                     fileName="/home/rferreira/dev/calculatorWeb/logs/spring-boot-logger-log4j2.log"
-                     filePattern="/home/rferreira/dev/calculatorWeb/logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
+                     fileName="${APP_LOG_ROOT}/logs/spring-boot-logger-log4j2.log"
+                     filePattern="${APP_LOG_ROOT}/logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
             <PatternLayout>
                 <pattern>%d %p %C{1.} [%t] %m%n</pattern>
             </PatternLayout>
@@ -24,15 +28,14 @@
     </Appenders>
 
     <Loggers>
-        <!-- LOG everything at INFO level -->
         <Root level="info">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Root>
 
-        <!-- LOG "br.dev.ferreiras*" at TRACE level -->
-        <Logger name="br.dev.ferreiras" level="trace">
-
+        <Logger name="br.dev.ferreiras" additivity="false">
+            <AppenderRef ref="RollingFile" />
+            <AppenderRef ref="Console" />
         </Logger>
     </Loggers>
 

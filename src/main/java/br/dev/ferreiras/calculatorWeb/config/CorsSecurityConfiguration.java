@@ -25,6 +25,8 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
       public void addCorsMappings(@Nonnull CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                     .allowedOrigins(
+                            "https://3.19.135.188:7500",
+                            "https://calculatorweb.ferreiras.dev.br:443",
                             "http://192.168.15.11:7500",
                             "http://127.0.0.1:7500",
                             "http://localhost:7500",

@@ -18,8 +18,13 @@ This is how we faced the challenge of creating a Web Calculator
 
 ## _Overview_
 
-This app has been coded using Java 21, Spring Boot, Spring JPA, Flyway, Jackson,
-Lombok, OpenAPI, MySQL.
+This app is a calculator supporting basic math operations and a random string generator. The goal is to evaluate how a dev face the challenge of
+building a RESTful API to be consumed by a ReactJS-based front-end app. available at (https://calculatorweb.ferreiras.dev.br).
+There are some specific requirements such as authentication and authorization, data persistence, data recovery,
+consume a specific api -> (https://random.org), authenticated endpoints and some other requirements.
+The app has been coded using Java 21, Spring Boot, Spring Security, Spring JPA, Spring Webflux,
+Flyway, Jackson, Lombok, OpenAPI, MySQL, Docker and hosted in an AWS EC2 instance with secure access provided
+by a NGINX SSL proxy reverse.
 
 - src
     - main
@@ -34,7 +39,7 @@ Lombok, OpenAPI, MySQL.
             - mapper
             - repository
             - services
-                - exceptions
+              - exceptions
     - resources
         - db.migration
         - certs
@@ -46,7 +51,7 @@ _Requirements_
   ```
   
   - MySQL Database : http://127.0.0.1:3306
-  - profile active: dev
+  - profile active: dev or prod
   - service socket: 127.0.0.1:8095
 
 ```
@@ -57,7 +62,7 @@ _Requirements_
 
 ## _Links_
 
-- Live Site URL: [https://calculatorweb.ferreiras.dev.br/swagger-ui/index.html]
+- Live Site URL: [https://api.ferreiras.dev.br/swagger-ui/index.html]
 
 ## _Built with_
 

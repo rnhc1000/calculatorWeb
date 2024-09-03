@@ -1,0 +1,47 @@
+version: '3.4'
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    labels:
+      - "database calculator"
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test:  mysqladmin -h 172.18.0.1 ping -u root -pM4n4g3rMySQL || exit 1
+      interval: 1m
+      timeout: 30s
+      retries: 3
+    volumes:
+      - /db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: M4n4g3rMySQL
+      TZ: "America/New_York"
+
+  calculator-web:
+    container_name: calculator-web
+    image: rnhc757/images:calculatorWeb-1.1.020903
+    labels:
+      - "calculator:services"
+    ports:
+      - "8095:8095"
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    labels:
+      - "Gerencia Docker"
+    ports:
+      - "57757:9000"
+    restart: always
+    environment:
+      TZ: "America/New_York"
+
+volumes:
+  db:
+    external: true
+
+# --- create the docker volume thru docker volume create db command
+
+
