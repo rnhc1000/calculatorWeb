@@ -1,0 +1,86 @@
+2024-09-01 15:47:32,904 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.1.Final
+2024-09-01 15:47:33,177 INFO o.s.b.StartupInfoLogger [main] Starting CalculatorWebApplication v0.0.1-SNAPSHOT using Java 21.0.4 with PID 1668758 (/home/rferreira/dev/calculatorWeb/build/libs/calculatorWeb-0.0.1-SNAPSHOT.jar started by rferreira in /home/rferreira/dev/calculatorWeb)
+2024-09-01 15:47:33,205 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.3.2, Spring v6.1.11
+2024-09-01 15:47:33,222 INFO o.s.b.SpringApplication [main] The following 1 profile is active: "dev"
+2024-09-01 15:47:37,322 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-01 15:47:37,797 INFO o.s.d.r.c.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 457 ms. Found 4 JPA repository interfaces.
+2024-09-01 15:47:40,291 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat initialized with port 8095 (http)
+2024-09-01 15:47:40,341 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8095"]
+2024-09-01 15:47:40,347 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2024-09-01 15:47:40,349 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-09-01 15:47:40,501 INFO o.a.j.l.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2024-09-01 15:47:40,510 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 6815 ms
+2024-09-01 15:47:41,066 DEBUG o.s.b.w.s.ServletContextInitializerBeans [main] Mapping filters: webMvcObservationFilter urls=[/*] order=-2147483647, springSecurityFilterChain urls=[/*] order=-100, characterEncodingFilter urls=[/*] order=-2147483648, formContentFilter urls=[/*] order=-9900, requestContextFilter urls=[/*] order=-105
+2024-09-01 15:47:41,067 DEBUG o.s.b.w.s.ServletContextInitializerBeans [main] Mapping servlets: dispatcherServlet urls=[/]
+2024-09-01 15:47:41,205 DEBUG o.s.w.f.GenericFilterBean [main] Filter 'webMvcObservationFilter' configured for use
+2024-09-01 15:47:42,172 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Starting...
+2024-09-01 15:47:43,117 INFO c.z.h.p.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5af56240
+2024-09-01 15:47:43,122 INFO c.z.h.HikariDataSource [main] HikariPool-1 - Start completed.
+2024-09-01 15:47:43,484 INFO o.f.c.i.l.s.Slf4jLog [main] Database: jdbc:mysql://127.0.0.1:3306/calculator (MySQL 8.0)
+2024-09-01 15:47:43,781 INFO o.f.c.i.l.s.Slf4jLog [main] Successfully validated 2 migrations (execution time 00:00.141s)
+2024-09-01 15:47:43,836 INFO o.f.c.i.l.s.Slf4jLog [main] Current version of schema `calculator`: 1.1
+2024-09-01 15:47:43,847 INFO o.f.c.i.l.s.Slf4jLog [main] Schema `calculator` is up to date. No migration necessary.
+2024-09-01 15:47:44,146 INFO o.h.j.i.u.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-01 15:47:44,324 INFO o.h.Version [main] HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-01 15:47:44,456 INFO o.h.c.i.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2024-09-01 15:47:45,293 INFO o.s.o.j.p.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-01 15:47:47,657 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-01 15:47:47,811 INFO o.s.o.j.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-01 15:47:48,642 INFO o.s.d.j.r.q.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-01 15:47:49,890 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-01 15:47:50,375 DEBUG o.s.w.s.h.AbstractHandlerMethodMapping [main] 17 mappings in 'requestMappingHandlerMapping'
+2024-09-01 15:47:50,604 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping [main] Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-09-01 15:47:50,817 INFO o.s.b.a.e.w.EndpointLinksResolver [main] Exposing 1 endpoint beneath base path '/actuator'
+2024-09-01 15:47:51,301 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter [main] ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-09-01 15:47:51,391 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver [main] ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-09-01 15:47:52,392 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8095"]
+2024-09-01 15:47:52,454 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8095 (http) with context path '/'
+2024-09-01 15:47:52,499 INFO o.s.b.StartupInfoLogger [main] Started CalculatorWebApplication in 20.833 seconds (process running for 23.431)
+2024-09-01 15:47:52,517 INFO b.d.f.c.CalculatorWebApplication [main] Calculator Web started running at 2024-09-01T15:47:52.517546461, zone America/Sao_Paulo, running java version 21.0.4
+2024-09-01 15:47:52,702 INFO b.d.f.c.c.AdminUserConfiguration [main] RoleAdmin:-> br.dev.ferreiras.calculatorWeb.entity.Role@3a8a2089
+2024-09-01 15:47:52,771 INFO b.d.f.c.c.AdminUserConfiguration [main] UserAdmin:-> Optional[br.dev.ferreiras.calculatorWeb.entity.User@3109f8ae]
+2024-09-01 15:47:52,773 INFO b.d.f.c.c.AdminUserConfiguration [main] Administrator already exists!
+2024-09-01 15:48:06,083 INFO o.a.j.l.DirectJDKLog [http-nio-8095-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-01 15:48:06,084 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Initializing Servlet 'dispatcherServlet'
+2024-09-01 15:48:06,085 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected StandardServletMultipartResolver
+2024-09-01 15:48:06,085 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected AcceptHeaderLocaleResolver
+2024-09-01 15:48:06,086 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected FixedThemeResolver
+2024-09-01 15:48:06,089 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@4c7e7855
+2024-09-01 15:48:06,091 DEBUG o.s.w.s.DispatcherServlet [http-nio-8095-exec-1] Detected org.springframework.web.servlet.support.SessionFlashMapManager@790431bf
+2024-09-01 15:48:06,092 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2024-09-01 15:48:06,092 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed initialization in 8 ms
+2024-09-01 15:48:06,173 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-1] GET "/swagger-ui/index.html", parameters={}
+2024-09-01 15:48:06,179 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-1] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,218 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Completed 200 OK
+2024-09-01 15:48:06,374 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-2] GET "/swagger-ui/swagger-ui.css", parameters={}
+2024-09-01 15:48:06,378 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-2] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,383 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-3] GET "/swagger-ui/index.css", parameters={}
+2024-09-01 15:48:06,385 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-3] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,393 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-4] GET "/swagger-ui/swagger-ui-bundle.js", parameters={}
+2024-09-01 15:48:06,393 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-3] Completed 200 OK
+2024-09-01 15:48:06,400 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-5] GET "/swagger-ui/swagger-initializer.js", parameters={}
+2024-09-01 15:48:06,401 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-4] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,402 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-5] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,402 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-6] GET "/swagger-ui/swagger-ui-standalone-preset.js", parameters={}
+2024-09-01 15:48:06,404 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-6] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:06,443 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-2] Completed 200 OK
+2024-09-01 15:48:06,488 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-5] Completed 200 OK
+2024-09-01 15:48:06,577 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-6] Completed 200 OK
+2024-09-01 15:48:06,676 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-4] Completed 200 OK
+2024-09-01 15:48:08,716 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] GET "/api-docs/swagger-config", parameters={}
+2024-09-01 15:48:08,717 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-7] Mapped to org.springdoc.webmvc.ui.SwaggerConfigResource#openapiJson(HttpServletRequest)
+2024-09-01 15:48:08,742 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-8] GET "/swagger-ui/favicon-32x32.png", parameters={}
+2024-09-01 15:48:08,744 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-8] Mapped to ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]]
+2024-09-01 15:48:08,751 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-7] Using 'application/json', given [*/*] and supported [application/json]
+2024-09-01 15:48:08,754 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-8] Completed 200 OK
+2024-09-01 15:48:08,754 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-7] Writing [{configUrl=/api-docs/swagger-config, oauth2RedirectUrl=http://192.168.15.11:8095/swagger-ui/oauth2-r (truncated)...]
+2024-09-01 15:48:08,767 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-7] Completed 200 OK
+2024-09-01 15:48:09,162 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] GET "/api-docs", parameters={}
+2024-09-01 15:48:09,164 DEBUG o.s.w.s.h.AbstractHandlerMapping [http-nio-8095-exec-9] Mapped to org.springdoc.webmvc.api.OpenApiWebMvcResource#openapiJson(HttpServletRequest, String, Locale)
+2024-09-01 15:48:09,945 INFO o.s.a.AbstractOpenApiResource [http-nio-8095-exec-9] Init duration for springdoc-openapi is: 761 ms
+2024-09-01 15:48:10,022 DEBUG o.s.w.s.m.m.a.AbstractMessageConverterMethodProcessor [http-nio-8095-exec-9] Using 'application/json', given [application/json, */*] and supported [application/json]
+2024-09-01 15:48:10,027 DEBUG o.s.c.l.LogFormatUtils [http-nio-8095-exec-9] Writing [{123, 34, 111, 112, 101, 110, 97, 112, 105, 34, 58, 34, 51, 46, 48, 46, 49, 34, 44, 34, 105, 110, 10 (truncated)...]
+2024-09-01 15:48:10,030 DEBUG o.s.w.s.FrameworkServlet [http-nio-8095-exec-9] Completed 200 OK
+2024-09-01 15:49:42,264 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-01 15:49:42,273 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2024-09-01 15:49:42,319 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
