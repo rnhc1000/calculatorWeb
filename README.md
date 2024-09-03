@@ -19,7 +19,7 @@ This is how we faced the challenge of creating a Web Calculator
 ## _Overview_
 
 This app is a calculator supporting basic math operations and a random string generator. The goal is to evaluate how a dev face the challenge of
-building a RESTful API to be consumed by a ReactJS-based front-end app. available at (https://calculatorweb.ferreiras.dev.br).
+building a RESTful API to be consumed by a ReactJS-based front-end app. available at <a href="https://caculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>.
 There are some specific requirements such as authentication and authorization, data persistence, data recovery,
 consume a specific api -> (https://random.org), authenticated endpoints and some other requirements.
 The app has been coded using Java 21, Spring Boot, Spring Security, Spring JPA, Spring Webflux,
@@ -62,7 +62,7 @@ _Requirements_
 
 ## _Links_
 
-- Live Site URL: [https://api.ferreiras.dev.br/swagger-ui/index.html]
+- Live Site URL: <a href="https://api.ferreiras.dev.br/swagger-ui/index.html" target="_blank">API CalculatorWeb</a>
 
 ## _Built with_
 
