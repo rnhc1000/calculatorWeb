@@ -21,7 +21,7 @@ services:
 
   calculator-web:
     container_name: calculator-web
-    image: rnhc757/images:calculatorWeb-1.1.020903
+    image: rnhc757/images:calculatorWeb-1.1.030901
     labels:
       - "calculator:services"
     ports:
@@ -31,7 +31,7 @@ services:
     container_name: portainer
     image: portainer/portainer-ce
     labels:
-      - "Gerencia Docker"
+      - "Docker Management"
     ports:
       - "57757:9000"
     restart: always
@@ -42,6 +42,7 @@ volumes:
   db:
     external: true
 
-# --- create the docker volume thru docker volume create db command
+# --- create the docker volume thru command
+#  docker volume create db
 
 
