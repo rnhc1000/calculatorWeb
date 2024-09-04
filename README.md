@@ -5,14 +5,16 @@ I was challenged to develop a WebCalculator RESTful API and this is how I tackle
 
 - [_Overview_](#overview)
 - [_Requirements_](#requirements)
+- [_Project Structure_]
+- [_Howto Build and Run_]
 - [_Screenshot_](#screenshot)
 - [_Links_](#links)
 - [_Built with_](#built-with)
-    - [_How I did it_](#how-i-did-it)
+- [_Code Snippet_]
 - [_Continued development_](#continued-development)
 - [_Useful resources_](#useful-resources)
-- [_Author_](#author)
-- [Acknowledgments](#acknowledgments)
+- [_Author_]
+- [_Portfolio_]
 
 ## _Overview_
 
@@ -20,6 +22,9 @@ This app is an API calculator supporting basic math operations and providing a r
 The goal is to evaluate how a dev face the challenge of
 building a RESTful API to be consumed by a ReactJS-based front-end app available at <a href="https://calculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>.
 <br />
+
+## _Requirements_
+
 There are some specific requirements to be met, such as authentication and authorization, data persistence, 
 paginated data recovery, consume services of other api -> <a href="https://random.org" target="_blank">Random.org API</a>, authenticated access to endpoints and some other requirements.
 <br />
@@ -28,12 +33,16 @@ Flyway, Jackson, Lombok, OpenAPI, MySQL, Docker and hosted in an AWS EC2 instanc
 by a NGINX SSL proxy reverse and being live at <a href="https://api.ferreiras.dev.br/swagger-ui/index.html" target="_blank">CalculatorWeb-API</a> <br />
 <br />
 I will let you give it a try using these credentials to taste it: <br />
-<b>username:</b> example@example.com, <b>password:</b> example.com
+<b>username:</b> <i>example@example.com</i>, <b>password:</b> <i>example.com</i> <br />
 <br />
 Click at <a href="https://calculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>, load 
-these credentials, authenticate, get a credit of 100.00 to do your maths!<br />
+these credentials, authenticate and get a credit of 100.00 to do your maths!<br />
 Enjoy it....
+<hr />
 
+## _Project Structure_
+- docs
+   - javadocs
 - src
     - main
     - java
@@ -54,7 +63,7 @@ Enjoy it....
     - test
 -
 
-_Requirements_
+## _Howto Build and Run__
 
   ```
   - MySQL Database : http://127.0.0.1:3306
@@ -90,54 +99,52 @@ _Requirements_
 
 [![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,gradle,docker,redhat,aws,idea,git,github,)](https://skillicons.dev)
 
-## _How I did it_
+## _Code Snippet_
 
 ```java
-@Getter
-@Entity
-@Table (name = "tb_records")
-public class Records implements Serializable {
-  
-  private static final long serialVersionUUID = 1L;
+import java.util.List;
 
-  @Id
-  @GeneratedValue (strategy = GenerationType.IDENTITY)
-  private Long recordId;
+/**
+ * 
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 1.0
+ *
+ */
 
-  @NotNull
-  private BigDecimal amount;
+@Configuration
+public class OpenApiConfiguration {
+  @Bean
+  public OpenAPI defineOpenApi() {
+    Server server = new Server();
+    server.setUrl("https://api.ferreiras.dev.br/");
+    server.setDescription("Development");
 
-  private BigDecimal balance;
+    Contact myContact = new Contact();
+    myContact.setName(":Ricardo Ferreira");
+    myContact.setEmail("ricardo@ferreiras.dev.br");
 
-  private String operationResponse;
+    Info information = new Info()
+            .title("Web Calculator")
+            .version("1.0")
+            .description("WebCalculatorAPI exposes endpoints to do maths at the backend and being persisted into a database")
+            .contact(myContact);
 
-  @JoinColumn (name = "operation_id")
-  @ManyToOne (cascade = CascadeType.ALL)
-  private Long operationId;
-
-  @CreationTimestamp
-  private Instant createdAt;
-
-  @ManyToOne (cascade = CascadeType.ALL)
-  @JoinColumn (name = "user_id")
-  private User userId;
-
-  public Records(Long recordId, BigDecimal amount, BigDecimal balance,
-                String operationResponse, Long operationId, Instant createdAt,
-                User userId) {
-    this.recordId = recordId;
-    this.amount = amount;
-    this.balance = balance;
-    this.operationResponse = operationResponse;
-    this.operationId = operationId;
-    this.createdAt = createdAt;
-    this.userId = userId;
+    return new OpenAPI()
+            .info(information)
+            .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
+            .components(
+                    new Components()
+                            .addSecuritySchemes("bearerAuth", new SecurityScheme()
+                                    .type(SecurityScheme.Type.HTTP)
+                                    .scheme("bearer")
+                                    .bearerFormat("JWT")
+                            )
+            )
+            .servers(List.of(server));
   }
-
-  public Records() {
-  }
-
 }
+
 ``` 
 
 ## _Continued development_
@@ -157,7 +164,8 @@ public class Records implements Serializable {
 - [https://mvnrepository.com] Tools that help tackle the beast
 
 ## _Author_
+<a href="mailto:ricardo@ferreiras.dev.br>Ricardo Ferreira</a>
 
-- Website - [https://ferreiras.dev.br]
-  _Acknowledgments_
-- 
+## - _Portfolio_
+<a href="https://www.ferreiras.dev.br" target="_blank">My Portfolio...</a>
+
