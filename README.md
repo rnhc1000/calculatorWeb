@@ -1,7 +1,5 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      **## Take-home Microservices Challenge
-
-This is how we faced the challenge of creating a Web Calculator
-
+**## Take-home WebCalculator API Challenge
+I was challenged to develop a WebCalculator RESTful API and this is how I tackled it...
 
 ## _Table of contents_
 
@@ -18,13 +16,16 @@ This is how we faced the challenge of creating a Web Calculator
 
 ## _Overview_
 
-This app is a calculator supporting basic math operations and a random string generator. The goal is to evaluate how a dev face the challenge of
-building a RESTful API to be consumed by a ReactJS-based front-end app. available at <a href="https://caculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>.
-There are some specific requirements such as authentication and authorization, data persistence, data recovery,
-consume a specific api -> (https://random.org), authenticated endpoints and some other requirements.
-The app has been coded using Java 21, Spring Boot, Spring Security, Spring JPA, Spring Webflux,
+This app is an API calculator supporting basic math operations and providing a random string generator. 
+The goal is to evaluate how a dev face the challenge of
+building a RESTful API to be consumed by a ReactJS-based front-end app available at <a href="https://calculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>.
+There are some specific requirements to be met, such as authentication and authorization, data persistence, 
+paginated data recovery, consume services of other api -> <a href="https://random.org" target="_blank">Random.org API</a>, authenticated access to endpoints and some other requirements.
+The app has been coded using Java 21, Spring Boot 3.3.2, Gradle, Javadoc, Spring Security, Spring JPA, Spring Webflux,
 Flyway, Jackson, Lombok, OpenAPI, MySQL, Docker and hosted in an AWS EC2 instance with secure access provided
-by a NGINX SSL proxy reverse.
+by a NGINX SSL proxy reverse and being live at <a href="https://api.ferreiras.dev.br/swagger-ui/index.html" target="_blank">CalculatorWeb-API</a>
+I will let you give it a try using these credentials to taste it: username: example@example.com, password: example.com
+Get a token with this user and you will have a credit of 100.00 to spend, doing your maths...Just try it!
 
 - src
     - main
@@ -66,7 +67,7 @@ _Requirements_
   """
   
   To have a docker image follow the instructions of the dockerBuild.sh,
-  otherwise just Ctrl-Shift-F10 adn voila...
+  otherwise just Ctrl-Shift-F10 and voila...
 
 ```
 
