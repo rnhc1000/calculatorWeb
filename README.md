@@ -5,16 +5,16 @@ I was challenged to develop a WebCalculator RESTful API and this is how I tackle
 
 - [_Overview_](#overview)
 - [_Requirements_](#requirements)
-- [_Project Structure_]
-- [_Howto Build and Run_]
+- [_Project Structure_](#requirements)
+- [_Howto Build and Run_](#requirements)
 - [_Screenshot_](#screenshot)
-- [_Links_](#links)
+- [_Links_](...)
 - [_Built with_](#built-with)
-- [_Code Snippet_]
+- [_Code Snippet_](#requirements)
 - [_Continued development_](#continued-development)
 - [_Useful resources_](#useful-resources)
-- [_Author_]
-- [_Portfolio_]
+- [_Author_](#requirements)
+- [_Portfolio_](#requirements)
 
 ## _Overview_
 
@@ -26,7 +26,7 @@ building a RESTful API to be consumed by a ReactJS-based front-end app available
 ## _Requirements_
 
 There are some specific requirements to be met, such as authentication and authorization, data persistence, 
-paginated data recovery, consume services of other api -> <a href="https://random.org" target="_blank">Random.org API</a>, authenticated access to endpoints and some other requirements.
+paginated data recovery, consume services of other api -> <a href="https://random.org" target="_blank">Random.org API</a>, authenticated access to endpoints and some other requirements.<br />
 <br />
 The app has been coded using Java 21, Spring Boot 3.3.2, Gradle, Javadoc, Spring Security, Spring JPA, Spring Webflux,
 Flyway, Jackson, Lombok, OpenAPI, MySQL, Docker and hosted in an AWS EC2 instance with secure access provided
@@ -63,7 +63,7 @@ Enjoy it....
     - test
 -
 
-## _Howto Build and Run__
+## _Howto Build and Run_
 
   ```
   - MySQL Database : http://127.0.0.1:3306
@@ -164,7 +164,7 @@ public class OpenApiConfiguration {
 - [https://mvnrepository.com] Tools that help tackle the beast
 
 ## _Author_
-<a href="mailto:ricardo@ferreiras.dev.br>Ricardo Ferreira</a>
+<a href="mailto:ricardo@ferreiras.dev.br">Ricardo Ferreira</a>
 
 ## - _Portfolio_
 <a href="https://www.ferreiras.dev.br" target="_blank">My Portfolio...</a>
