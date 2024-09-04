@@ -38,7 +38,9 @@ I will let you give it a try using these credentials to taste it: <br />
 Click at <a href="https://calculatorweb.ferreiras.dev.br" target="_blank">CalculatorWeb-UI</a>, load 
 these credentials, authenticate and get a credit of 100.00 to do your maths!<br />
 Enjoy it....
+<br />
 Why don't you take a lok at this short video....to see how it works...
+<br />
 <a href="https://flonnect.com/video/21c13021d0d1-4cc2-86b5-0a455011855a" target="_blank">Short Video</a>
 <hr />
 
