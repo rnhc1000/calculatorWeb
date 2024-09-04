@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/*
-Approach:
-WebMvcConfigurator bean
+/** This class deals with CORS configuration
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 08/2024
  */
+
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
@@ -20,7 +22,10 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
   @Bean
   public WebMvcConfigurer corsMessageConfiguration() {
     return new WebMvcConfigurer() {
-
+      /**
+       *
+       * @param corsRegistry inject the dependency to allow insertion of sockets authorized
+       */
       @Override
       public void addCorsMappings(@Nonnull CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")

@@ -15,6 +15,13 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
 
+/** This class provides a user with administrator privileges with an initial balance of $1000.00
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 08/2024
+ */
+
+
 @Configuration
 public class AdminUserConfiguration implements CommandLineRunner {
   private final static Logger logger = LoggerFactory.getLogger(AdminUserConfiguration.class);
@@ -33,16 +40,25 @@ public class AdminUserConfiguration implements CommandLineRunner {
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
+  /**
+   *
+   * Override run method from CommandLineRunner interface to create a
+   * user with Role:Admin if it already does not exist persisted into the database
+   * @throws Exception Database Exception
+   */
+
   @Override
   @Transactional
   public void run(String... args) throws Exception {
 
     Role roleAdmin = roleRepository.findByRole(Role.Roles.ROLE_ADMIN.name());
-//    var roleAdmin = Role.Roles.ROLE_ADMIN.name();
+
     logger.info("RoleAdmin:-> {}", roleAdmin);
 
     var userAdmin = userRepository.findByUsername("admin@calculatorweb.com");
+
     logger.info("UserAdmin:-> {}", userAdmin);
+
     userAdmin.ifPresentOrElse(
             user -> {
               logger.info("Administrator already exists!");

@@ -12,6 +12,13 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/**
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 1.0
+ *
+ */
+
 @Configuration
 public class OpenApiConfiguration {
   @Bean
