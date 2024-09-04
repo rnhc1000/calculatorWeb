@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'br.dev.ferreiras'
-version = '1.1.030901'
+version = '1.1.030902'
 
 java {
 	toolchain {
@@ -22,6 +22,10 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+javadoc {
+	destinationDir = file("docs/javadoc") as File
 }
 
 dependencies {

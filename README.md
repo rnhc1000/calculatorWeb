@@ -49,10 +49,24 @@ by a NGINX SSL proxy reverse.
 _Requirements_
 
   ```
-  
   - MySQL Database : http://127.0.0.1:3306
   - profile active: dev or prod
   - service socket: 127.0.0.1:8095
+  - tweak a few knobs to get it up and running
+  """
+  src.main.java.br.dev.ferreiras.calculatorWeb.config.OpenApiConfiguration
+  ...
+  public class OpenApiConfiguration {
+  @Bean
+  public OpenAPI defineOpenApi() {
+    Server server = new Server();
+    -> server.setUrl("http://127.0.0.1:8095"); <-
+    server.setDescription("Development");
+   ....
+  """
+  
+  To have a docker image follow the instructions of the dockerBuild.sh,
+  otherwise just Ctrl-Shift-F10 adn voila...
 
 ```
 
@@ -122,8 +136,8 @@ public class Records implements Serializable {
 
 - Unit Tests
 - Provide a Json to FrontEnd including
-    - delivery status of each operation to frontend
-    - count of operations consumed by subscriber
+    - delivery status of each operation to frontend - OK
+    - count of operations consumed by subscriber - OK
 - Subscriber Authentication - OK
     - Spring JWT-OAuth2 - OK
 - Records Pagination - OK

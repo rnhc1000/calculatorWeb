@@ -6,7 +6,11 @@ import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
-
+/** Manages database migration systemically
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 08/2024
+ */
 //@Configuration
 public class FlyWayConfiguration {
 
@@ -15,6 +19,11 @@ public class FlyWayConfiguration {
     return new FlywayMigrationInitializer(flyway, (f) ->{} );
   }
 
+  /**
+   *
+   * @param flyway flyway object
+   * @return database update if a change is made
+   */
   @Bean
   @DependsOn ("entityManagerFactory")
   FlywayMigrationInitializer delayedFlywayInitializer(Flyway flyway) {

@@ -25,6 +25,12 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
+/**
+ * @author ricardo@ferreiras.dev.br
+ * @version 1.1.030901
+ * @since 08/2024
+ */
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -43,6 +49,12 @@ public class SecurityConfig {
           "/api/v1/home"
   };
 
+  /**
+   *
+   * @param httpSecurity handler to deal with the requests
+   * @return object defining the security framework
+   * @throws Exception RuntimeException
+   */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
