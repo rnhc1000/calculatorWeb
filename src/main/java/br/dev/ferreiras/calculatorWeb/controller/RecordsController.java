@@ -2,6 +2,7 @@ package br.dev.ferreiras.calculatorWeb.controller;
 
 import br.dev.ferreiras.calculatorWeb.dto.RecordsDto;
 import br.dev.ferreiras.calculatorWeb.service.RecordsService;
+import br.dev.ferreiras.calculatorWeb.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,6 +23,9 @@ public class RecordsController {
   @Autowired
   private RecordsService recordsService;
 
+  @Autowired
+  private UserService userService;
+
   public final static Logger logger = LoggerFactory.getLogger(RecordsController.class);
 
   @Operation (summary = "Fetch 10 records per page")
@@ -38,5 +42,27 @@ public class RecordsController {
     logger.info(String.format(("Page Number -> , Size of Each Page -> , %s, %s"), page, size));
 
     return recordsService.getPagedRecords(page, size);
+  }
+
+  @Operation (summary = "Fetch 12 records per page provided the username authenticated")
+  @ApiResponses (value = {
+          @ApiResponse (responseCode = "200", description = "Get up to 12 messages per page.",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = RecordsController.class))}),
+          @ApiResponse (responseCode = "404", description = "Resource not found!",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = RecordsController.class))})
+  })
+  @ResponseStatus
+  @GetMapping (value = "/user/records")
+  public ResponseEntity<RecordsDto> getRecordsByUsername(
+          @RequestParam (defaultValue = "0") int page,
+          @RequestParam (defaultValue = "10") int size,
+          @RequestParam String username) throws Exception {
+
+    String user = String.valueOf(userService.authenticated());
+    logger.info("{}", user);
+
+    return recordsService.findRecordsByUsername(user, page, size);
   }
 }

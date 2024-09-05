@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-/**
+/** Support to OpenAPI 3.0
  * @author ricardo@ferreiras.dev.br
  * @version 1.1.030901
  * @since 1.0
@@ -21,6 +21,10 @@ import java.util.List;
 
 @Configuration
 public class OpenApiConfiguration {
+  /**
+   *
+   * @return API UI
+   */
   @Bean
   public OpenAPI defineOpenApi() {
     Server server = new Server();

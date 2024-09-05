@@ -70,6 +70,7 @@ public class RecordsService {
   public ResponseEntity<RecordsDto> getPagedRecords(int page, int size) {
 
     Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+
 //      Page<Records> pageRecords;
     var pageRecords = recordsRepository.findAll(paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
@@ -81,6 +82,23 @@ public class RecordsService {
                     (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements()
             )
     );
+
+  }
+
+  public ResponseEntity<RecordsDto> findRecordsByUsername(String username, int page, int size) {
+
+    Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+
+    var pageRecords = recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
+            records.getRecordId(), records.getUsername(), records.getOperandOne(),
+            records.getOperandTwo(), records.getOperator(), records.getResult(),
+            records.getCost(), records.getCreatedAt())
+    );
+    return ResponseEntity
+            .ok(new RecordsDto
+                    (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements()
+                    )
+            );
 
   }
 }
