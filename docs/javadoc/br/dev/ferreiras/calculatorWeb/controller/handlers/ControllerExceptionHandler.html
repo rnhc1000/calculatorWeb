@@ -38,7 +38,7 @@ loadScripts(document, 'script');</script>
 <p>Summary:</p>
 <ul>
 <li>Nested</li>
-<li>Field</li>
+<li><a href="#field-summary">Field</a></li>
 <li><a href="#constructor-summary">Constr</a></li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -58,7 +58,7 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
@@ -85,15 +85,32 @@ loadScripts(document, 'script');</script>
 <h1 title="Class ControllerExceptionHandler" class="title">Class ControllerExceptionHandler</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance">org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 <div class="inheritance">br.dev.ferreiras.calculatorWeb.controller.handlers.ControllerExceptionHandler</div>
 </div>
+</div>
 <section class="class-description" id="class-description">
+<dl class="notes">
+<dt>All Implemented Interfaces:</dt>
+<dd><code>org.springframework.beans.factory.Aware</code>, <code>org.springframework.context.MessageSourceAware</code></dd>
+</dl>
 <hr>
-<div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">ControllerExceptionHandler</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="type-signature"><span class="annotations">@ControllerAdvice(annotations=org.springframework.web.bind.annotation.RestController.class)
+@ResponseBody
+</span><span class="modifiers">public class </span><span class="element-name type-name-label">ControllerExceptionHandler</span>
+<span class="extends-implements">extends org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler</span></div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler">Fields inherited from class&nbsp;org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler</h3>
+<code>logger, PAGE_NOT_FOUND_LOG_CATEGORY, pageNotFoundLogger</code></div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -118,25 +135,30 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#database(br.dev.ferreiras.calculatorWeb.service.exceptions.DatabaseException,jakarta.servlet.http.HttpServletRequest)" class="member-name-link">database</a><wbr>(<a href="../../service/exceptions/DatabaseException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">DatabaseException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#database(br.dev.ferreiras.calculatorWeb.service.exceptions.DatabaseException,org.springframework.web.context.request.WebRequest)" class="member-name-link">database</a><wbr>(<a href="../../service/exceptions/DatabaseException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">DatabaseException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#forbidden(br.dev.ferreiras.calculatorWeb.service.exceptions.ForbiddenException,jakarta.servlet.http.HttpServletRequest)" class="member-name-link">forbidden</a><wbr>(<a href="../../service/exceptions/ForbiddenException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ForbiddenException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#forbidden(br.dev.ferreiras.calculatorWeb.service.exceptions.ForbiddenException,org.springframework.web.context.request.WebRequest)" class="member-name-link">forbidden</a><wbr>(<a href="../../service/exceptions/ForbiddenException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ForbiddenException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#methodArgumentNotValidation(org.springframework.web.bind.MethodArgumentNotValidException,jakarta.servlet.http.HttpServletRequest)" class="member-name-link">methodArgumentNotValidation</a><wbr>(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)" class="member-name-link">handleMethodArgumentNotValid</a><wbr>(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;ex,
+ org.springframework.http.HttpHeaders&nbsp;headers,
+ org.springframework.http.HttpStatus&nbsp;status,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resourceNotFound(br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException,jakarta.servlet.http.HttpServletRequest)" class="member-name-link">resourceNotFound</a><wbr>(<a href="../../service/exceptions/ResourceNotFoundException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ResourceNotFoundException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resourceNotFound(br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException,org.springframework.web.context.request.WebRequest)" class="member-name-link">resourceNotFound</a><wbr>(<a href="../../service/exceptions/ResourceNotFoundException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ResourceNotFoundException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler">Methods inherited from class&nbsp;org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler</h3>
+<code>createProblemDetail, createResponseEntity, getMessageSource, handleAsyncRequestTimeoutException, handleBindException, handleConversionNotSupported, handleErrorResponseException, handleException, handleExceptionInternal, handleHandlerMethodValidationException, handleHttpMediaTypeNotAcceptable, handleHttpMediaTypeNotSupported, handleHttpMessageNotReadable, handleHttpMessageNotWritable, handleHttpRequestMethodNotSupported, handleMaxUploadSizeExceededException, handleMethodArgumentNotValid, handleMethodValidationException, handleMissingPathVariable, handleMissingServletRequestParameter, handleMissingServletRequestPart, handleNoHandlerFoundException, handleNoResourceFoundException, handleServletRequestBindingException, handleTypeMismatch, setMessageSource</code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -166,35 +188,36 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="resourceNotFound(br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException,jakarta.servlet.http.HttpServletRequest)">
+<section class="detail" id="resourceNotFound(br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException,org.springframework.web.context.request.WebRequest)">
 <h3>resourceNotFound</h3>
 <div class="member-signature"><span class="annotations">@ExceptionHandler(<a href="../../service/exceptions/ResourceNotFoundException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ResourceNotFoundException.class</a>)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</span>&nbsp;<span class="element-name">resourceNotFound</span><wbr><span class="parameters">(<a href="../../service/exceptions/ResourceNotFoundException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ResourceNotFoundException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">resourceNotFound</span><wbr><span class="parameters">(<a href="../../service/exceptions/ResourceNotFoundException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ResourceNotFoundException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="database(br.dev.ferreiras.calculatorWeb.service.exceptions.DatabaseException,jakarta.servlet.http.HttpServletRequest)">
+<section class="detail" id="database(br.dev.ferreiras.calculatorWeb.service.exceptions.DatabaseException,org.springframework.web.context.request.WebRequest)">
 <h3>database</h3>
 <div class="member-signature"><span class="annotations">@ExceptionHandler(<a href="../../service/exceptions/DatabaseException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">DatabaseException.class</a>)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</span>&nbsp;<span class="element-name">database</span><wbr><span class="parameters">(<a href="../../service/exceptions/DatabaseException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">DatabaseException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">database</span><wbr><span class="parameters">(<a href="../../service/exceptions/DatabaseException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">DatabaseException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="methodArgumentNotValidation(org.springframework.web.bind.MethodArgumentNotValidException,jakarta.servlet.http.HttpServletRequest)">
-<h3>methodArgumentNotValidation</h3>
-<div class="member-signature"><span class="annotations">@ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</span>&nbsp;<span class="element-name">methodArgumentNotValidation</span><wbr><span class="parameters">(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="forbidden(br.dev.ferreiras.calculatorWeb.service.exceptions.ForbiddenException,jakarta.servlet.http.HttpServletRequest)">
+<section class="detail" id="forbidden(br.dev.ferreiras.calculatorWeb.service.exceptions.ForbiddenException,org.springframework.web.context.request.WebRequest)">
 <h3>forbidden</h3>
 <div class="member-signature"><span class="annotations">@ExceptionHandler(<a href="../../service/exceptions/ForbiddenException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ForbiddenException.class</a>)
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../../dto/CustomizedErrors.html" title="class in br.dev.ferreiras.calculatorWeb.dto">CustomizedErrors</a>&gt;</span>&nbsp;<span class="element-name">forbidden</span><wbr><span class="parameters">(<a href="../../service/exceptions/ForbiddenException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ForbiddenException</a>&nbsp;e,
- jakarta.servlet.http.HttpServletRequest&nbsp;request)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">forbidden</span><wbr><span class="parameters">(<a href="../../service/exceptions/ForbiddenException.html" title="class in br.dev.ferreiras.calculatorWeb.service.exceptions">ForbiddenException</a>&nbsp;e,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="handleMethodArgumentNotValid(org.springframework.web.bind.MethodArgumentNotValidException,org.springframework.http.HttpHeaders,org.springframework.http.HttpStatus,org.springframework.web.context.request.WebRequest)">
+<h3>handleMethodArgumentNotValid</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;</span>&nbsp;<span class="element-name">handleMethodArgumentNotValid</span><wbr><span class="parameters">(org.springframework.web.bind.MethodArgumentNotValidException&nbsp;ex,
+ org.springframework.http.HttpHeaders&nbsp;headers,
+ org.springframework.http.HttpStatus&nbsp;status,
+ org.springframework.web.context.request.WebRequest&nbsp;request)</span></div>
 </section>
 </li>
 </ul>

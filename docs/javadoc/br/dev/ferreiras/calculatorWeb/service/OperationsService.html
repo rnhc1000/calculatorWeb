@@ -92,6 +92,11 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="annotations">@Service
 </span><span class="modifiers">public class </span><span class="element-name type-name-label">OperationsService</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">This service class deal on how to make each operation, math or random string</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>08/2024</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -193,6 +198,13 @@ loadScripts(document, 'script');</script>
 <h3>executeOperations</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">executeOperations</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>username</code> - requires username - email</dd>
+<dd><code>operator</code> - define the operator</dd>
+<dt>Returns:</dt>
+<dd>random string show on screen</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -202,6 +214,15 @@ loadScripts(document, 'script');</script>
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;operator,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;username)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dd><code>operandTwo</code> - second operand</dd>
+<dd><code>operator</code> - operator</dd>
+<dd><code>username</code> - username</dd>
+<dt>Returns:</dt>
+<dd>string result</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -209,6 +230,13 @@ loadScripts(document, 'script');</script>
 <h3>addOperands</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">addOperands</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dd><code>operandTwo</code> - second operand</dd>
+<dt>Returns:</dt>
+<dd>sum of two operands</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -216,6 +244,13 @@ loadScripts(document, 'script');</script>
 <h3>subtractOperands</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">subtractOperands</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dd><code>operandTwo</code> - second operand</dd>
+<dt>Returns:</dt>
+<dd>subtraction of two operands</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -223,25 +258,55 @@ loadScripts(document, 'script');</script>
 <h3>multiplyOperands</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">multiplyOperands</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo)</span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dd><code>operandTwo</code> - second operand</dd>
+<dt>Returns:</dt>
+<dd>product of two operands</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="divideOperands(java.math.BigDecimal,java.math.BigDecimal)">
 <h3>divideOperands</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">divideOperands</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandTwo)</span>
+                          throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dd><code>operandTwo</code> - second operand</dd>
+<dt>Returns:</dt>
+<dd>division of two operands</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - second operation can not be equal to zero</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="squareRoot(java.math.BigDecimal)">
 <h3>squareRoot</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">squareRoot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a></span>&nbsp;<span class="element-name">squareRoot</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a>&nbsp;operandOne)</span>
+                      throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></span></div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>operandOne</code> - first operand</dd>
+<dt>Returns:</dt>
+<dd>square root of first operand</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Exception.html" title="class or interface in java.lang" class="external-link">Exception</a></code> - no negative numbers supported</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getOperators()">
 <h3>getOperators</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="../entity/Operation.html" title="class in br.dev.ferreiras.calculatorWeb.entity">Operation</a>&gt;</span>&nbsp;<span class="element-name">getOperators</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>list of operators implemented</dd>
+</dl>
 </section>
 </li>
 </ul>

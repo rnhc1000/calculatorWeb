@@ -1,25 +1,32 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
+import br.dev.ferreiras.calculatorWeb.dto.UserDto;
 import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.entity.User;
 import br.dev.ferreiras.calculatorWeb.repository.OperationsRepository;
 import br.dev.ferreiras.calculatorWeb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorWeb.repository.UserRepository;
 import br.dev.ferreiras.calculatorWeb.service.exceptions.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 
 @Service
-public class UserService implements IUserService {
+public class UserService implements IUserService, UserDetailsService {
 
   @Autowired
   private UserRepository userRepository;
@@ -33,6 +40,8 @@ public class UserService implements IUserService {
   @Autowired
   private OperationsRepository operationsRepository;
 
+
+  private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
   @Override
   public User getUserId(UUID userId) {
@@ -49,6 +58,7 @@ public class UserService implements IUserService {
   public List<User> findAllUsers() {
 
     return userRepository.findAll();
+
   }
 
   @Override
@@ -56,7 +66,6 @@ public class UserService implements IUserService {
 
     return userRepository.findByUsername(username);
   }
-
 
   @Override
   public Role getRole() {
@@ -84,18 +93,57 @@ public class UserService implements IUserService {
     return operationsRepository.findOperationsCostByOperation(operation);
   }
 
-  protected Optional<User> authenticated() {
+  public Optional<User> authenticated() throws Exception {
     try {
-      String username = SecurityContextHolder.getContext().getAuthentication().getName();
-      return userRepository.findByUsername(username);
-    }
-    catch (Exception e) {
-      throw new UsernameNotFoundException("Invalid user");
+
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      var User = userRepository.findById(UUID.fromString(authentication.getName()));
+      String currentUserName = User.get().getUsername();
+      logger.info("CurrentUsername -> {}", currentUserName);
+      try {
+        return userRepository.findByUsername(currentUserName);
+      } catch (Exception e) {
+        throw new NoSuchElementException("Resource not Found!");
+      }
+
+    } catch (NoSuchElementException e) {
+      throw new RuntimeException(e);
     }
   }
 
+//    @Transactional (readOnly = true)
+//  public UserDto getMe() {
+//    Optional<User> entity = authenticated();
+//    return new UserDto(entity);
+//  }
 
-  //  @Override
+  @Override
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    Optional<User> user = userRepository.findByUsername(username);
+    if (user.isEmpty()) {
+      throw new UsernameNotFoundException("User not found");
+    }
+    return new UserDetails() {
+      @Override
+      public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
+      }
+
+      @Override
+      public String getPassword() {
+        return new User().getPassword();
+      }
+
+      @Override
+      public String getUsername() {
+        return new User().getUsername();
+      }
+    };
+  }
+}
+
+
+//  @Override
 //  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //    User user = userRepository.findByEmail(username);
 //    if (user == null) {
@@ -133,4 +181,4 @@ public class UserService implements IUserService {
 //
 //    return new CredentialsRequestDto(jwtValue, expiresIn);
 //  }
-}
+

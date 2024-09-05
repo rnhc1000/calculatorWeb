@@ -9,6 +9,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +28,16 @@ public class OperationsController {
   @Autowired
   private UserService userService;
 
+  private final static Logger logger = LoggerFactory.getLogger(OperationsController.class);
+
   @Operation (summary = "Given one or two operands and the operator return a value")
   @ApiResponses (value = {
           @ApiResponse (responseCode = "200", description = "Got the result",
                   content = {@Content (mediaType = "application/json",
                           schema = @Schema (implementation = OperationsController.class))}),
-          @ApiResponse (responseCode = "401", description = "Not authorized",
+          @ApiResponse (responseCode = "401", description = "Not authorized!",
+                  content = @Content),
+          @ApiResponse (responseCode = "422", description = "Operation not allowed!",
                   content = @Content),
   })
   @ResponseStatus
@@ -44,6 +50,7 @@ public class OperationsController {
             operationsRequestDto.operator(),
             operationsRequestDto.username()
     );
+
 
     return ResponseEntity.ok(new OperationsResponseDto(result));
   }

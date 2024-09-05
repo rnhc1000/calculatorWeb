@@ -128,6 +128,76 @@ loadScripts(document, 'script');</script>
 </ul>
 </section>
 </li>
+<li>
+<section class="serialized-class-details" id="br.dev.ferreiras.calculatorWeb.entity.Role">
+<h3>Class&nbsp;<a href="br/dev/ferreiras/calculatorWeb/entity/Role.html" title="class in br.dev.ferreiras.calculatorWeb.entity">br.dev.ferreiras.calculatorWeb.entity.Role</a></h3>
+<div class="type-signature">class Role extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>authority</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> authority</pre>
+</li>
+<li class="block-list">
+<h5>role</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> role</pre>
+</li>
+<li class="block-list">
+<h5>roleId</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a> roleId</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
+<li>
+<section class="serialized-class-details" id="br.dev.ferreiras.calculatorWeb.entity.User">
+<h3>Class&nbsp;<a href="br/dev/ferreiras/calculatorWeb/entity/User.html" title="class in br.dev.ferreiras.calculatorWeb.entity">br.dev.ferreiras.calculatorWeb.entity.User</a></h3>
+<div class="type-signature">class User extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a> implements <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/Serializable.html" title="class or interface in java.io" class="external-link">Serializable</a></div>
+<ul class="block-list">
+<li>
+<section class="detail">
+<h4>Serialized Fields</h4>
+<ul class="block-list">
+<li class="block-list">
+<h5>balance</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/math/BigDecimal.html" title="class or interface in java.math" class="external-link">BigDecimal</a> balance</pre>
+</li>
+<li class="block-list">
+<h5>createdAt</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html" title="class or interface in java.time" class="external-link">Instant</a> createdAt</pre>
+</li>
+<li class="block-list">
+<h5>password</h5>
+<pre>@NotBlank @Size(min=10,max=100) <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> password</pre>
+</li>
+<li class="block-list">
+<h5>roles</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Set.html" title="class or interface in java.util" class="external-link">Set</a>&lt;<a href="br/dev/ferreiras/calculatorWeb/entity/Role.html" title="class in br.dev.ferreiras.calculatorWeb.entity">Role</a>&gt; roles</pre>
+</li>
+<li class="block-list">
+<h5>status</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> status</pre>
+</li>
+<li class="block-list">
+<h5>userId</h5>
+<pre><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/UUID.html" title="class or interface in java.util" class="external-link">UUID</a> userId</pre>
+</li>
+<li class="block-list">
+<h5>username</h5>
+<pre>@NotBlank @Email @Size(min=5,max=40) <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a> username</pre>
+</li>
+</ul>
+</section>
+</li>
+</ul>
+</section>
+</li>
 </ul>
 </section>
 </li>

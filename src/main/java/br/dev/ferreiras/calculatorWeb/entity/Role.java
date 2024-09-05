@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "tb_roles")
-public class Role {
+public class Role implements GrantedAuthority {
 
   @Id
   @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -19,6 +20,13 @@ public class Role {
 
   @Column (name = "role")
   private String role;
+
+  private String authority;
+
+  @Override
+  public String getAuthority() {
+    return authority;
+  }
 
   @Getter
   public enum Roles {
