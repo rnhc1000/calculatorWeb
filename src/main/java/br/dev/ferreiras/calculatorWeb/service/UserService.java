@@ -93,15 +93,15 @@ public class UserService implements IUserService, UserDetailsService {
     return operationsRepository.findOperationsCostByOperation(operation);
   }
 
-  public Optional<User> authenticated() throws Exception {
-    try {
+  public String authenticated() throws Exception {
 
+    try {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
       var User = userRepository.findById(UUID.fromString(authentication.getName()));
       String currentUserName = User.get().getUsername();
       logger.info("CurrentUsername -> {}", currentUserName);
       try {
-        return userRepository.findByUsername(currentUserName);
+        return currentUserName;
       } catch (Exception e) {
         throw new NoSuchElementException("Resource not Found!");
       }

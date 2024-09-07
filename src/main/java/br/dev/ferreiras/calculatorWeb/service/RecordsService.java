@@ -85,7 +85,7 @@ public class RecordsService {
 
   }
 
-  public ResponseEntity<RecordsDto> findRecordsByUsername(String username, int page, int size) {
+  public ResponseEntity<RecordsDto> findRecordsByUsername(int page, int size, String username) {
 
     Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
