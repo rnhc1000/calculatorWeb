@@ -57,12 +57,12 @@ public class RecordsController {
   @GetMapping (value = "/user/records")
   public ResponseEntity<RecordsDto> getRecordsByUsername(
           @RequestParam (defaultValue = "0") int page,
-          @RequestParam (defaultValue = "10") int size,
-          @RequestParam String username) throws Exception {
+          @RequestParam (defaultValue = "10") int size
+          ) throws Exception {
 
-    String user = String.valueOf(userService.authenticated());
-    logger.info("{}", user);
+    String user = userService.authenticated();
+    logger.info("Page Number: {} , Size of Each Page: {} , User: {}",  page, size, user);
 
-    return recordsService.findRecordsByUsername(user, page, size);
+    return recordsService.findRecordsByUsername(page, size, user);
   }
 }
