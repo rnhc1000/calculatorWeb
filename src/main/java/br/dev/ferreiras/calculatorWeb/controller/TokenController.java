@@ -60,7 +60,6 @@ public class TokenController {
   @RequestMapping(value = "/login", method = RequestMethod.POST, produces="application/json", consumes="application/json")
   public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto loginRequestDto) {
     var user = userService.getUsername(loginRequestDto.username());
-
     if (user.isEmpty() || !user.get().isLoginCorrect(loginRequestDto, bCryptPasswordEncoder)) {
       logger.info("Password mismatch....");
       throw new BadCredentialsException("User or Password Invalid!!!");
