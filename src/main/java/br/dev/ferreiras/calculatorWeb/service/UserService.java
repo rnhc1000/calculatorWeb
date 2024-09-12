@@ -1,6 +1,5 @@
 package br.dev.ferreiras.calculatorWeb.service;
 
-import br.dev.ferreiras.calculatorWeb.dto.UserDto;
 import br.dev.ferreiras.calculatorWeb.entity.Role;
 import br.dev.ferreiras.calculatorWeb.entity.User;
 import br.dev.ferreiras.calculatorWeb.repository.OperationsRepository;
@@ -17,9 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -60,6 +57,12 @@ public class UserService implements IUserService, UserDetailsService {
     return userRepository.findAll();
 
   }
+
+  /**
+   *
+   * @param username to be checked
+   * @return username
+   */
 
   @Override
   public Optional<User> getUsername(String username) {

@@ -75,7 +75,6 @@ public class AdminUserConfiguration implements CommandLineRunner {
               user.setCreatedAt(Instant.now());
 
               userRepository.save(user);
-
               logger.info("Administrator created");
             }
     );

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <Properties>
-        <Property name="APP_LOG_PATTERN">"%style{%d{dd-MM-yyyy HH:mm:ss.SSS}}{magenta} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable"</Property>
+        <Property name="APP_LOG_PATTERN">%style{%d{dd-MM-yyyy HH:mm:ss.SSS}}{magenta} %highlight{%-5level }{blue} [%style{%t}{bright,red}] %style{%C{1.}}{bright,blue}: %style{%msg%n%throwable}{bright,yellow}</Property>
+<!--        %clr(%d{yy-MM-dd E HH:mm:ss.SSS}){green} %clr(%-5p){blue} %clr([%thread]){red} %clr(%logger{15}){blue} %clr(%m){yellow}%n}-->
         <Property name="APP_LOG_ROOT">/tmp</Property>
     </Properties>
     <Appenders>

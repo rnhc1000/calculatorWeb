@@ -44,13 +44,12 @@ public class SecurityConfig {
 
   private static final String[] WHITELIST = {
 
-          "swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
-          "/swagger-resources/**", "/actuator/**", "/api/v1/login","/",
+          "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
+          "/swagger-resources/**", "/actuator/**", "/api/v1/login", "/",
           "/api/v1/home"
   };
 
   /**
-   *
    * @param httpSecurity handler to deal with the requests
    * @return object defining the security framework
    * @throws Exception RuntimeException
@@ -60,8 +59,9 @@ public class SecurityConfig {
 
     httpSecurity.addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                          .requestMatchers(WHITELIST).permitAll()
-                        .anyRequest().authenticated())
+                        .requestMatchers(WHITELIST).permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
