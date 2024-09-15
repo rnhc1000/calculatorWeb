@@ -42,6 +42,9 @@ public class SecurityConfig {
   @Value ("${jwt.private.key}")
   private RSAPrivateKey rsaPrivateKey;
 
+  /** Calculator Web API Security Configuration
+   * endpoints below do not need to be authenticated
+   */
   private static final String[] WHITELIST = {
 
           "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
@@ -69,6 +72,9 @@ public class SecurityConfig {
     return httpSecurity.build();
   }
 
+  /**
+   * @return JwtEncoder Object given public and private keys
+   */
   @Bean
   public JwtEncoder jwtEncoder() {
 
@@ -78,12 +84,18 @@ public class SecurityConfig {
     return new NimbusJwtEncoder(jwks);
   }
 
+  /**
+   * @return JwtDecoder object given public key
+   */
   @Bean
   public JwtDecoder jwtDecoder() {
 
     return NimbusJwtDecoder.withPublicKey(this.rsaPublicKey).build();
   }
 
+  /**
+   * @return encoded clear-text password
+   */
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
 
