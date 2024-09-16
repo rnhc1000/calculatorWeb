@@ -1,5 +1,6 @@
 package br.dev.ferreiras.calculatorWeb.config;
 
+import br.dev.ferreiras.calculatorWeb.filter.CsrfCookieFilter;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -19,6 +20,9 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.session.ForceEagerSessionCreationFilter;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
@@ -42,7 +46,8 @@ public class SecurityConfig {
   @Value ("${jwt.private.key}")
   private RSAPrivateKey rsaPrivateKey;
 
-  /** Calculator Web API Security Configuration
+  /**
+   * Calculator Web API Security Configuration
    * endpoints below do not need to be authenticated
    */
   private static final String[] WHITELIST = {
@@ -59,13 +64,21 @@ public class SecurityConfig {
    */
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+//    CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
 
-    httpSecurity.addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
+    httpSecurity
+//            .securityContext(contextConfig -> contextConfig.requireExplicitSave(false) )
+//            .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
+            .addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
+//                .csrf(csrfConfig -> csrfConfig
+//                        .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler)
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
