@@ -99,6 +99,6 @@ public class RecordsService {
                     (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements()
                     )
             );
-
+    //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
   }
 }
