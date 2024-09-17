@@ -116,7 +116,8 @@ public class OperationsService {
         case "addition" -> {
 
           if (balance.compareTo(cost) > 0) {
-
+            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
+            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
             balance = balance.subtract(cost);
             userService.updateBalance(username, balance);
             result = addOperands(operandOne, operandTwo);
@@ -132,7 +133,8 @@ public class OperationsService {
         case "subtraction" -> {
 
           if (balance.compareTo(cost) > 0) {
-
+            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
+            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
             balance = balance.subtract(cost);
             userService.updateBalance(username, balance);
             result = subtractOperands(operandOne, operandTwo);
@@ -148,7 +150,8 @@ public class OperationsService {
         case "multiplication" -> {
 
           if (balance.compareTo(cost) > 0) {
-
+            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
+            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
             balance = balance.subtract(cost);
             userService.updateBalance(username, balance);
             result = multiplyOperands(operandOne, operandTwo);
@@ -162,7 +165,8 @@ public class OperationsService {
         }
 
         case "division" -> {
-
+          operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
+          operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
           if (balance.compareTo(cost) > 0) {
 
             balance = balance.subtract(cost);
@@ -179,7 +183,7 @@ public class OperationsService {
 
         case "square_root" -> {
           if (balance.compareTo(cost) > 0) {
-
+            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
             balance = balance.subtract(cost);
             userService.updateBalance(username, balance);
             result = squareRoot(operandOne);

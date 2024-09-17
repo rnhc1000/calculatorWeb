@@ -4,6 +4,7 @@ import br.dev.ferreiras.calculatorWeb.dto.*;
 import br.dev.ferreiras.calculatorWeb.entity.User;
 import br.dev.ferreiras.calculatorWeb.service.OperationsService;
 import br.dev.ferreiras.calculatorWeb.service.UserService;
+import br.dev.ferreiras.calculatorWeb.service.exceptions.ForbiddenException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -44,15 +45,17 @@ public class OperationsController {
   @PostMapping (value = "/operations")
   public ResponseEntity<OperationsResponseDto> getResults(@RequestBody OperationsRequestDto operationsRequestDto) {
 
-    BigDecimal result = operationsService.executeOperations(
-            operationsRequestDto.operandOne(),
-            operationsRequestDto.operandTwo(),
-            operationsRequestDto.operator(),
-            operationsRequestDto.username()
-    );
-
-
-    return ResponseEntity.ok(new OperationsResponseDto(result));
+    try {
+      BigDecimal result = operationsService.executeOperations(
+              operationsRequestDto.operandOne(),
+              operationsRequestDto.operandTwo(),
+              operationsRequestDto.operator(),
+              operationsRequestDto.username()
+      );
+      return ResponseEntity.ok(new OperationsResponseDto(result));
+    } catch (Exception ex) {
+      throw new ForbiddenException("Arithmetic Exception");
+    }
   }
 
   @Operation (summary = "Given username and operator return a random string")
