@@ -14,4 +14,4 @@ jar -xf ../libs/*.jar
 cd ../../
 
 #--- build the image, adjusting the version
-docker build --build-arg DEPENDENCY=build/dependency -t springio/calculatorweb:x-y-z .
+docker build --build-arg DEPENDENCY=build/dependency -t rnhc757/images:calculatorWeb:x-y-z .

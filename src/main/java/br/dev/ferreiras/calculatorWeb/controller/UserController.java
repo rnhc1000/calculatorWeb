@@ -132,7 +132,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 
     var useCheck = loadBalanceDto.username();
     logger.info("username, {}", useCheck);
-    if (!userService.getUsername(useCheck).isPresent()) {
+    if (userService.getUsername(useCheck).isEmpty()) {
 
       logger.info("User does not exist!");
       throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);

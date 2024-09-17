@@ -32,7 +32,6 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(body, HttpStatus.NOT_FOUND );
   }
 
-
   @ExceptionHandler(DatabaseException.class)
   public ResponseEntity<Object> database(DatabaseException e, WebRequest request) {
     Map<String, Object> body = new LinkedHashMap<>();
@@ -42,10 +41,11 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(ForbiddenException.class)
-  public ResponseEntity<Object> forbidden(ForbiddenException e, WebRequest request) {
+  public ResponseEntity<Object> forbidden(ForbiddenException ex, WebRequest request) {
     Map<String, Object> body = new LinkedHashMap<>();
     body.put("timestamp: ", LocalDateTime.now());
-    body.put("message", "Arithmetic operation not permitted");
+    body.put("status", "Division by ZERO not allowed!!");
+    body.put("message", ex.getMessage());
     return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY );
   }
 

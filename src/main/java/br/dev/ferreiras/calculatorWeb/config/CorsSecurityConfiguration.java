@@ -39,7 +39,8 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
                     )
                     .allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT")
                     .allowedHeaders("*")
-                    .allowCredentials(true);
+                    .allowCredentials(true)
+                    .maxAge(3600L);
       }
     };
   }
