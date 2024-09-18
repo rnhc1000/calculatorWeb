@@ -12,9 +12,9 @@ import java.util.UUID;
 @Getter
 public class UserDto {
   private UUID id;
-  private String username;
-  private String status;
-  private Set<String> roles = new HashSet<>();
+  private final String username;
+  private final String status;
+  private final Set<String> roles = new HashSet<>();
 
   public UserDto(Optional<User> entity) {
 

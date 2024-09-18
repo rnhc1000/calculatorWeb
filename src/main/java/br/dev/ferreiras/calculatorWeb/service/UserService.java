@@ -41,75 +41,77 @@ public class UserService implements IUserService, UserDetailsService {
   private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
   @Override
-  public User getUserId(UUID userId) {
-    return userRepository.findById(userId).orElseThrow(
+  public User getUserId(final UUID userId) {
+    return this.userRepository.findById(userId).orElseThrow(
             () -> new ResourceNotFoundException("Resource not found!"));
   }
 
   @Override
-  public void saveUser(User user) {
-    userRepository.save(user);
+  public void saveUser(final User user) {
+    this.userRepository.save(user);
   }
 
   @Override
   public List<User> findAllUsers() {
 
-    return userRepository.findAll();
-
+    return this.userRepository.findAll();
   }
 
   /**
    *
    * @param username to be checked
-   * @return username
+   * @return User object if username exists
    */
 
   @Override
-  public Optional<User> getUsername(String username) {
+  public Optional<User> getUsername(final String username) {
 
-    return userRepository.findByUsername(username);
+    return this.userRepository.findByUsername(username);
   }
 
   @Override
   public Role getRole() {
 
-    return roleRepository.findByRole(Role.Roles.ROLE_USER.name());
+    return this.roleRepository.findByRole(Role.Roles.ROLE_USER.name());
   }
 
   @Override
-  public int updateBalance(String username, BigDecimal balance) {
-    return userRepository.saveBalance(username, balance);
+  public int updateBalance(final String username, final BigDecimal balance) {
+
+    return this.userRepository.saveBalance(username, balance);
   }
 
   @Override
-  public BigDecimal getBalance(String username) {
+  public BigDecimal getBalance(final String username) {
 
-    return userRepository.findByUsernameBalance(username);
+    return this.userRepository.findByUsernameBalance(username);
   }
 
   @Override
-  public BigDecimal getOperationCostById(Long operationId) {
-    return operationsRepository.findOperationsCostById(operationId);
+  public BigDecimal getOperationCostById(final Long operationId) {
+
+    return this.operationsRepository.findOperationsCostById(operationId);
   }
 
-  public BigDecimal getOperationCostByOperation(String operation) {
-    return operationsRepository.findOperationsCostByOperation(operation);
+  public BigDecimal getOperationCostByOperation(final String operation) {
+
+    return this.operationsRepository.findOperationsCostByOperation(operation);
   }
 
   public String authenticated() throws Exception {
 
     try {
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      var User = userRepository.findById(UUID.fromString(authentication.getName()));
-      String currentUserName = User.get().getUsername();
-      logger.info("CurrentUsername -> {}", currentUserName);
+      final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      final var User = this.userRepository.findById(UUID.fromString(authentication.getName()));
+      final String currentUserName = User.get().getUsername();
+      UserService.logger.info("CurrentUsername -> {}", currentUserName);
       try {
         return currentUserName;
-      } catch (Exception e) {
+      } catch (final Exception e) {
         throw new NoSuchElementException("Resource not Found!");
       }
 
-    } catch (NoSuchElementException e) {
+    } catch (final NoSuchElementException e) {
       throw new RuntimeException(e);
     }
   }
@@ -121,8 +123,8 @@ public class UserService implements IUserService, UserDetailsService {
 //  }
 
   @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    Optional<User> user = userRepository.findByUsername(username);
+  public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    final Optional<User> user = this.userRepository.findByUsername(username);
     if (user.isEmpty()) {
       throw new UsernameNotFoundException("User not found");
     }

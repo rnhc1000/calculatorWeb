@@ -1,12 +1,11 @@
 package br.dev.ferreiras.calculatorWeb.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class AccessToken {
   String token;
   Long timeout;

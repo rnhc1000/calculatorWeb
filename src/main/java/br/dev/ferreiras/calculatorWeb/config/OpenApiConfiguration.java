@@ -28,7 +28,7 @@ public class OpenApiConfiguration {
   @Bean
   public OpenAPI defineOpenApi() {
     Server server = new Server();
-    server.setUrl("https://api.ferreiras.dev.br/swagger-ui/index.html/");
+    server.setUrl("http://192.168.15.11:8095/");
     server.setDescription("Development");
 
     Contact myContact = new Contact();

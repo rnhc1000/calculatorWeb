@@ -54,7 +54,8 @@ public class SecurityConfig {
 
           "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
           "/swagger-resources/**", "/actuator/**", "/api/v1/login", "/",
-          "/api/v1/home", "api/v1/csrf"
+          "/api/v1/home", "api/v1/csrf", "/error", "/api/v1/error",
+          "401-error/**"
   };
 
   /**
@@ -67,25 +68,25 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-    CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
+//    CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
 
     httpSecurity
-//            .securityContext(contextConfig -> contextConfig.requireExplicitSave(false) )
+            .securityContext(contextConfig -> contextConfig.requireExplicitSave(false) )
             .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
-                .csrf(csrfConfig -> csrfConfig
-                        .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler)
-                        .ignoringRequestMatchers("/api/v1/login", "/api/v1/csrf")
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
+//                .csrf(csrfConfig -> csrfConfig
+//                        .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler)
+//                        .ignoringRequestMatchers("/api/v1/login", "/api/v1/csrf")
+//                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
+//                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
-//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(AbstractHttpConfigurer::disable)
 
-                .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())));
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
     return httpSecurity.build();
   }

@@ -16,7 +16,9 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 
-/** This service class deal on how to make each operation, math or random string
+/**
+ * This service class deal on how to make each operation, math or random string
+ *
  * @author ricardo@ferreiras.dev.br
  * @version 1.1.030901
  * @since 08/2024
@@ -30,8 +32,9 @@ public class OperationsService {
   private final RecordsService recordsService;
   private final OperationsRepository operationsRepository;
   private static final Logger logger = LoggerFactory.getLogger(OperationsService.class);
+  final String BALANCE_NEGATIVE = "8000863390488707.59991366095112916";
 
-  public OperationsService(UserService userService, RandomService randomService, RecordsService recordsService, OperationsRepository operationsRepository) {
+  public OperationsService(final UserService userService, final RandomService randomService, final RecordsService recordsService, final OperationsRepository operationsRepository) {
     this.userService = userService;
     this.randomService = randomService;
     this.recordsService = recordsService;
@@ -39,251 +42,242 @@ public class OperationsService {
   }
 
   /**
-   *
    * @param username requires username - email
    * @param operator define the operator
    * @return random string show on screen
    */
-  public String executeOperations(String username, String operator) {
+  public String executeOperations(final String username, final String operator) {
 
-    if (operator == null) return "";
+    if (null == operator) return "";
 
     String result = "0";
 
-    var user = userService.getUsername(username);
-    logger.info("Usuario: {}", user.get().getUsername());
+    final var user = this.userService.getUsername(username);
+    OperationsService.logger.info("Usuario: {}", user.get().getUsername());
 
-    BigDecimal balance = userService.getBalance(username);
-    logger.info("Balance: {}", balance);
+    BigDecimal balance = this.userService.getBalance(username);
+    OperationsService.logger.info("Balance: {}", balance);
 
-    BigDecimal cost = userService.getOperationCostByOperation(operator);
-    logger.info("Cost: {}", cost);
+    final BigDecimal cost = this.userService.getOperationCostByOperation(operator);
+    OperationsService.logger.info("Cost: {}", cost);
 
-    if (balance.compareTo(cost) > 0) {
+    if (0 < balance.compareTo(cost)) {
 
       balance = balance.subtract(cost);
-      userService.updateBalance(username, balance);
-      String randomApiResponse = randomService.makeApiRequest();
-      logger.info("ApiRandomResponse: {}", randomApiResponse);
-      ObjectMapper objectMapper = new ObjectMapper();
+      this.userService.updateBalance(username, balance);
+      final String randomApiResponse = this.randomService.makeApiRequest();
+      OperationsService.logger.info("ApiRandomResponse: {}", randomApiResponse);
+      final ObjectMapper objectMapper = new ObjectMapper();
 
       try {
-        JsonNode rootNode = objectMapper.readTree(randomApiResponse);
-        JsonNode stringNode = rootNode.path("result").path("random").path("data");
+        final JsonNode rootNode = objectMapper.readTree(randomApiResponse);
+        final JsonNode stringNode = rootNode.path("result").path("random").path("data");
 
-        logger.info("Inside Jackson decoder...");
-        logger.info("JsonNode: {}", stringNode.path(0).toPrettyString());
+        OperationsService.logger.info("Inside Jackson decoder...");
+        OperationsService.logger.info("JsonNode: {}", stringNode.path(0).toPrettyString());
 
         result = stringNode.path(0).toPrettyString();
-        recordsService.saveRecordsRandom(username, operator, result, cost );
+        this.recordsService.saveRecordsRandom(username, operator, result, cost);
 
-      } catch (JsonProcessingException e) {
+      } catch (final JsonProcessingException e) {
         throw new RuntimeException(e);
       }
     }
+    return this.BALANCE_NEGATIVE;
+}
 
-    return result;
-  }
+/**
+ * @param operandOne first operand
+ * @param operandTwo second operand
+ * @param operator   operator
+ * @param username   username
+ * @return string result
+ */
+public BigDecimal executeOperations(
+        BigDecimal operandOne, BigDecimal operandTwo, final String operator, final String username) {
 
-  /**
-   *
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @param operator   operator
-   * @param username   username
-   * @return string result
-   */
-  public BigDecimal executeOperations(
-          BigDecimal operandOne, BigDecimal operandTwo, String operator, String username) {
+  if (null == operator) return new BigDecimal("0.0");
 
-    if (operator == null) return new BigDecimal("0.0");
+  BigDecimal result = new BigDecimal("0");
 
-    BigDecimal result = new BigDecimal("0");
 
-    var user = userService.getUsername(username);
-    logger.info("usuario: {}", user.get().getUsername());
+  final var user = this.userService.getUsername(username);
+  OperationsService.logger.info("usuario: {}", user.get().getUsername());
 
-    var balance = userService.getBalance(username);
-    logger.info("balance: {}", balance);
+  var balance = this.userService.getBalance(username);
+  OperationsService.logger.info("balance: {}", balance);
 
-    var cost = userService.getOperationCostByOperation(operator);
-    logger.info("cost: {}", cost);
+  final var cost = this.userService.getOperationCostByOperation(operator);
+  OperationsService.logger.info("cost: {}", cost);
 
-    try {
+  try {
 
-      switch (operator) {
+    switch (operator) {
 
-        case "addition" -> {
+      case "addition" -> {
 
-          if (balance.compareTo(cost) > 0) {
-            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
-            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
-            balance = balance.subtract(cost);
-            userService.updateBalance(username, balance);
-            result = addOperands(operandOne, operandTwo);
-            recordsService.saveRecordsRandom( username, operandOne, operandTwo, operator, result, cost );
+        if (0 < balance.compareTo(cost)) {
 
-          } else {
+          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
+          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+          balance = balance.subtract(cost);
+          this.userService.updateBalance(username, balance);
+          result = this.addOperands(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
 
-            result = BigDecimal.valueOf(-1L);
+        } else {
 
-          }
+          result = new BigDecimal(this.BALANCE_NEGATIVE);
         }
-
-        case "subtraction" -> {
-
-          if (balance.compareTo(cost) > 0) {
-            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
-            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
-            balance = balance.subtract(cost);
-            userService.updateBalance(username, balance);
-            result = subtractOperands(operandOne, operandTwo);
-            recordsService.saveRecordsRandom( username, operandOne, operandTwo, operator, result, cost );
-
-          } else {
-
-            result = BigDecimal.valueOf(-1L);
-
-          }
-        }
-
-        case "multiplication" -> {
-
-          if (balance.compareTo(cost) > 0) {
-            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
-            operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
-            balance = balance.subtract(cost);
-            userService.updateBalance(username, balance);
-            result = multiplyOperands(operandOne, operandTwo);
-            recordsService.saveRecordsRandom( username, operandOne, operandTwo, operator, result, cost );
-
-          } else {
-
-            result = BigDecimal.valueOf(-1L);
-
-          }
-        }
-
-        case "division" -> {
-          operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
-          operandTwo = (operandTwo == null ? BigDecimal.ZERO : operandTwo);
-          if (balance.compareTo(cost) > 0) {
-
-            balance = balance.subtract(cost);
-            userService.updateBalance(username, balance);
-            result = divideOperands(operandOne, operandTwo);
-            recordsService.saveRecordsRandom( username, operandOne, operandTwo, operator, result, cost );
-
-          } else {
-
-            result = BigDecimal.valueOf(-1L);
-
-          }
-        }
-
-        case "square_root" -> {
-          if (balance.compareTo(cost) > 0) {
-            operandOne = (operandOne == null ? BigDecimal.ZERO : operandOne);
-            balance = balance.subtract(cost);
-            userService.updateBalance(username, balance);
-            result = squareRoot(operandOne);
-            recordsService.saveRecordsRandom( username, operandOne, operandTwo, operator, result, cost );
-
-          } else {
-
-            result = BigDecimal.valueOf(-1L);
-
-          }
-        }
-
       }
 
-      return result;
-    } catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
+      case "subtraction" -> {
 
-  /**
-   *
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return sum of two operands
-   */
-  public BigDecimal addOperands(BigDecimal operandOne, BigDecimal operandTwo) {
-    return operandOne.add(operandTwo);
-  }
+        if (0 < balance.compareTo(cost)) {
+          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
+          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+          balance = balance.subtract(cost);
+          this.userService.updateBalance(username, balance);
+          result = this.subtractOperands(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
 
-  /**
-   *
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return subtraction of two operands
-   */
-  public BigDecimal subtractOperands(BigDecimal operandOne, BigDecimal operandTwo) {
-    return operandOne.subtract(operandTwo);
-  }
+        } else {
 
-  /**
-   *
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return product of two operands
-   */
-  public BigDecimal multiplyOperands(BigDecimal operandOne, BigDecimal operandTwo) {
-    return operandOne.multiply(operandTwo);
-  }
+          result = new BigDecimal(this.BALANCE_NEGATIVE);
 
-  /**
-   *
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return division of two operands
-   * @throws Exception second operation can not be equal to zero
-   */
-  public BigDecimal divideOperands(BigDecimal operandOne, BigDecimal operandTwo) throws Exception {
-    BigDecimal division = BigDecimal.ZERO;
-    try {
+        }
+      }
 
-      division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
+      case "multiplication" -> {
 
-    } catch (ArithmeticException ex) {
+        if (balance.compareTo(cost) > 0) {
+          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
+          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+          balance = balance.subtract(cost);
+          this.userService.updateBalance(username, balance);
+          result = this.multiplyOperands(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
 
-      logger.info("Division by zero not allowed");
-      throw new ForbiddenException("Division by zero not allowed!");
+        } else {
 
-    }
-    return division;
-  }
+          result = new BigDecimal(this.BALANCE_NEGATIVE);
 
-  /**
-   *
-   * @param operandOne first operand
-   * @return square root of first operand
-   * @throws Exception no negative numbers supported
-   */
-  public BigDecimal squareRoot(BigDecimal operandOne) throws Exception{
-    MathContext mathContext = new MathContext(4);
-    BigDecimal square = BigDecimal.ZERO;
-    try {
+        }
+      }
 
-        square =  operandOne.sqrt(mathContext);
+      case "division" -> {
+        operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
+        operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+        if (0 < balance.compareTo(cost)) {
 
-    } catch (ArithmeticException ex) {
+          balance = balance.subtract(cost);
+          this.userService.updateBalance(username, balance);
+          result = this.divideOperands(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
 
-      logger.info("Square root of negative numbers not allowed");
-      throw new ForbiddenException("Only positive numbers");
+        } else {
+
+          result = new BigDecimal(this.BALANCE_NEGATIVE);
+
+        }
+      }
+
+      case "square_root" -> {
+        if (0 < balance.compareTo(cost)) {
+          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
+          balance = balance.subtract(cost);
+          this.userService.updateBalance(username, balance);
+          result = this.squareRoot(operandOne);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+
+        } else {
+
+          result = new BigDecimal(this.BALANCE_NEGATIVE);
+        }
+      }
 
     }
-    return square;
-  }
 
-  /**
-   *
-   * @return list of operators implemented
-   */
-  public List<Operation> getOperators() {
-    return operationsRepository.findAll();
+    return result;
+  } catch (final Exception e) {
+    throw new RuntimeException(e);
   }
+}
+
+/**
+ * @param operandOne first operand
+ * @param operandTwo second operand
+ * @return sum of two operands
+ */
+public BigDecimal addOperands(BigDecimal operandOne, BigDecimal operandTwo) {
+  return operandOne.add(operandTwo);
+}
+
+/**
+ * @param operandOne first operand
+ * @param operandTwo second operand
+ * @return subtraction of two operands
+ */
+public BigDecimal subtractOperands(BigDecimal operandOne, BigDecimal operandTwo) {
+  return operandOne.subtract(operandTwo);
+}
+
+/**
+ * @param operandOne first operand
+ * @param operandTwo second operand
+ * @return product of two operands
+ */
+public BigDecimal multiplyOperands(final BigDecimal operandOne, final BigDecimal operandTwo) {
+  return operandOne.multiply(operandTwo);
+}
+
+/**
+ * @param operandOne first operand
+ * @param operandTwo second operand
+ * @return division of two operands
+ * @throws Exception second operation can not be equal to zero
+ */
+public BigDecimal divideOperands(final BigDecimal operandOne, final BigDecimal operandTwo) throws Exception {
+  BigDecimal division = BigDecimal.ZERO;
+  try {
+
+    division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
+
+  } catch (final ArithmeticException ex) {
+
+    logger.info("Division by zero not allowed");
+    throw new ForbiddenException("Division by zero not allowed!");
+
+  }
+  return division;
+}
+
+/**
+ * @param operandOne first operand
+ * @return square root of first operand
+ * @throws Exception no negative numbers supported
+ */
+public BigDecimal squareRoot(final BigDecimal operandOne) throws Exception {
+  MathContext mathContext = new MathContext(4);
+  BigDecimal square = BigDecimal.ZERO;
+  try {
+
+    square = operandOne.sqrt(mathContext);
+
+  } catch (final ArithmeticException ex) {
+
+    logger.info("Square root of negative numbers not allowed");
+    throw new ForbiddenException("Only positive numbers");
+
+  }
+  return square;
+}
+
+/**
+ * @return list of operators implemented
+ */
+public List<Operation> getOperators() {
+  return operationsRepository.findAll();
+}
 }
 
