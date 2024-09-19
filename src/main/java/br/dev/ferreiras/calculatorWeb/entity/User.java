@@ -67,6 +67,9 @@ public class User implements UserDetails {
     this.createdAt = createdAt;
   }
 
+  public User(@NotBlank @Email @Size(min = 5, max = 40) String username) {
+  }
+
   @Column(nullable = false, precision = 2)
   public BigDecimal getBalance() {
 

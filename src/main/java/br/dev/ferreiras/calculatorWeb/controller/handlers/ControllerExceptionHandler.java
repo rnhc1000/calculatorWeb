@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.nio.channels.AcceptPendingException;
+import java.nio.file.AccessDeniedException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -32,6 +34,14 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(body, HttpStatus.NOT_FOUND );
   }
 
+  @ExceptionHandler (AccessDeniedException.class)
+  public ResponseEntity<Object> notAuthorized(ResourceNotFoundException e, WebRequest request) {
+    Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp: ", Instant.now());
+    body.put("message", "Not Authorized");
+    return new ResponseEntity<>(body, HttpStatus.UNAUTHORIZED );
+  }
+
   @ExceptionHandler(DatabaseException.class)
   public ResponseEntity<Object> database(DatabaseException e, WebRequest request) {
     Map<String, Object> body = new LinkedHashMap<>();
@@ -44,8 +54,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   public ResponseEntity<Object> forbidden(ForbiddenException ex, WebRequest request) {
     Map<String, Object> body = new LinkedHashMap<>();
     body.put("timestamp: ", LocalDateTime.now());
-    body.put("status", "Division by ZERO not allowed!!");
-    body.put("message", ex.getMessage());
+    body.put("status", "Illegal Math Operation!");
     return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY );
   }
 
