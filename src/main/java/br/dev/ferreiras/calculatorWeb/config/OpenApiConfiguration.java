@@ -27,15 +27,15 @@ public class OpenApiConfiguration {
    */
   @Bean
   public OpenAPI defineOpenApi() {
-    Server server = new Server();
-    server.setUrl("http://192.168.15.11:8095/");
+    final Server server = new Server();
+    server.setUrl("https://api.ferreiras.dev.br");
     server.setDescription("Development");
 
-    Contact myContact = new Contact();
+    final Contact myContact = new Contact();
     myContact.setName(":Ricardo Ferreira");
     myContact.setEmail("ricardo@ferreiras.dev.br");
 
-    Info information = new Info()
+    final Info information = new Info()
             .title("Web Calculator")
             .version("1.0")
             .description("WebCalculatorAPI exposes endpoints to do maths at the backend and being persisted into a database")
