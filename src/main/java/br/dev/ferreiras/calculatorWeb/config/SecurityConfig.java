@@ -29,7 +29,7 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
-/**
+/** Calculator Web API Security Configuration
  * @author ricardo@ferreiras.dev.br
  * @version 1.1.030901
  * @since 08/2024

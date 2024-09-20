@@ -45,6 +45,7 @@ public class TokenService {
                            .map(Role::getRole)
                            .collect(Collectors.joining(" "));
     TokenService.logger.info("scopes -> {}", scopes);
+    final var balance = this.userService.getBalance(username);
     final var expiresIn = 3600L;
     final var now = Instant.now();
     final var claims = JwtClaimsSet.builder()
@@ -54,6 +55,7 @@ public class TokenService {
                                    .expiresAt(now.plusSeconds(expiresIn))
                                    .claim("scope", scopes)
                                    .claim("username", username)
+                                   .claim("balance", balance)
                                    .build();
 
     final String jwtValue = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();

@@ -4,6 +4,7 @@ br.dev.ferreiras.calculatorWeb.controller
 br.dev.ferreiras.calculatorWeb.controller.handlers
 br.dev.ferreiras.calculatorWeb.dto
 br.dev.ferreiras.calculatorWeb.entity
+br.dev.ferreiras.calculatorWeb.filter
 br.dev.ferreiras.calculatorWeb.repository
 br.dev.ferreiras.calculatorWeb.service
 br.dev.ferreiras.calculatorWeb.service.exceptions

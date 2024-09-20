@@ -15,13 +15,22 @@ public class CalculatorWebApplication implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(CalculatorWebApplication.class);
 
-	public static void main(String[] args) {
+	/** Entry point java App execution
+	 *
+	 * @param args no args
+	 */
+	public static void main(final String[] args) {
 		SpringApplication.run(CalculatorWebApplication.class, args);
 	}
 
+	/** Indicates starting time, zone and Java version
+	 *
+	 * @param args there are no args
+	 * @throws Exception any method can trigger an Exception
+	 */
 	@Override
-	public void run(String... args) throws Exception {
-		logger.info("Calculator Web started running at {}, zone {}, running java version {}",
+	public void run(final String... args) throws Exception {
+    CalculatorWebApplication.logger.info("Calculator Web started running at {}, zone {}, running java version {}",
 						LocalDateTime.now(),
 						ZonedDateTime.now().getZone(),
 						System.getProperty("java.version")
