@@ -1,4 +1,6 @@
 package br.dev.ferreiras.calculatorWeb.dto;
 
-public record ResponseRandomDto(String random) {
+import java.math.BigDecimal;
+
+public record ResponseRandomDto(String random, BigDecimal balance) {
 }

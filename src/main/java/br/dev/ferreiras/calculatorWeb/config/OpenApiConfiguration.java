@@ -28,7 +28,9 @@ public class OpenApiConfiguration {
   @Bean
   public OpenAPI defineOpenApi() {
     final Server server = new Server();
-    server.setUrl("https://api.ferreiras.dev.br");
+    server.setUrl("""
+            http://192.168.15.11:8095
+            """);
     server.setDescription("Development");
 
     final Contact myContact = new Contact();

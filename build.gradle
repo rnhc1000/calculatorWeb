@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'br.dev.ferreiras'
-version = '1.1.091802'
+version = '1.1.092001'
 
 java {
 	toolchain {
