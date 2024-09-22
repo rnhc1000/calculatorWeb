@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping (path = "api/v1")
@@ -31,7 +32,7 @@ public class OperationsController {
 
   private final static Logger logger = LoggerFactory.getLogger(OperationsController.class);
 
-  @Operation (summary = "Given one or two operands and the operator return a value")
+  @Operation (summary = "Given one or two operands and an operator, returns the result and balance available")
   @ApiResponses (value = {
           @ApiResponse (responseCode = "200", description = "Got the result",
                   content = {@Content (mediaType = "application/json",
@@ -46,19 +47,21 @@ public class OperationsController {
   public ResponseEntity<OperationsResponseDto> getResults(@RequestBody OperationsRequestDto operationsRequestDto) {
 
     try {
-      BigDecimal result = operationsService.executeOperations(
+      final OperationsResponseDto operationsResult = this.operationsService.executeOperations(
               operationsRequestDto.operandOne(),
               operationsRequestDto.operandTwo(),
               operationsRequestDto.operator(),
               operationsRequestDto.username()
       );
-      return ResponseEntity.ok(new OperationsResponseDto(result));
+
+      return ResponseEntity.ok(new OperationsResponseDto(operationsResult.result(), operationsResult.balance()));
+
     } catch (Exception ex) {
       throw new ForbiddenException("Arithmetic Exception");
     }
   }
 
-  @Operation (summary = "Given username and operator return a random string")
+  @Operation (summary = "Given username and operator return a random string, and associtaed balance")
   @ApiResponses (value = {
           @ApiResponse (responseCode = "200", description = "Got the result",
                   content = {@Content (mediaType = "application/json",
@@ -70,13 +73,13 @@ public class OperationsController {
   @PostMapping (value = "/randomize")
   public ResponseEntity<ResponseRandomDto> getRandomStrings(@RequestBody RequestRandomDto requestRandomDto) {
 
-    String result = operationsService.executeOperations(
+    final ResponseRandomDto operationsResult = this.operationsService.executeOperations(
 
             requestRandomDto.username(),
             requestRandomDto.operator()
     );
 
-    return ResponseEntity.ok(new ResponseRandomDto(result));
+    return ResponseEntity.ok(new ResponseRandomDto(operationsResult.random(), operationsResult.balance()));
   }
 
   @Operation (summary = "Return registered operators")
@@ -89,9 +92,9 @@ public class OperationsController {
   })
   @ResponseStatus
   @GetMapping(value = "/operators")
-  public ResponseEntity<List<br.dev.ferreiras.calculatorWeb.entity.Operation>> getAllOperators() {
+  public ResponseEntity<List<Object>> getAllOperators() {
 
-      var operators = operationsService.getOperators();
+      final var operators = this.operationsService.getOperationsCost();
 
       return ResponseEntity.ok(operators);
   }

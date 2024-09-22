@@ -34,7 +34,7 @@ public class TokenService {
   private static final Logger logger = LoggerFactory.getLogger(TokenService.class);
 
   /**
-   * @param username  as oan object
+   * @param username  as an object
    * @return accessToken object
    */
   public AccessToken generateToken(final String username) {
@@ -60,7 +60,7 @@ public class TokenService {
 
     final String jwtValue = this.jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     TokenService.logger.info(jwtValue);
+
     return new AccessToken(jwtValue, expiresIn);
   }
-
 }

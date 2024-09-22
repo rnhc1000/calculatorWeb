@@ -52,7 +52,7 @@ public class RecordsService {
 
   @Transactional
   public void saveRecordsRandom(
-          String username, BigDecimal operandOne, BigDecimal operandTwo, String operator, BigDecimal result, BigDecimal cost
+          final String username, BigDecimal operandOne, BigDecimal operandTwo, String operator, BigDecimal result, BigDecimal cost
   ) {
     Records records = new Records();
 
@@ -63,16 +63,16 @@ public class RecordsService {
     records.setResult(String.valueOf((result)));
     records.setCost(cost);
 
-    recordsRepository.save(records);
+    this.recordsRepository.save(records);
   }
 
   @Transactional
   public ResponseEntity<RecordsDto> getPagedRecords(int page, int size) {
 
-    Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+    final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
 //      Page<Records> pageRecords;
-    var pageRecords = recordsRepository.findAll(paging).map(records -> new RecordItemsDto(
+    final var pageRecords = this.recordsRepository.findAll(paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
             records.getCost(), records.getCreatedAt())
@@ -85,11 +85,11 @@ public class RecordsService {
 
   }
 
-  public ResponseEntity<RecordsDto> findRecordsByUsername(int page, int size, String username) {
+  public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username) {
 
     Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
-    var pageRecords = recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
+    var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
             records.getCost(), records.getCreatedAt())

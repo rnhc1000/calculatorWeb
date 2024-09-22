@@ -1,4 +1,4 @@
 package br.dev.ferreiras.calculatorWeb.dto;
 
-public record OperationsResponseDto (java.math.BigDecimal result){
+public record OperationsResponseDto (java.math.BigDecimal result, java.math.BigDecimal balance){
 }
