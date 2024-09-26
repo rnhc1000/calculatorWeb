@@ -50,7 +50,7 @@ Why don't you take a look at this short video....to see how it works...
 - src
     - main
     - java
-        - br.dev.ferreiras.calculatorWeb
+        - br.dev.ferreiras.calculatorweb
             - config
             - controller
               - handlers 
@@ -75,7 +75,7 @@ Why don't you take a look at this short video....to see how it works...
   - service socket: 127.0.0.1:8095
   - tweak a few knobs to get it up and running
   """
-  src.main.java.br.dev.ferreiras.calculatorWeb.config.OpenApiConfiguration
+  src.main.java.br.dev.ferreiras.calculatorweb.config.OpenApiConfiguration
   ...
   public class OpenApiConfiguration {
   @Bean
