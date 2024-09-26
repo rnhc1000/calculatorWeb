@@ -37,8 +37,8 @@
 2024-09-01 15:47:52,454 INFO o.s.b.w.e.t.TomcatWebServer [main] Tomcat started on port 8095 (http) with context path '/'
 2024-09-01 15:47:52,499 INFO o.s.b.StartupInfoLogger [main] Started CalculatorWebApplication in 20.833 seconds (process running for 23.431)
 2024-09-01 15:47:52,517 INFO b.d.f.c.CalculatorWebApplication [main] Calculator Web started running at 2024-09-01T15:47:52.517546461, zone America/Sao_Paulo, running java version 21.0.4
-2024-09-01 15:47:52,702 INFO b.d.f.c.c.AdminUserConfiguration [main] RoleAdmin:-> br.dev.ferreiras.calculatorWeb.entity.Role@3a8a2089
-2024-09-01 15:47:52,771 INFO b.d.f.c.c.AdminUserConfiguration [main] UserAdmin:-> Optional[br.dev.ferreiras.calculatorWeb.entity.User@3109f8ae]
+2024-09-01 15:47:52,702 INFO b.d.f.c.c.AdminUserConfiguration [main] RoleAdmin:-> br.dev.ferreiras.calculatorweb.entity.Role@3a8a2089
+2024-09-01 15:47:52,771 INFO b.d.f.c.c.AdminUserConfiguration [main] UserAdmin:-> Optional[br.dev.ferreiras.calculatorweb.entity.User@3109f8ae]
 2024-09-01 15:47:52,773 INFO b.d.f.c.c.AdminUserConfiguration [main] Administrator already exists!
 2024-09-01 15:48:06,083 INFO o.a.j.l.DirectJDKLog [http-nio-8095-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-09-01 15:48:06,084 INFO o.s.w.s.FrameworkServlet [http-nio-8095-exec-1] Initializing Servlet 'dispatcherServlet'

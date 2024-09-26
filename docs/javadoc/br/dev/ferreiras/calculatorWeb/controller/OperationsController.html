@@ -5,7 +5,7 @@
 <title>OperationsController (calculatorWeb 1.1.091802 API)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="declaration: package: br.dev.ferreiras.calculatorWeb.controller, class: OperationsController">
+<meta name="description" content="declaration: package: br.dev.ferreiras.calculatorweb.controller, class: OperationsController">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -81,11 +81,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">br.dev.ferreiras.calculatorWeb.controller</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">br.dev.ferreiras.calculatorweb.controller</a></div>
 <h1 title="Class OperationsController" class="title">Class OperationsController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">br.dev.ferreiras.calculatorWeb.controller.OperationsController</div>
+<div class="inheritance">br.dev.ferreiras.calculatorweb.controller.OperationsController</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -123,11 +123,11 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>&gt;&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAllOperators()" class="member-name-link">getAllOperators</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/ResponseRandomDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">ResponseRandomDto</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRandomStrings(br.dev.ferreiras.calculatorWeb.dto.RequestRandomDto)" class="member-name-link">getRandomStrings</a><wbr>(<a href="../dto/RequestRandomDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">RequestRandomDto</a>&nbsp;requestRandomDto)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/ResponseRandomDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">ResponseRandomDto</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRandomStrings(br.dev.ferreiras.calculatorWeb.dto.RequestRandomDto)" class="member-name-link">getRandomStrings</a><wbr>(<a href="../dto/RequestRandomDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">RequestRandomDto</a>&nbsp;requestRandomDto)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/OperationsResponseDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">OperationsResponseDto</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResults(br.dev.ferreiras.calculatorWeb.dto.OperationsRequestDto)" class="member-name-link">getResults</a><wbr>(<a href="../dto/OperationsRequestDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">OperationsRequestDto</a>&nbsp;operationsRequestDto)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/OperationsResponseDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">OperationsResponseDto</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getResults(br.dev.ferreiras.calculatorWeb.dto.OperationsRequestDto)" class="member-name-link">getResults</a><wbr>(<a href="../dto/OperationsRequestDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">OperationsRequestDto</a>&nbsp;operationsRequestDto)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -165,8 +165,8 @@ loadScripts(document, 'script');</script>
 <h3>getResults</h3>
 <div class="member-signature"><span class="annotations">@ResponseStatus
 @PostMapping("/operations")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/OperationsResponseDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">OperationsResponseDto</a>&gt;</span>&nbsp;<span class="element-name">getResults</span><wbr><span class="parameters">(@RequestBody
- <a href="../dto/OperationsRequestDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">OperationsRequestDto</a>&nbsp;operationsRequestDto)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/OperationsResponseDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">OperationsResponseDto</a>&gt;</span>&nbsp;<span class="element-name">getResults</span><wbr><span class="parameters">(@RequestBody
+ <a href="../dto/OperationsRequestDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">OperationsRequestDto</a>&nbsp;operationsRequestDto)</span></div>
 </section>
 </li>
 <li>
@@ -174,8 +174,8 @@ loadScripts(document, 'script');</script>
 <h3>getRandomStrings</h3>
 <div class="member-signature"><span class="annotations">@ResponseStatus
 @PostMapping("/randomize")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/ResponseRandomDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">ResponseRandomDto</a>&gt;</span>&nbsp;<span class="element-name">getRandomStrings</span><wbr><span class="parameters">(@RequestBody
- <a href="../dto/RequestRandomDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">RequestRandomDto</a>&nbsp;requestRandomDto)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/ResponseRandomDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">ResponseRandomDto</a>&gt;</span>&nbsp;<span class="element-name">getRandomStrings</span><wbr><span class="parameters">(@RequestBody
+ <a href="../dto/RequestRandomDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">RequestRandomDto</a>&nbsp;requestRandomDto)</span></div>
 </section>
 </li>
 <li>

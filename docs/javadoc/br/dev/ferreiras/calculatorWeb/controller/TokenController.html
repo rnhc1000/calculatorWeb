@@ -5,7 +5,7 @@
 <title>TokenController (calculatorWeb 1.1.091802 API)</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="description" content="declaration: package: br.dev.ferreiras.calculatorWeb.controller, class: TokenController">
+<meta name="description" content="declaration: package: br.dev.ferreiras.calculatorweb.controller, class: TokenController">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../../../../../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../../../../../script-dir/jquery-ui.min.css" title="Style">
@@ -81,11 +81,11 @@ loadScripts(document, 'script');</script>
 <main role="main">
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">br.dev.ferreiras.calculatorWeb.controller</a></div>
+<div class="sub-title"><span class="package-label-in-type">Package</span>&nbsp;<a href="package-summary.html">br.dev.ferreiras.calculatorweb.controller</a></div>
 <h1 title="Class TokenController" class="title">Class TokenController</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
-<div class="inheritance">br.dev.ferreiras.calculatorWeb.controller.TokenController</div>
+<div class="inheritance">br.dev.ferreiras.calculatorweb.controller.TokenController</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
@@ -105,8 +105,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder,br.dev.ferreiras.calculatorWeb.service.UserService,br.dev.ferreiras.calculatorWeb.service.TokenService)" class="member-name-link">TokenController</a><wbr>(org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder&nbsp;bCryptPasswordEncoder,
- <a href="../service/UserService.html" title="class in br.dev.ferreiras.calculatorWeb.service">UserService</a>&nbsp;userService,
- <a href="../service/TokenService.html" title="class in br.dev.ferreiras.calculatorWeb.service">TokenService</a>&nbsp;tokenService)</code></div>
+ <a href="../service/UserService.html" title="class in br.dev.ferreiras.calculatorweb.service">UserService</a>&nbsp;userService,
+ <a href="../service/TokenService.html" title="class in br.dev.ferreiras.calculatorweb.service">TokenService</a>&nbsp;tokenService)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
@@ -122,8 +122,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/LoginResponseDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">LoginResponseDto</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto)" class="member-name-link">login</a><wbr>(<a href="../dto/LoginRequestDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">LoginRequestDto</a>&nbsp;loginRequestDto)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>org.springframework.http.ResponseEntity<wbr>&lt;<a href="../dto/LoginResponseDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">LoginResponseDto</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#login(br.dev.ferreiras.calculatorWeb.dto.LoginRequestDto)" class="member-name-link">login</a><wbr>(<a href="../dto/LoginRequestDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">LoginRequestDto</a>&nbsp;loginRequestDto)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
@@ -146,8 +146,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder,br.dev.ferreiras.calculatorWeb.service.UserService,br.dev.ferreiras.calculatorWeb.service.TokenService)">
 <h3>TokenController</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TokenController</span><wbr><span class="parameters">(org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder&nbsp;bCryptPasswordEncoder,
- <a href="../service/UserService.html" title="class in br.dev.ferreiras.calculatorWeb.service">UserService</a>&nbsp;userService,
- <a href="../service/TokenService.html" title="class in br.dev.ferreiras.calculatorWeb.service">TokenService</a>&nbsp;tokenService)</span></div>
+ <a href="../service/UserService.html" title="class in br.dev.ferreiras.calculatorweb.service">UserService</a>&nbsp;userService,
+ <a href="../service/TokenService.html" title="class in br.dev.ferreiras.calculatorweb.service">TokenService</a>&nbsp;tokenService)</span></div>
 </section>
 </li>
 </ul>
@@ -166,8 +166,8 @@ loadScripts(document, 'script');</script>
                 method=POST,
                 produces="application/json",
                 consumes="application/json")
-</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/LoginResponseDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">LoginResponseDto</a>&gt;</span>&nbsp;<span class="element-name">login</span><wbr><span class="parameters">(@RequestBody
- <a href="../dto/LoginRequestDto.html" title="class in br.dev.ferreiras.calculatorWeb.dto">LoginRequestDto</a>&nbsp;loginRequestDto)</span></div>
+</span><span class="modifiers">public</span>&nbsp;<span class="return-type">org.springframework.http.ResponseEntity&lt;<a href="../dto/LoginResponseDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">LoginResponseDto</a>&gt;</span>&nbsp;<span class="element-name">login</span><wbr><span class="parameters">(@RequestBody
+ <a href="../dto/LoginRequestDto.html" title="class in br.dev.ferreiras.calculatorweb.dto">LoginRequestDto</a>&nbsp;loginRequestDto)</span></div>
 </section>
 </li>
 </ul>
