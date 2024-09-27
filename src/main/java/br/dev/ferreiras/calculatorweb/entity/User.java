@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -160,5 +161,17 @@ public class User implements UserDetails {
   public boolean isLoginCorrect(LoginRequestDto loginRequestDto, PasswordEncoder passwordEncoder) {
 
     return passwordEncoder.matches(loginRequestDto.password(), this.password);
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) return true;
+    if (!(o instanceof User user)) return false;
+    return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(status, user.status) && (balance == null ? user.balance == null : balance.compareTo(user.balance) == 0) && Objects.equals(createdAt, user.createdAt) && Objects.equals(roles, user.roles);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(userId, username, password, status, balance, createdAt, roles);
   }
 }

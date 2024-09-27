@@ -21,11 +21,11 @@ import java.util.List;
 @RequestMapping (path = "api/v1")
 public class OperationsController {
 
-  @Autowired
-  private OperationsService operationsService;
+  private final OperationsService operationsService;
 
-  @Autowired
-  private UserService userService;
+  public OperationsController(final OperationsService operationsService) {
+    this.operationsService = operationsService;
+  }
 
   private static final Logger logger = LoggerFactory.getLogger(OperationsController.class);
 
@@ -43,7 +43,7 @@ public class OperationsController {
   @PostMapping (value = "/operations")
   public ResponseEntity<OperationsResponseDto> getResults(@RequestBody OperationsRequestDto operationsRequestDto) {
 
-    logger.info("Received data to do maths...");
+    OperationsController.logger.info("Received data to do maths...");
     try {
       final OperationsResponseDto operationsResult = this.operationsService.executeOperations(
               operationsRequestDto.operandOne(),
@@ -52,12 +52,12 @@ public class OperationsController {
               operationsRequestDto.username()
       );
 
-      logger.info("Maths done!..");
+      OperationsController.logger.info("Maths done!..");
 
       return ResponseEntity.ok(new OperationsResponseDto(operationsResult.result(), operationsResult.balance()));
 
     } catch (Exception ex) {
-      logger.info("Valid operations only! ...");
+      OperationsController.logger.info("Valid operations only! ...");
       throw new ForbiddenException("Arithmetic Exception");
     }
   }
