@@ -91,6 +91,10 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 
     final Optional<User> user = this.userService.getUsername(username);
 
+    /*
+     * this.userService.getUsername(username).map(ResponseEntity::ok)
+     * .orElseGet(() ->ResponseEntity.notFound().build());
+     */
     return ResponseEntity.ok(new UserResponseDto(
             user.orElseThrow().getUsername(),
             user.orElseThrow().getPassword(),

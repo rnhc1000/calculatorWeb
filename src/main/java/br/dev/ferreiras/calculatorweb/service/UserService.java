@@ -25,17 +25,20 @@ import java.util.*;
 @Service
 public class UserService implements IUserService, UserDetailsService {
 
-  @Autowired
-  private UserRepository userRepository;
+  public UserService(final UserRepository userRepository, final RoleRepository roleRepository, final JwtEncoder jwtEncoder, final OperationsRepository operationsRepository) {
+    this.userRepository = userRepository;
+    this.roleRepository = roleRepository;
+    this.jwtEncoder = jwtEncoder;
+    this.operationsRepository = operationsRepository;
+  }
 
-  @Autowired
-  private RoleRepository roleRepository;
+  private final UserRepository userRepository;
 
-  @Autowired
-  private JwtEncoder jwtEncoder;
+  private final RoleRepository roleRepository;
 
-  @Autowired
-  private OperationsRepository operationsRepository;
+  private final JwtEncoder jwtEncoder;
+
+  private final OperationsRepository operationsRepository;
 
 
   private static final Logger logger = LoggerFactory.getLogger(UserService.class);
