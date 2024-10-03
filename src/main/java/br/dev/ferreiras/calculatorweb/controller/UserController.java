@@ -31,11 +31,13 @@ import java.util.Set;
 public class UserController {
 private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  @Autowired
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
+  public UserController(final UserService userService, final BCryptPasswordEncoder bCryptPasswordEncoder) {
+    this.userService = userService;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+  }
 
   @Operation (summary = "Create a regular user")
   @ApiResponses ({
@@ -50,7 +52,9 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
 
     final var userRole = this.userService.getRole();
     if (this.userService.getUsername(userResponseDto.username()).isPresent()) {
-      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
+
+      return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+//      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
     }
     final var user = new User();
     user.setUsername(userResponseDto.username());
@@ -111,7 +115,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
           @ApiResponse (responseCode = "422", description = "Not Processable!", content = @Content)})
   @ResponseStatus
   @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-  @PostMapping ("/setBalance")
+  @PostMapping ("/user/load")
   public ResponseEntity<Integer> loadBalance(@RequestBody final LoadBalanceRequestDto loadBalanceDto) {
 
     final var useCheck = loadBalanceDto.username();
@@ -136,7 +140,7 @@ private static final Logger logger = LoggerFactory.getLogger(UserController.clas
           @ApiResponse (responseCode = "401", description = "Not authorized", content = @Content),
           @ApiResponse (responseCode = "422", description = "Not processable!", content = @Content)})
   @ResponseStatus
-  @RequestMapping(value = "/balance", method = RequestMethod.POST, produces="application/json", consumes="application/json")
+  @RequestMapping(value = "/user/balance", method = RequestMethod.POST, produces="application/json", consumes="application/json")
   public ResponseEntity<LoadBalanceResponseDto> getBalance(@RequestBody final LoadBalanceRequestDto loadBalanceRequestDto) {
 
     final var useCheck = loadBalanceRequestDto.username();
