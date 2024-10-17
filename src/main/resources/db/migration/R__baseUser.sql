@@ -7,5 +7,3 @@ INSERT INTO tb_operations(operation_id, cost, operation) VALUES ( 3, "14.00", "D
 INSERT INTO tb_operations(operation_id, cost, operation) VALUES ( 4, "15.00", "MULTIPLICATION");
 INSERT INTO tb_operations(operation_id, cost, operation) VALUES ( 5, "18.00", "SQUARE_ROOT");
 INSERT INTO tb_operations(operation_id, cost, operation) VALUES ( 6, "50.00", "RANDOM_STRING");
-
-

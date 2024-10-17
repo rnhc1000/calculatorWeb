@@ -29,10 +29,13 @@ public class CalculatorWebApplication implements CommandLineRunner {
 	 */
 	@Override
 	public void run(final String... args) throws Exception {
-    CalculatorWebApplication.logger.info("Calculator Web started running at {}, zone {}, running java version {}",
-						LocalDateTime.now(),
-						ZonedDateTime.now().getZone(),
-						System.getProperty("java.version")
-		);
-	}
+    if (CalculatorWebApplication.logger.isInfoEnabled()) {
+      CalculatorWebApplication.logger.info("Calculator Web started running at {}, zone {}, running java version {}, on top of {} cores",
+              LocalDateTime.now(),
+              ZonedDateTime.now().getZone(),
+              System.getProperty("java.version"),
+              Runtime.getRuntime().availableProcessors()
+      );
+    }
+  }
 }

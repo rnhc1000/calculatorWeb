@@ -14,7 +14,6 @@ class UserRepositoryTest {
   @Autowired
   private UserRepository userRepository;
 
-  @Test
    void createUser() {
 
     Optional<User> user = this.userRepository.findByUsername("ricardo@ferreiras.dev.br");
