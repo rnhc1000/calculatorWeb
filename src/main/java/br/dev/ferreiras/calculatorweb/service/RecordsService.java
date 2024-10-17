@@ -19,7 +19,7 @@ public class RecordsService {
   private final RecordsRepository recordsRepository;
   private final UserService userService;
 
-  public RecordsService(RecordsRepository recordsRepository, UserService userService) {
+  public RecordsService(final RecordsRepository recordsRepository, final UserService userService) {
     this.recordsRepository = recordsRepository;
     this.userService = userService;
   }

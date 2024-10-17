@@ -40,7 +40,7 @@ public class OpenApiConfiguration {
     final Info information = new Info()
             .title("Web Calculator")
             .version("1.0")
-            .description("WebCalculatorAPI exposes endpoints to do maths at the backend and being persisted into a database")
+            .description("WebCalculatorAPI exposes endpoints to do maths at the backend and persists the maths into a database")
             .contact(myContact);
 
     return new OpenAPI()

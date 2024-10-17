@@ -62,7 +62,7 @@ public class SecurityConfig {
    * between client and server
    */
   @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+  public SecurityFilterChain securityFilterChain(final HttpSecurity httpSecurity) throws Exception {
 
 //    CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
 
@@ -76,7 +76,7 @@ public class SecurityConfig {
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 //                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(WHITELIST).permitAll()
+                        .requestMatchers(SecurityConfig.WHITELIST).permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
@@ -93,8 +93,8 @@ public class SecurityConfig {
   @Bean
   public JwtEncoder jwtEncoder() {
 
-    JWK jwk = new RSAKey.Builder(this.rsaPublicKey).privateKey(this.rsaPrivateKey).build();
-    var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+    final JWK jwk = new RSAKey.Builder(this.rsaPublicKey).privateKey(this.rsaPrivateKey).build();
+    final var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
 
     return new NimbusJwtEncoder(jwks);
   }

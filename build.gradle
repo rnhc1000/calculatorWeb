@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'br.dev.ferreiras'
-version = '1.1.09.23.01'
+version = '1.1.10.03.01'
 
 java {
 	toolchain {
@@ -55,6 +55,8 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-log4j2"
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.3.3'
+// https://mvnrepository.com/artifact/org.jooq/jooq
+	implementation group: 'org.jooq', name: 'jooq', version: '3.19.13'
 
 	modules {
 		module("org.springframework.boot:spring-boot-starter-logging") {

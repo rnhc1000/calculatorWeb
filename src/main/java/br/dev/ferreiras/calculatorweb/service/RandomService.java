@@ -30,7 +30,7 @@ public class RandomService {
     data.put("apiKey", "b720e6c8-5bd7-4c80-ab27-60a893668157");
     data.put("n", 1);
     data.put("length", 12);
-    data.put("characters", "abcdefghijklmnopqrstuvwxyz");
+    data.put("characters", "abcdefghijklmnopqrstuvwxyzABCDEFFGHIJKLMNOPQRSTUVXZ0123456789)(*&%$#@");
     rootNode.set("params", data);
     rootNode.put("jsonrpc", "2.0");
     rootNode.put("method", "generateStrings");

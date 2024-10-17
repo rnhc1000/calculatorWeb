@@ -51,29 +51,29 @@ public class AdminUserConfiguration implements CommandLineRunner {
   @Transactional
   public void run(String... args) throws Exception {
 
-    Role roleAdmin = roleRepository.findByRole(Role.Roles.ROLE_ADMIN.name());
+    final Role roleAdmin = this.roleRepository.findByRole(Role.Roles.ROLE_ADMIN.name());
 
-    logger.info("RoleAdmin:-> {}", roleAdmin);
+    AdminUserConfiguration.logger.info("RoleAdmin:-> {}", roleAdmin);
 
-    var userAdmin = userRepository.findByUsername("admin@calculatorweb.com");
+    final var userAdmin = this.userRepository.findByUsername("admin@calculatorweb.com");
 
-    logger.info("UserAdmin:-> {}", userAdmin);
+    AdminUserConfiguration.logger.info("UserAdmin:-> {}", userAdmin);
 
     userAdmin.ifPresentOrElse(
-            user -> logger.info("Administrator already exists!"),
+            user -> AdminUserConfiguration.logger.info("Administrator already exists!"),
             () -> {
 
               var user = new User();
 
               user.setUsername("admin@calculatorweb.com");
-              user.setPassword(bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
+              user.setPassword(this.bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
               user.setRoles(Set.of(roleAdmin));
               user.setBalance(new BigDecimal("1000.00"));
               user.setStatus("ACTIVE");
               user.setCreatedAt(Instant.now());
 
-              userRepository.save(user);
-              logger.info("Administrator created");
+              this.userRepository.save(user);
+              AdminUserConfiguration.logger.info("Administrator created");
             }
     );
   }

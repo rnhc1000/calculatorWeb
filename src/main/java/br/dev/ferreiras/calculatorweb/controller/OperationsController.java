@@ -2,7 +2,6 @@ package br.dev.ferreiras.calculatorweb.controller;
 
 import br.dev.ferreiras.calculatorweb.dto.*;
 import br.dev.ferreiras.calculatorweb.service.OperationsService;
-import br.dev.ferreiras.calculatorweb.service.UserService;
 import br.dev.ferreiras.calculatorweb.service.exceptions.ForbiddenException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,7 +54,7 @@ public class OperationsController {
 
       return ResponseEntity.ok(new OperationsResponseDto(operationsResult.result(), operationsResult.balance()));
 
-    } catch (Exception ex) {
+    } catch (final Exception ex) {
       OperationsController.logger.info("Valid operations only! ...");
       throw new ForbiddenException("Arithmetic Exception");
     }

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -31,6 +32,7 @@ public class User implements UserDetails {
   @Email
   @Size (min = 5, max = 40)
   @Column (unique = true)
+  @NotNull
   private String username;
 
   @Column (nullable = false)
