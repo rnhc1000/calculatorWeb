@@ -1,6 +1,5 @@
 package br.dev.ferreiras.calculatorweb.controller;
 
-import br.dev.ferreiras.calculatorweb.controller.handlers.ControllerExceptionHandler;
 import br.dev.ferreiras.calculatorweb.service.RandomService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping (path = "api/v1")
 public class RandomController {
 
-  @Autowired
-  private RandomService randomService;
+  private final RandomService randomService;
+
+  public RandomController(final RandomService randomService) {
+    this.randomService = randomService;
+  }
 
   private static final Logger logger = LoggerFactory.getLogger(RandomController.class);
-
 
   @Operation (summary = "Get a random string")
   @ApiResponses (value = {
@@ -41,18 +42,9 @@ public class RandomController {
   @PostMapping (value = "/random", consumes = {"application/json"})
   @PreAuthorize ("hasAuthority('SCOPE_ROLE_ADMIN')")
   public ResponseEntity<String> getRandomString(@RequestBody String randomApiRequestDto) throws JsonProcessingException {
-
-    try {
-
-      randomApiRequestDto = randomService.prepareRequestBody();
-    } catch (JsonProcessingException ex) {
-      RandomController.logger.info("Error processing json", ex);
-
-    }
-
+    randomApiRequestDto = this.randomService.prepareRequestBody();
     RandomController.logger.info("{}", randomApiRequestDto);
 
     return ResponseEntity.ok(this.randomService.makeApiRequest());
   }
-
 }

@@ -1,20 +1,23 @@
 package br.dev.ferreiras.calculatorweb.service;
 
+import br.dev.ferreiras.calculatorweb.dto.LoadBalanceResponseDto;
+import br.dev.ferreiras.calculatorweb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorweb.entity.Role;
 import br.dev.ferreiras.calculatorweb.entity.User;
 import br.dev.ferreiras.calculatorweb.repository.OperationsRepository;
 import br.dev.ferreiras.calculatorweb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorweb.repository.UserRepository;
 import br.dev.ferreiras.calculatorweb.service.exceptions.ResourceNotFoundException;
+import br.dev.ferreiras.calculatorweb.service.exceptions.UserAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +28,12 @@ import java.util.*;
 @Service
 public class UserService implements IUserService, UserDetailsService {
 
-  public UserService(final UserRepository userRepository, final RoleRepository roleRepository, final JwtEncoder jwtEncoder, final OperationsRepository operationsRepository) {
+  public UserService(final UserRepository userRepository, final RoleRepository roleRepository, final JwtEncoder jwtEncoder, final OperationsRepository operationsRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.jwtEncoder = jwtEncoder;
     this.operationsRepository = operationsRepository;
+    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   private final UserRepository userRepository;
@@ -40,6 +44,7 @@ public class UserService implements IUserService, UserDetailsService {
 
   private final OperationsRepository operationsRepository;
 
+  private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -61,7 +66,6 @@ public class UserService implements IUserService, UserDetailsService {
   }
 
   /**
-   *
    * @param username to be checked
    * @return User object if username exists
    */
@@ -94,6 +98,24 @@ public class UserService implements IUserService, UserDetailsService {
   public BigDecimal getOperationCostById(final Long operationId) {
 
     return this.operationsRepository.findOperationsCostById(operationId);
+  }
+
+  @Override
+  public LoadBalanceResponseDto addNewUser(final UserResponseDto userDto) {
+    if (this.getUsername(userDto.username()).isPresent()) {
+      throw new UserAlreadyExistsException("User already exists!");
+    } else {
+      final var userRole = this.getRole();
+      final var user = new User();
+      user.setUsername(userDto.username());
+      user.setPassword(this.bCryptPasswordEncoder.encode(userDto.password()));
+      user.setBalance(userDto.balance());
+      user.setStatus(userDto.status());
+      user.setRoles(Set.of(userRole));
+      this.saveUser(user);
+
+      return new LoadBalanceResponseDto(userDto.username(), userDto.balance());
+    }
   }
 
   public BigDecimal getOperationCostByOperation(final String operation) {

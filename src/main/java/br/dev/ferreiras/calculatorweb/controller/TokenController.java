@@ -31,7 +31,6 @@ public class TokenController {
 
   private final TokenService tokenService;
 
-
   public TokenController(
           final BCryptPasswordEncoder bCryptPasswordEncoder,
           final UserService userService, final TokenService tokenService) {
@@ -40,7 +39,6 @@ public class TokenController {
     this.userService = userService;
     this.tokenService = tokenService;
   }
-
 
   @Operation (summary = "Authenticate a user and return an access token and its expiration time")
   @ApiResponses ({
@@ -53,13 +51,8 @@ public class TokenController {
 
     final Optional<User> user = this.userService.getUsername(loginRequestDto.username());
 
-
     if (user.isEmpty() || !user.get().isLoginCorrect(loginRequestDto, this.bCryptPasswordEncoder)) {
-
       throw new BadCredentialsException("Try again with good credentials!");
-//        TokenController.logger.info("User or Password mismatch....");
-//      throw new BadCredentialsException("User or Password Invalid!!!");
-//        return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     } else {
       final var accessToken = this.tokenService.generateToken(((user.get().getUsername())));
       TokenController.logger.info("Access Token-> , {}", accessToken);
