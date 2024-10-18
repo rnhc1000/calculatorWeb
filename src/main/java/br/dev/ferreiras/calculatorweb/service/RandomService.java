@@ -1,9 +1,11 @@
 package br.dev.ferreiras.calculatorweb.service;
 
 import br.dev.ferreiras.calculatorweb.dto.RandomApiRequestDto;
+import br.dev.ferreiras.calculatorweb.service.exceptions.RandomProcessingException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -17,16 +19,17 @@ public class RandomService {
   public RandomService() {
   }
 
-  public RandomService(RandomApiRequestDto randomApiRequestDto) {
+  @Autowired
+  public RandomService(final RandomApiRequestDto randomApiRequestDto) {
 
     this.randomApiRequestDto = randomApiRequestDto;
   }
 
   public String prepareRequestBody() throws JsonProcessingException {
 
-    ObjectMapper objectMapper = new ObjectMapper();
-    ObjectNode rootNode = objectMapper.createObjectNode();
-    ObjectNode data = objectMapper.createObjectNode();
+    final ObjectMapper objectMapper = new ObjectMapper();
+    final ObjectNode rootNode = objectMapper.createObjectNode();
+    final ObjectNode data = objectMapper.createObjectNode();
     data.put("apiKey", "b720e6c8-5bd7-4c80-ab27-60a893668157");
     data.put("n", 1);
     data.put("length", 12);
@@ -43,12 +46,12 @@ public class RandomService {
 
     String requestBody = null;
     try {
-      requestBody = prepareRequestBody();
-    } catch (JsonProcessingException e) {
-      throw new RuntimeException(e);
+      requestBody = this.prepareRequestBody();
+    } catch (final JsonProcessingException exception) {
+      throw new RandomProcessingException("JSON Processing error!");
     }
 
-    WebClient webClient = WebClient.create("https://api.random.org");
+    final WebClient webClient = WebClient.create("https://api.random.org");
 
     return String.valueOf(webClient.post()
                                    .uri("/json-rpc/4/invoke")

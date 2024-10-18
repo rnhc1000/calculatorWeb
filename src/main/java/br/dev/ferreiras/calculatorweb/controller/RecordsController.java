@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping (path = "api/v1")
 public class RecordsController {
 
-  @Autowired
-  private RecordsService recordsService;
+  private final RecordsService recordsService;
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
+
+  public RecordsController(final RecordsService recordsService, final UserService userService) {
+    this.recordsService = recordsService;
+    this.userService = userService;
+  }
 
   public static final Logger logger = LoggerFactory.getLogger(RecordsController.class);
 
@@ -39,7 +42,7 @@ public class RecordsController {
 
     RecordsController.logger.info("Page Number -> {}, Size of Each Page -> {}", page, size);
 
-    return recordsService.getPagedRecords(page, size);
+    return this.recordsService.getPagedRecords(page, size);
   }
 
   @Operation (summary = "Fetch 12 records per page provided the username authenticated")
@@ -54,13 +57,13 @@ public class RecordsController {
   @ResponseStatus
   @GetMapping (value = "/user/records")
   public ResponseEntity<RecordsDto> getRecordsByUsername(
-          @RequestParam (defaultValue = "0") int page,
-          @RequestParam (defaultValue = "10") int size
+          @RequestParam (defaultValue = "0") final int page,
+          @RequestParam (defaultValue = "10") final int size
           ) throws Exception {
 
-    String user = userService.authenticated();
+    final String user = this.userService.authenticated();
     RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}",  page, size, user);
 
-    return recordsService.findRecordsByUsername(page, size, user);
+    return this.recordsService.findRecordsByUsername(page, size, user);
   }
 }
