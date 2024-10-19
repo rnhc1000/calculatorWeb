@@ -14,16 +14,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class RandomService {
 
-  private RandomApiRequestDto randomApiRequestDto;
-
-  public RandomService() {
-  }
-
-  @Autowired
-  public RandomService(final RandomApiRequestDto randomApiRequestDto) {
-
-    this.randomApiRequestDto = randomApiRequestDto;
-  }
 
   public String prepareRequestBody() throws JsonProcessingException {
 
@@ -32,7 +22,7 @@ public class RandomService {
     final ObjectNode data = objectMapper.createObjectNode();
     data.put("apiKey", "b720e6c8-5bd7-4c80-ab27-60a893668157");
     data.put("n", 1);
-    data.put("length", 12);
+    data.put("length", 10);
     data.put("characters", "abcdefghijklmnopqrstuvwxyzABCDEFFGHIJKLMNOPQRSTUVXZ0123456789)(*&%$#@");
     rootNode.set("params", data);
     rootNode.put("jsonrpc", "2.0");
@@ -43,7 +33,6 @@ public class RandomService {
   }
 
   public String makeApiRequest() {
-
     String requestBody = null;
     try {
       requestBody = this.prepareRequestBody();
