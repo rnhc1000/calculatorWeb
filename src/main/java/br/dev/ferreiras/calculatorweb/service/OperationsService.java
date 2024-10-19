@@ -6,6 +6,7 @@ import br.dev.ferreiras.calculatorweb.dto.ResponseRandomDto;
 import br.dev.ferreiras.calculatorweb.repository.OperationsRepository;
 import br.dev.ferreiras.calculatorweb.service.exceptions.InvalidMathRequestException;
 import br.dev.ferreiras.calculatorweb.service.exceptions.OutOfBalanceException;
+import br.dev.ferreiras.calculatorweb.service.exceptions.RandomProcessingException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -34,6 +35,7 @@ public class OperationsService {
   private final RecordsService recordsService;
   private final OperationsRepository operationsRepository;
   private static final Logger logger = LoggerFactory.getLogger(OperationsService.class);
+  private static final String throwExceptionOutOfBalance = "Insufficient funds to do maths! Reload your wallet!";
   final BigDecimal BALANCE_NEGATIVE = new BigDecimal("8000863390488707.59991366095112916");
 
   public OperationsService(final UserService userService, final RandomService randomService, final RecordsService recordsService, final OperationsRepository operationsRepository) {
@@ -63,7 +65,7 @@ public class OperationsService {
     final BigDecimal cost = this.userService.getOperationCostByOperation(operator);
     OperationsService.logger.info("Cost: {}", cost);
 
-    if (0 < balance.compareTo(cost)) {
+    if (0 <= balance.compareTo(cost)) {
 
       balance = balance.subtract(cost);
       this.userService.updateBalance(username, balance);
@@ -84,10 +86,13 @@ public class OperationsService {
         this.recordsService.saveRecordsRandom(username, operator, result, cost);
 
       } catch (final JsonProcessingException e) {
-        throw new RuntimeException(e);
+        throw new RandomProcessingException("JSON Processing error");
       }
+      return new ResponseRandomDto(result, balance);
+    }  else {
+      throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
     }
-    return new ResponseRandomDto(result, balance);
+
   }
 
   /**
@@ -100,8 +105,6 @@ public class OperationsService {
   public OperationsResponseDto executeOperations(
           BigDecimal operandOne, BigDecimal operandTwo,
           final String operator, final String username) {
-
-    final String throwExceptionOutOfBalance = "Insufficient funds to do maths! Reload your wallet!";
 
     if (null == operator) new OperationsResponseDto(this.BALANCE_NEGATIVE, BigDecimal.ZERO);
 
@@ -120,7 +123,7 @@ public class OperationsService {
 
       case "addition" -> {
 
-        if (0 < balance.compareTo(cost)) {
+        if (0 <= balance.compareTo(cost)) {
 
           operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
           operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
@@ -132,7 +135,7 @@ public class OperationsService {
         } else {
 
           result = this.BALANCE_NEGATIVE;
-          throw new OutOfBalanceException(throwExceptionOutOfBalance);
+          throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
         }
       }
 
@@ -149,7 +152,7 @@ public class OperationsService {
         } else {
 
           result = this.BALANCE_NEGATIVE;
-          throw new OutOfBalanceException(throwExceptionOutOfBalance);
+          throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
         }
       }
 
@@ -166,7 +169,7 @@ public class OperationsService {
         } else {
 
           result = this.BALANCE_NEGATIVE;
-          throw new OutOfBalanceException(throwExceptionOutOfBalance);
+          throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
 
         }
       }
@@ -189,7 +192,7 @@ public class OperationsService {
           result = this.BALANCE_NEGATIVE;
           logger.info("Result -> Negative Number, {}", operandTwo);
 
-          throw new OutOfBalanceException(throwExceptionOutOfBalance);
+          throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
 
         }
       }
@@ -210,7 +213,7 @@ public class OperationsService {
         } else {
 
           result = this.BALANCE_NEGATIVE;
-          throw new OutOfBalanceException(throwExceptionOutOfBalance);
+          throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
 
         }
       }
