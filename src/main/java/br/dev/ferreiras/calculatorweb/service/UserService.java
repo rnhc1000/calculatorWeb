@@ -1,6 +1,8 @@
 package br.dev.ferreiras.calculatorweb.service;
 
 import br.dev.ferreiras.calculatorweb.dto.LoadBalanceResponseDto;
+import br.dev.ferreiras.calculatorweb.dto.UserDto;
+import br.dev.ferreiras.calculatorweb.dto.UserRequestDto;
 import br.dev.ferreiras.calculatorweb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorweb.entity.Role;
 import br.dev.ferreiras.calculatorweb.entity.User;
@@ -116,6 +118,25 @@ public class UserService implements IUserService, UserDetailsService {
 
       return new LoadBalanceResponseDto(userDto.username(), userDto.balance());
     }
+  }
+
+  /**
+   * @param userRequestDto ( username, status )
+   * @return status ACTIVE or INACTIVE
+   */
+  @Override
+  public UserResponseDto activateUser(final UserRequestDto userRequestDto) {
+
+    String update = "";
+    if(userRequestDto.username().isEmpty()) {
+      throw new UsernameNotFoundException("Username not found!");
+    } else {
+
+      update = this.userRepository.updateStatus(userRequestDto.username(), userRequestDto.status());
+
+    }
+
+    return new UserResponseDto(userRequestDto.username(), update);
   }
 
   public BigDecimal getOperationCostByOperation(final String operation) {

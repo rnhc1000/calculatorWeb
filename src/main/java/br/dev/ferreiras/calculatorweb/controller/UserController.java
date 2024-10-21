@@ -1,8 +1,6 @@
 package br.dev.ferreiras.calculatorweb.controller;
 
-import br.dev.ferreiras.calculatorweb.dto.LoadBalanceRequestDto;
-import br.dev.ferreiras.calculatorweb.dto.LoadBalanceResponseDto;
-import br.dev.ferreiras.calculatorweb.dto.UserResponseDto;
+import br.dev.ferreiras.calculatorweb.dto.*;
 import br.dev.ferreiras.calculatorweb.entity.User;
 import br.dev.ferreiras.calculatorweb.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -132,5 +130,22 @@ public class UserController {
     final BigDecimal balance = this.userService.getBalance(username);
 
     return ResponseEntity.ok(new LoadBalanceResponseDto(username, balance));
+  }
+
+  @Operation (summary = "Update the status of an user")
+  @ApiResponses ({
+          @ApiResponse (responseCode = "201", description = "User created", content = @Content (mediaType = "application/json", schema = @Schema (implementation = UserController.class))),
+          @ApiResponse (responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse (responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse (responseCode = "422", description = "User already exists!", content = @Content)})
+  @ResponseStatus
+  @PreAuthorize ("hasAuthority('SCOPE_ROLE_ADMIN')")
+  @PostMapping ("/users/{username}/{status}")
+  ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto, @PathVariable String username, @PathVariable String status) {
+//          @Parameter (description = "user to be updated") @PathVariable final String username, @PathVariable final String status) {
+
+    final UserResponseDto user = this.userService.activateUser(userRequestDto);
+
+    return ResponseEntity.ok(new UserResponseDto(user.username(), user.status()));
   }
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -309,6 +310,16 @@ public class OperationsService {
    */
   public List<Object> getOperationsCost() {
     return this.operationsRepository.findAllCosts();
+  }
+
+  public List<String> checkSystem() {
+    final String javaVersion = System.getProperty("java_version");
+    final int numberOfCores = Runtime.getRuntime().availableProcessors();
+    final List<String> requirements = new ArrayList<>();
+    requirements.add(javaVersion);
+    requirements.add(Integer.toString(numberOfCores));
+
+    return requirements;
   }
 }
 

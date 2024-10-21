@@ -67,9 +67,18 @@ public class User implements UserDetails {
     this.balance = balance;
     this.createdAt = createdAt;
   }
+  public User(UUID userId, String username, String password, String status, BigDecimal balance) {
+    this.userId = userId;
+    this.username = username;
+    this.password = password;
+    this.status = status;
+    this.balance = balance;
+  }
 
   public User(@NotBlank @Email @Size(min = 5, max = 40) String username) {
   }
+
+
 
   @Column(nullable = false, precision = 2)
   public BigDecimal getBalance() {

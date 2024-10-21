@@ -32,9 +32,9 @@ public class AdminUserConfiguration implements CommandLineRunner {
 
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-  public AdminUserConfiguration(RoleRepository roleRepository,
-                                UserRepository userRepository,
-                                BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public AdminUserConfiguration(final RoleRepository roleRepository,
+                                final UserRepository userRepository,
+                                final BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.roleRepository = roleRepository;
     this.userRepository = userRepository;
     this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -63,7 +63,7 @@ public class AdminUserConfiguration implements CommandLineRunner {
             user -> AdminUserConfiguration.logger.info("Administrator already exists!"),
             () -> {
 
-              var user = new User();
+              final var user = new User();
 
               user.setUsername("admin@calculatorweb.com");
               user.setPassword(this.bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
