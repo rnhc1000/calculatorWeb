@@ -41,7 +41,7 @@ Enjoy it....
 <br />
 Why don't you take a look at this short video....to see how it works...
 <br />
-<a href="https://flonnect.com/video/21c13021d0d1-4cc2-86b5-0a455011855a" target="_blank">Short Video</a>
+<a href="https://youtu.be/CUdN-P-14So" target="_blank">Short Video</a>
 <hr />
 
 ## _Project Structure_
@@ -153,7 +153,7 @@ public class OpenApiConfiguration {
 
 ## _Continued development_
 
-- Unit Tests
+- Unit Tests -OK
 - Provide a Json to FrontEnd including
     - delivery status of each operation to frontend - OK
     - count of operations consumed by subscriber - OK
