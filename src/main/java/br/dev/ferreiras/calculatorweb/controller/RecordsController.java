@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +36,8 @@ public class RecordsController {
   @ResponseStatus
   @GetMapping (value = "/records")
   public ResponseEntity<RecordsDto> getAllMessages(
-          @RequestParam (defaultValue = "0") int page,
-          @RequestParam (defaultValue = "10") int size) {
+          @RequestParam (defaultValue = "1") int page,
+          @RequestParam (defaultValue = "20") int size) {
 
     RecordsController.logger.info("Page Number -> {}, Size of Each Page -> {}", page, size);
 

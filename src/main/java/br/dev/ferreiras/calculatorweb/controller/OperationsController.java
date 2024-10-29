@@ -31,7 +31,8 @@ public class OperationsController {
 
   @Operation (summary = "Given one or two operands and an operator, returns the result and balance available")
   @ApiResponses ({
-          @ApiResponse (responseCode = "200", description = "Got the result", content = @Content (mediaType = "application/json", schema = @Schema (implementation = OperationsController.class))),
+          @ApiResponse (responseCode = "200", description = "Got the result", content = @Content (mediaType = "application/json",
+                  schema = @Schema (implementation = OperationsController.class))),
           @ApiResponse (responseCode = "401", description = "Not authorized!", content = @Content),
           @ApiResponse (responseCode = "422", description = "Operation not allowed!", content = @Content),
   })
@@ -59,6 +60,7 @@ public class OperationsController {
   })
   @ResponseStatus
   @PostMapping ("/randomize")
+
   public ResponseEntity<ResponseRandomDto> getRandomStrings(@RequestBody final RequestRandomDto requestRandomDto) {
     final ResponseRandomDto operationsResult = this.operationsService.executeOperations(
             requestRandomDto.username(),

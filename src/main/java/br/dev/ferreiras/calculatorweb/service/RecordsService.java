@@ -17,44 +17,44 @@ import java.math.BigDecimal;
 public class RecordsService {
 
   private final RecordsRepository recordsRepository;
-  private final UserService userService;
 
-  public RecordsService(final RecordsRepository recordsRepository, final UserService userService) {
+  public RecordsService(final RecordsRepository recordsRepository) {
     this.recordsRepository = recordsRepository;
-    this.userService = userService;
+
   }
 
   @Transactional
   public void saveRecordsRandom(
-          String username, String operator, String result, BigDecimal cost
+          final String username, final String operator, final String result, final BigDecimal cost
   ) {
-    Records records = new Records();
+    final Records records = new Records();
     records.setUsername(username);
     records.setOperator(operator);
     records.setResult(result);
     records.setCost(cost);
 
-    recordsRepository.save(records);
+      this.recordsRepository.save(records);
   }
 
   @Transactional
   public void saveRecordsRandom(
-          String username, String operator, BigDecimal result, BigDecimal cost
+          final String username, final String operator, final BigDecimal result, final BigDecimal cost
   ) {
-    Records records = new Records();
+    final Records records = new Records();
     records.setUsername(username);
     records.setOperator(operator);
     records.setResult(String.valueOf((result)));
     records.setCost(cost);
 
-    recordsRepository.save(records);
+      this.recordsRepository.save(records);
   }
 
   @Transactional
   public void saveRecordsRandom(
-          final String username, BigDecimal operandOne, BigDecimal operandTwo, String operator, BigDecimal result, BigDecimal cost
-  ) {
-    Records records = new Records();
+          final String username, final BigDecimal operandOne, final BigDecimal operandTwo,
+          final String operator, final BigDecimal result, final BigDecimal cost ) {
+
+    final Records records = new Records();
 
     records.setUsername(username);
     records.setOperandOne(operandOne);
@@ -67,7 +67,7 @@ public class RecordsService {
   }
 
   @Transactional
-  public ResponseEntity<RecordsDto> getPagedRecords(int page, int size) {
+  public ResponseEntity<RecordsDto> getPagedRecords(final int page, final int size) {
 
     final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
@@ -79,7 +79,9 @@ public class RecordsService {
     );
     return ResponseEntity
             .ok(new RecordsDto
-                    (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements()
+                    (pageRecords.getContent(), page, size,
+                            pageRecords.getTotalPages(),
+                            pageRecords.getTotalElements(), true
             )
     );
 
@@ -87,16 +89,16 @@ public class RecordsService {
 
   public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username) {
 
-    Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+    final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
-    var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
+    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
             records.getCost(), records.getCreatedAt())
     );
     return ResponseEntity
             .ok(new RecordsDto
-                    (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements()
+                    (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements(), true
                     )
             );
     //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
