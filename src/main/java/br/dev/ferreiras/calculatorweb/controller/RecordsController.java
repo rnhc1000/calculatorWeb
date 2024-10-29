@@ -10,8 +10,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping (path = "api/v1")
@@ -61,8 +64,41 @@ public class RecordsController {
           ) throws Exception {
 
     final String user = this.userService.authenticated();
+    final boolean isDeleted = false;
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}",  page, size, user, isDeleted);
+
+    return this.recordsService.findRecordsByUsername(page, size, user, isDeleted);
+  }
+
+  @Operation (summary = "Fetch 12 records per page provided the username authenticated")
+  @ApiResponses (value = {
+          @ApiResponse (responseCode = "200", description = "Get up to 12 messages per page.",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = RecordsController.class))}),
+          @ApiResponse (responseCode = "404", description = "Resource not found!",
+                  content = {@Content (mediaType = "application/json",
+                          schema = @Schema (implementation = RecordsController.class))})
+  })
+  @ResponseStatus
+  @GetMapping (value = "/user/operations")
+  public ResponseEntity<List<RecordsDto>> getRecordsByUsernameStatus(
+          @RequestParam (defaultValue = "0") final int page,
+          @RequestParam (defaultValue = "10") final int size,
+          @RequestParam (defaultValue = "false") final boolean isDeleted
+  ) throws Exception {
+
+    final String user = this.userService.authenticated();
     RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}",  page, size, user);
 
-    return this.recordsService.findRecordsByUsername(page, size, user);
+    return ResponseEntity.ok(this.recordsService.findRecordsByUsernameStatus(page, size, user, isDeleted));
+  }
+
+  @PutMapping("/user/operations/{id}")
+  public ResponseEntity<HttpStatus> updateRecord(@PathVariable final Long id) {
+
+        this.recordsService.deleteRecordById(id);
+
+    return ResponseEntity.ok(HttpStatus.ACCEPTED);
+
   }
 }

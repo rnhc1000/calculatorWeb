@@ -1,10 +1,13 @@
 package br.dev.ferreiras.calculatorweb.entity;
 
+import jakarta.persistence.Table;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,14 +15,25 @@ import java.time.Instant;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@SQLDelete(sql = "UPDATE tb_records SET deleted=true where record_id = ?")
+@FilterDef(
+        name = "deletedTb_recordsFilter",
+        parameters = @ParamDef(name = "isDeleted", type = org.hibernate.type.descriptor.java.BooleanJavaType.class)
+)
+@Filter(
+        name = "deletedTb_recordsFilter",
+        condition = "deleted = :isDeleted"
+)
 @Table (name = "tb_records")
 public class Records implements Serializable {
 
   private static final long serialVersionUUID = 1L;
 
   @Id
-  @GeneratedValue (strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
   private Long recordId;
 
   private String username;
@@ -31,6 +45,8 @@ public class Records implements Serializable {
   private String operator;
 
   private String result;
+
+  private boolean deleted = Boolean.FALSE;
 
   @NotNull
   private BigDecimal cost;
@@ -48,20 +64,7 @@ public class Records implements Serializable {
     if (operandTwo == null) operandTwo = new BigDecimal("0.000");
   }
 
-  public Records() {
-  }
-
-  public Records(Long recordId, String username, BigDecimal operandOne,
-                 BigDecimal operandTwo, String operator, String result,
-                 BigDecimal cost) {
-
-    this.recordId = recordId;
-    this.username = username;
-    this.operandOne = operandOne;
-    this.operandTwo = operandTwo;
-    this.operator = operator;
-    this.result = result;
-    this.cost = cost;
-
+  public boolean getDeleted() {
+    return this.deleted;
   }
 }

@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -18,9 +17,10 @@ public interface RecordsRepository extends JpaRepository<Records, Long> {
 
   @Query (
           """
-                  SELECT r FROM Records r where r.username = ?1%
+                  SELECT r FROM Records r where r.username = ?1% AND r.deleted = false
           """
   )
-  Page<Records> findRecordsByUsername(String username, Pageable paging);
+  Page<Records> findRecordsByUsername(String username, Pageable paging, Boolean deleted);
+
 }
 

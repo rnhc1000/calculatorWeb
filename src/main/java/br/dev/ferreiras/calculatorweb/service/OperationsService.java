@@ -46,6 +46,7 @@ public class OperationsService {
     this.operationsRepository = operationsRepository;
   }
 
+  private static boolean deleted = false;
   /**
    * @param username requires username - email
    * @param operator define the operator
@@ -131,7 +132,7 @@ public class OperationsService {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
           result = this.addOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {
 
@@ -148,7 +149,7 @@ public class OperationsService {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
           result = this.subtractOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {
 
@@ -165,7 +166,7 @@ public class OperationsService {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
           result = this.multiplyOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {
 
@@ -186,7 +187,7 @@ public class OperationsService {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
           result = this.divideOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {
 
@@ -209,7 +210,7 @@ public class OperationsService {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
           result = this.squareRoot(operandOne);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {
 
