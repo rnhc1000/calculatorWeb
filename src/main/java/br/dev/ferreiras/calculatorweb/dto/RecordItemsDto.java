@@ -6,6 +6,5 @@ public record RecordItemsDto(
         Long recordId,
         String username, BigDecimal operandOne,
         BigDecimal operandTwo, String operator, String result,
-        BigDecimal cost,
-        java.time.Instant createdAt) {
+        BigDecimal cost, java.time.Instant createdAt, boolean deleted) {
 }

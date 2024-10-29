@@ -4,6 +4,9 @@ import br.dev.ferreiras.calculatorweb.dto.RecordItemsDto;
 import br.dev.ferreiras.calculatorweb.dto.RecordsDto;
 import br.dev.ferreiras.calculatorweb.entity.Records;
 import br.dev.ferreiras.calculatorweb.repository.RecordsRepository;
+import jakarta.persistence.EntityManager;
+import org.hibernate.Filter;
+import org.hibernate.Session;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -12,15 +15,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class RecordsService {
 
   private final RecordsRepository recordsRepository;
 
-  public RecordsService(final RecordsRepository recordsRepository) {
+  private final EntityManager entityManager;
+
+  public RecordsService(final RecordsRepository recordsRepository, EntityManager entityManager) {
     this.recordsRepository = recordsRepository;
 
+      this.entityManager = entityManager;
   }
 
   @Transactional
@@ -52,7 +59,7 @@ public class RecordsService {
   @Transactional
   public void saveRecordsRandom(
           final String username, final BigDecimal operandOne, final BigDecimal operandTwo,
-          final String operator, final BigDecimal result, final BigDecimal cost ) {
+          final String operator, final BigDecimal result, final BigDecimal cost, final boolean deleted ) {
 
     final Records records = new Records();
 
@@ -62,6 +69,7 @@ public class RecordsService {
     records.setOperator(operator);
     records.setResult(String.valueOf((result)));
     records.setCost(cost);
+    records.setDeleted(deleted);
 
     this.recordsRepository.save(records);
   }
@@ -75,7 +83,7 @@ public class RecordsService {
     final var pageRecords = this.recordsRepository.findAll(paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
-            records.getCost(), records.getCreatedAt())
+            records.getCost(), records.getCreatedAt(), records.getDeleted())
     );
     return ResponseEntity
             .ok(new RecordsDto
@@ -87,14 +95,14 @@ public class RecordsService {
 
   }
 
-  public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username) {
+  public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username, boolean isDeleted) {
 
     final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
-    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
+    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging, isDeleted).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
-            records.getCost(), records.getCreatedAt())
+            records.getCost(), records.getCreatedAt(), records.getDeleted())
     );
     return ResponseEntity
             .ok(new RecordsDto
@@ -102,5 +110,30 @@ public class RecordsService {
                     )
             );
     //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
+  }
+
+  public List<RecordsDto> findRecordsByUsernameStatus(final int page, final int size, final String username, final boolean isDeleted) {
+
+    final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+    final Session session = this.entityManager.unwrap(Session.class);
+    final Filter filter = session.enableFilter("deletedTb_recordsFilter");
+    filter.setParameter("isDeleted", isDeleted);
+
+    var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging, isDeleted).map(records -> new RecordItemsDto(
+            records.getRecordId(), records.getUsername(), records.getOperandOne(),
+            records.getOperandTwo(), records.getOperator(), records.getResult(),
+            records.getCost(), records.getCreatedAt(),records.getDeleted())
+    );
+    session.disableFilter("deletedTb_recordsFilter");
+    return List.of(new RecordsDto
+            (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements(), true
+            )
+            );
+    //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
+  }
+
+  public void deleteRecordById(long id) {
+
+    this.recordsRepository.deleteById(id);
   }
 }
