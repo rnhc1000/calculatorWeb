@@ -22,7 +22,6 @@ import java.util.UUID;
 @Entity
 @Table (name = "tb_users")
 public class User implements UserDetails {
-  private static final long serialVersionUUID = 1L;
 
   @Id
   @GeneratedValue (strategy = GenerationType.UUID)
@@ -77,8 +76,6 @@ public class User implements UserDetails {
 
   public User(@NotBlank @Email @Size(min = 5, max = 40) String username) {
   }
-
-
 
   @Column(nullable = false, precision = 2)
   public BigDecimal getBalance() {

@@ -27,7 +27,7 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
        * @param corsRegistry inject the dependency to allow insertion of sockets authorized
        */
       @Override
-      public void addCorsMappings(@Nonnull CorsRegistry corsRegistry) {
+      public void addCorsMappings(@Nonnull final CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                     .allowedOrigins(
                             "https://3.19.135.188:7500",
