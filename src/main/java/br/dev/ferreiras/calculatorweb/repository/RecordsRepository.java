@@ -20,7 +20,9 @@ public interface RecordsRepository extends JpaRepository<Records, Long> {
                   SELECT r FROM Records r where r.username = ?1% AND r.deleted = false
           """
   )
-  Page<Records> findRecordsByUsername(String username, Pageable paging, Boolean deleted);
+  Page<Records> findRecordsByUsername(String username, Pageable paging);
+
+
 
 }
 

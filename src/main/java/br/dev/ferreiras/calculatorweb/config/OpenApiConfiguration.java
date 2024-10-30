@@ -14,7 +14,7 @@ import java.util.List;
 
 /** Support to OpenAPI 3.0
  * @author ricardo@ferreiras.dev.br
- * @version 1.1.030901
+ * @version 2024.10.30.1
  * @since 1.0
  *
  */
@@ -29,7 +29,7 @@ public class OpenApiConfiguration {
   public OpenAPI defineOpenApi() {
     final Server server = new Server();
     server.setUrl("""
-            http://192.168.15.11:8095
+            https://api.ferreiras.dev.br
             """);
     server.setDescription("Production");
 
@@ -39,7 +39,7 @@ public class OpenApiConfiguration {
 
     final Info information = new Info()
             .title("Web Calculator")
-            .version("1.0")
+            .version("2024.10.30.1")
             .description("WebCalculatorAPI exposes endpoints to do maths at the backend and persists maths into a database")
             .contact(myContact);
 
