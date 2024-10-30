@@ -79,7 +79,6 @@ public class RecordsService {
 
     final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
-//      Page<Records> pageRecords;
     final var pageRecords = this.recordsRepository.findAll(paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
@@ -95,11 +94,11 @@ public class RecordsService {
 
   }
 
-  public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username, boolean isDeleted) {
+  public ResponseEntity<RecordsDto> findRecordsByUsername(final int page, final int size, final String username) {
 
     final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
 
-    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging, isDeleted).map(records -> new RecordItemsDto(
+    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
             records.getCost(), records.getCreatedAt(), records.getDeleted())
@@ -112,14 +111,14 @@ public class RecordsService {
     //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
   }
 
-  public List<RecordsDto> findRecordsByUsernameStatus(final int page, final int size, final String username, final boolean isDeleted) {
+  public List<RecordsDto> findRecordsByUsernameStatus(final int page, final int size, final String username) {
 
     final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
     final Session session = this.entityManager.unwrap(Session.class);
     final Filter filter = session.enableFilter("deletedTb_recordsFilter");
-    filter.setParameter("isDeleted", isDeleted);
+    filter.setParameter("isDeleted", false);
 
-    var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging, isDeleted).map(records -> new RecordItemsDto(
+    final var pageRecords = this.recordsRepository.findRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
             records.getRecordId(), records.getUsername(), records.getOperandOne(),
             records.getOperandTwo(), records.getOperator(), records.getResult(),
             records.getCost(), records.getCreatedAt(),records.getDeleted())

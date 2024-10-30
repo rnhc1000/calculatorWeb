@@ -37,7 +37,7 @@ public class CorsSecurityConfiguration implements WebMvcConfigurer {
                             "http://localhost:7500",
                             "http://localhost"
                     )
-                    .allowedMethods("GET", "POST", "PATCH", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT")
+                    .allowedMethods("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD", "TRACE", "CONNECT")
                     .allowedHeaders("*")
                     .allowCredentials(true)
                     .maxAge(3600L);
