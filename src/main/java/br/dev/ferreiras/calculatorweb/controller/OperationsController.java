@@ -62,6 +62,7 @@ public class OperationsController {
   @PostMapping ("/randomize")
 
   public ResponseEntity<ResponseRandomDto> getRandomStrings(@RequestBody final RequestRandomDto requestRandomDto) {
+
     final ResponseRandomDto operationsResult = this.operationsService.executeOperations(
             requestRandomDto.username(),
             requestRandomDto.operator()

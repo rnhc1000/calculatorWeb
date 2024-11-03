@@ -105,6 +105,5 @@ public class RecordsController {
         this.recordsService.deleteRecordById(id);
 
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
-
     }
 }
