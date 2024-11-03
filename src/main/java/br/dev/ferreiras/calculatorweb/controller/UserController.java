@@ -140,8 +140,8 @@ public class UserController {
           @ApiResponse (responseCode = "422", description = "User already exists!", content = @Content)})
   @ResponseStatus
   @PreAuthorize ("hasAuthority('SCOPE_ROLE_ADMIN')")
-  @PostMapping ("/users/{username}/{status}")
-  ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto, @PathVariable String username, @PathVariable String status) {
+  @PostMapping ("/users/status")
+  ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto) {
 //          @Parameter (description = "user to be updated") @PathVariable final String username, @PathVariable final String status) {
 
     final UserResponseDto user = this.userService.activateUser(userRequestDto);

@@ -30,6 +30,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
           """)
   BigDecimal findByUsernameBalance(String username);
 
+  @Transactional
+  @Modifying
   @Query("""
           UPDATE User u SET u.status = :status WHERE u.username = :username
           """)
