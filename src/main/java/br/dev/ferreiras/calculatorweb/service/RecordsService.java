@@ -131,8 +131,28 @@ public class RecordsService {
     //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
   }
 
-  public void deleteRecordById(long id) {
+  public void deleteRecordById(final long id) {
 
     this.recordsRepository.deleteById(id);
+  }
+
+  public List<RecordsDto> findSoftDeletedRecords(final int page, final int size, final String username) {
+
+    final Pageable paging = PageRequest.of(page, size, Sort.Direction.DESC, "createdAt");
+    final Session session = this.entityManager.unwrap(Session.class);
+    final Filter filter = session.enableFilter("deletedTb_recordsFilter");
+    filter.setParameter("isDeleted", true);
+
+    final var pageRecords = this.recordsRepository.findSoftDeletedRecordsByUsername(username, paging).map(records -> new RecordItemsDto(
+            records.getRecordId(), records.getUsername(), records.getOperandOne(),
+            records.getOperandTwo(), records.getOperator(), records.getResult(),
+            records.getCost(), records.getCreatedAt(),records.getDeleted())
+    );
+    session.disableFilter("deletedTb_recordsFilter");
+    return List.of(new RecordsDto
+            (pageRecords.getContent(), page, size, pageRecords.getTotalPages(), pageRecords.getTotalElements(), true
+            )
+    );
+    //.cacheControl(CacheControl.maxAge(60, TimeUnit.SECONDS)
   }
 }
