@@ -22,6 +22,13 @@ public interface RecordsRepository extends JpaRepository<Records, Long> {
   )
   Page<Records> findRecordsByUsername(String username, Pageable paging);
 
+  @Query (
+          """
+                  SELECT r FROM Records r where r.username = ?1% AND r.deleted = true
+          """
+  )
+  Page<Records> findSoftDeletedRecordsByUsername(String username, Pageable paging);
+
 
 
 }

@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +37,7 @@ public class OperationsController {
           @ApiResponse (responseCode = "401", description = "Not authorized!", content = @Content),
           @ApiResponse (responseCode = "422", description = "Operation not allowed!", content = @Content),
   })
-  @ResponseStatus
+  @ResponseStatus(value = HttpStatus.CREATED)
   @PostMapping ("/operations")
   public ResponseEntity<OperationsResponseDto> getResults(@RequestBody OperationsRequestDto operationsRequestDto) {
 
@@ -58,9 +59,8 @@ public class OperationsController {
           @ApiResponse (responseCode = "200", description = "Got the result", content = @Content (mediaType = "application/json", schema = @Schema (implementation = OperationsController.class))),
           @ApiResponse (responseCode = "401", description = "Not authorized", content = @Content),
   })
-  @ResponseStatus
+  @ResponseStatus(value = HttpStatus.CREATED)
   @PostMapping ("/randomize")
-
   public ResponseEntity<ResponseRandomDto> getRandomStrings(@RequestBody final RequestRandomDto requestRandomDto) {
 
     final ResponseRandomDto operationsResult = this.operationsService.executeOperations(
@@ -76,7 +76,7 @@ public class OperationsController {
           @ApiResponse (responseCode = "200", description = "Got the results", content = @Content (mediaType = "application/json", schema = @Schema (implementation = OperationsController.class))),
           @ApiResponse (responseCode = "401", description = "Not authorized", content = @Content),
   })
-  @ResponseStatus
+  @ResponseStatus(value = HttpStatus.OK)
   @GetMapping ("/operators")
   public ResponseEntity<List<Object>> getAllOperators() {
     final var operators = this.operationsService.getOperationsCost();

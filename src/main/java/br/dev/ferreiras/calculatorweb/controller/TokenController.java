@@ -15,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -44,16 +47,20 @@ public class TokenController {
   @ApiResponses ({
           @ApiResponse (responseCode = "201", description = "Access Token created!", content = @Content (mediaType = "application/json", schema = @Schema (implementation = TokenController.class))),
           @ApiResponse (responseCode = "403", description = "Not Authorized!", content = @Content),
+          @ApiResponse (responseCode = "404", description = "Resource Not Found!", content = @Content),
   })
-  @ResponseStatus
+//  @ResponseStatus(value = HttpStatus.CREATED, reason = "Access Token created!")
   @PostMapping ("/login")
   public ResponseEntity<LoginResponseDto> login(@RequestBody final LoginRequestDto loginRequestDto) {
 
     final Optional<User> user = this.userService.getUsername(loginRequestDto.username());
 
     if (user.isEmpty() || !user.get().isLoginCorrect(loginRequestDto, this.bCryptPasswordEncoder)) {
+
       throw new BadCredentialsException("Try again with good credentials!");
+
     } else {
+
       final var accessToken = this.tokenService.generateToken(((user.get().getUsername())));
       TokenController.logger.info("Access Token-> , {}", accessToken);
       final var jwtValue = accessToken.getToken();

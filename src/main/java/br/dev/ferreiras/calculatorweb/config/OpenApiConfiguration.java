@@ -29,7 +29,7 @@ public class OpenApiConfiguration {
   public OpenAPI defineOpenApi() {
     final Server server = new Server();
     server.setUrl("""
-            http://192.168.15.11:8095/api/v1
+            http://192.168.15.11:8095
             """);
     server.setDescription("Production");
 

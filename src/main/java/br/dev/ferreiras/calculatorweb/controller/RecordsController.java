@@ -12,17 +12,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1")
 public class RecordsController {
 
-    private final RecordsService recordsService;
+    private RecordsService recordsService;
 
-    private final UserService userService;
+    private UserService userService;
 
     public RecordsController(final RecordsService recordsService, final UserService userService) {
         this.recordsService = recordsService;
@@ -63,7 +65,9 @@ public class RecordsController {
             @RequestParam(defaultValue = "10") final int size
     ) throws Exception {
 
-        final String user = this.userService.authenticated();
+        final String user = Optional.ofNullable(this.userService.authenticated())
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("Username not found:"));
         final boolean isDeleted = false;
         RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}", page, size, user, isDeleted);
 
@@ -87,7 +91,9 @@ public class RecordsController {
             @RequestParam(defaultValue = "false") boolean isDeleted
     ) throws Exception {
 
-        final String user = this.userService.authenticated();
+        final String user = Optional.ofNullable(this.userService.authenticated())
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("Username not found:"));
         isDeleted = false;
         RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {},  isDeleted: {}", page, size, user, isDeleted);
 
@@ -105,5 +111,30 @@ public class RecordsController {
         this.recordsService.deleteRecordById(id);
 
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @Operation(summary = "Fetch records soft-deleted provided the username authenticated")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Return soft deleted records.",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RecordsController.class))}),
+            @ApiResponse(responseCode = "404", description = "Resource not found!",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = RecordsController.class))})
+    })
+    @GetMapping(value="/deleted")
+    public ResponseEntity<List<RecordsDto>> getSoftDeletedRecords(
+            @RequestParam final int page,
+            @RequestParam final int size,
+            @RequestParam final String username
+    ) throws Exception {
+
+
+            final String user = Optional.ofNullable(this.userService.authenticated())
+                    .orElseThrow(() ->
+                            new UsernameNotFoundException("Username not found:"));
+        RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}", page, size, user);
+
+        return ResponseEntity.ok(this.recordsService.findSoftDeletedRecords(page, size, user));
     }
 }

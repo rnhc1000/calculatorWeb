@@ -51,7 +51,7 @@ public class SecurityConfig {
           "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
           "/swagger-resources/**", "/actuator/**", "/api/v1/login", "/",
           "/api/v1/home", "api/v1/csrf", "/error", "/api/v1/error",
-          "401-error/**"
+          "401-error/**", "404-error/**"
   };
 
   /**

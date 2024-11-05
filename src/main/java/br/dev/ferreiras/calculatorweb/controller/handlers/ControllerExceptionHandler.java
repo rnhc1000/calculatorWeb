@@ -24,6 +24,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   private static final String DATABASE_ERROR = "The system is suffering some issues.! Try again later!";
   private static final String ILLEGAL_MATH_REQUEST = "Illegal math operation!";
   private static final String USER_ALREADY_EXISTS = "User already exists!";
+  private static final String USER_NOT_FOUND = "User not found!";
 
   @ExceptionHandler(value={JsonProcessingException.class})
   public ResponseEntity<ErrorResponseDto> jsonProcessingError(final JsonProcessingException exception, final WebRequest request) {
@@ -122,6 +123,17 @@ signaling the absence of necessary permissions to access a resource.
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
             HttpStatus.UNPROCESSABLE_ENTITY.value(),
             ControllerExceptionHandler.USER_ALREADY_EXISTS,
+            Instant.now()
+    );
+
+    return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errorResponseDto);
+  }
+
+  @ExceptionHandler(value={UsernameNotFoundException.class})
+  public ResponseEntity<ErrorResponseDto> userNotFound(final UsernameNotFoundException exception, final WebRequest request) {
+    final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+            HttpStatus.UNPROCESSABLE_ENTITY.value(),
+            ControllerExceptionHandler.USER_NOT_FOUND,
             Instant.now()
     );
 
