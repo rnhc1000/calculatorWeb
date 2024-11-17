@@ -89,13 +89,13 @@ public class UserController {
     }
 
     @Operation(summary = "Load wallet of a user")
-    @ApiResponse(responseCode = "201", description = "Wallet loaded",
+    @ApiResponse(responseCode = "200", description = "Wallet loaded",
             content = @Content(mediaType = "application/json",
                     schema = @Schema(implementation = UserController.class)))
     @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
     @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
     @ApiResponse(responseCode = "422", description = "Not Processable!", content = @Content)
-    @ResponseStatus(value = HttpStatus.CREATED, reason = "wallet loaded")
+    @ResponseStatus(value=HttpStatus.OK, reason="wallet loaded")
     @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     @PostMapping("/user/load")
     public ResponseEntity<Integer> loadBalance(@RequestBody final LoadBalanceRequestDto loadBalanceDto) {
@@ -146,7 +146,7 @@ public class UserController {
     @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
     @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
     @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)
-    @ResponseStatus(value = HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.OK)
     @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
     @PostMapping("/users/status")
     ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto) {
