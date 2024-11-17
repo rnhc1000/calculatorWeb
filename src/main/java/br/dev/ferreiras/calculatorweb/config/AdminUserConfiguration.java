@@ -6,6 +6,7 @@ import br.dev.ferreiras.calculatorweb.repository.RoleRepository;
 import br.dev.ferreiras.calculatorweb.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +31,7 @@ public class AdminUserConfiguration implements CommandLineRunner {
 
   private final UserRepository userRepository;
 
+  @Autowired
   private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
   public AdminUserConfiguration(final RoleRepository roleRepository,

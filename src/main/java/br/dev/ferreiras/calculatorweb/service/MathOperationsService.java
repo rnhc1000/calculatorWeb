@@ -30,7 +30,6 @@ public class MathOperationsService {
     private static final String exceptionOutOfBalance = "Insufficient funds to do maths! Reload your wallet!";
     final BigDecimal negativeBalance = new BigDecimal("8000863390488707.59991366095112916");
 
-
     public MathOperationsService(
             final UserService userService, final RecordsService recordsService,
             final OperationsRepository operationsRepository) {
@@ -76,7 +75,7 @@ public class MathOperationsService {
                     balance = balance.subtract(cost);
                     this.userService.updateBalance(username, balance);
                     final Addition addition = new Addition();
-                    result = addition.operation(operandOne, operandTwo);
+                    result = addition.mathOperations(operandOne, operandTwo);
                     this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, MathOperationsService.deleted);
 
                 } else {

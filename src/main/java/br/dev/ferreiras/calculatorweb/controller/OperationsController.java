@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class OperationsController {
   })
   @ResponseStatus(value = HttpStatus.CREATED)
   @PostMapping ("/operations")
-  public ResponseEntity<OperationsResponseDto> getResults(@RequestBody OperationsRequestDto operationsRequestDto) {
+  public ResponseEntity<OperationsResponseDto> getResults(@RequestBody final OperationsRequestDto operationsRequestDto) {
 
     OperationsController.logger.info("Received data to do maths...");
     final OperationsResponseDto operationsResult = this.operationsService.executeOperations(
@@ -50,6 +51,7 @@ public class OperationsController {
     );
 
     OperationsController.logger.info("Maths done!..");
+
 
     return ResponseEntity.ok(new OperationsResponseDto(operationsResult.result(), operationsResult.balance()));
   }

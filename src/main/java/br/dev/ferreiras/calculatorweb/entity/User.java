@@ -1,7 +1,6 @@
 package br.dev.ferreiras.calculatorweb.entity;
 
 import br.dev.ferreiras.calculatorweb.dto.LoginRequestDto;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -34,10 +33,7 @@ public class User implements UserDetails {
   @NotNull
   private String username;
 
-  @Column (nullable = false)
-  @NotBlank
-  @Size (min = 10, max = 100)
-  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+
   private String password;
 
   @Column (nullable = false)
