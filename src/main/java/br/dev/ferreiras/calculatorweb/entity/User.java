@@ -42,7 +42,12 @@ public class User implements UserDetails {
   private BigDecimal balance;
 
   @CreationTimestamp
+  @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
   private Instant createdAt;
+
+  @CreationTimestamp
+//  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+  private Instant updatedAt;
 
   @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable (
@@ -53,7 +58,7 @@ public class User implements UserDetails {
   private Set<Role> roles;
 
   public User(UUID userId, Set<Role> roles, String username, String password,
-              String status, BigDecimal balance, Instant createdAt) {
+              String status, BigDecimal balance, Instant createdAt, Instant updatedAt) {
     this.userId = userId;
     this.roles = roles;
     this.username = username;
@@ -61,6 +66,7 @@ public class User implements UserDetails {
     this.status = status;
     this.balance = balance;
     this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
   }
   public User(UUID userId, String username, String password, String status, BigDecimal balance) {
     this.userId = userId;
@@ -153,6 +159,15 @@ public class User implements UserDetails {
   public void setCreatedAt(Instant createdAt) {
     this.createdAt = createdAt;
   }
+
+  public Instant getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(Instant updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
 
   public Set<Role> getRoles() {
     return roles;

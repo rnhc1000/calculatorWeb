@@ -1,7 +1,6 @@
 package br.dev.ferreiras.calculatorweb.service;
 
 import br.dev.ferreiras.calculatorweb.dto.LoadBalanceResponseDto;
-import br.dev.ferreiras.calculatorweb.dto.UserDto;
 import br.dev.ferreiras.calculatorweb.dto.UserRequestDto;
 import br.dev.ferreiras.calculatorweb.dto.UserResponseDto;
 import br.dev.ferreiras.calculatorweb.entity.Role;
@@ -24,6 +23,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 
@@ -84,7 +84,6 @@ public class UserService implements IUserService, UserDetailsService {
     return this.roleRepository.findByRole(Role.Roles.ROLE_USER.name());
   }
 
-  @Override
   public int updateBalance(final String username, final BigDecimal balance) {
 
     return this.userRepository.saveBalance(username, balance);

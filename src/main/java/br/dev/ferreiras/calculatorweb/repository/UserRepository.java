@@ -20,7 +20,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
   @Transactional
   @Modifying
   @Query ("""
-          UPDATE User u SET u.balance = :balance WHERE u.username = :username
+          UPDATE User u SET u.balance = :balance, u.updatedAt = CURRENT_TIMESTAMP WHERE u.username = :username
           """
   )
   int saveBalance(String username, BigDecimal balance);
@@ -33,7 +33,7 @@ public interface UserRepository extends JpaRepository<User, UUID> {
   @Transactional
   @Modifying
   @Query("""
-          UPDATE User u SET u.status = :status WHERE u.username = :username
+          UPDATE User u SET u.status = :status, u.updatedAt = CURRENT_TIMESTAMP WHERE u.username = :username
           """)
   String updateStatus(String username, String status);
 }
