@@ -56,6 +56,7 @@ public class AdminUserConfiguration implements CommandLineRunner {
     AdminUserConfiguration.logger.info("RoleAdmin:-> {}", roleAdmin);
 
     final var userAdmin = this.userRepository.findByUsername("admin@calculatorweb.com");
+       //.orElseThrow( () -> new ResourceNotFoundException("Username not found!"));
 
     AdminUserConfiguration.logger.info("UserAdmin:-> {}", userAdmin);
 
