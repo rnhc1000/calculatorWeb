@@ -18,25 +18,34 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+@ClassPreamble(
+    author = "Ricardo Ferreira",
+    date = "2025-01-01",
+    currentRevision = 2,
+    lastModified = "2025-01-01",
+    reviewers = {"Ricardo Ferreira", "NDT Team"},
+    description = "User Entity"
+)
+
 @Entity
-@Table (name = "tb_users")
+@Table(name = "tb_users")
 public class User implements UserDetails {
 
   @Id
-  @GeneratedValue (strategy = GenerationType.UUID)
+  @GeneratedValue(strategy = GenerationType.UUID)
   private UUID userId;
 
   @NotBlank
   @Email
-  @Size (min = 5, max = 40)
-  @Column (unique = true)
+  @Size(min = 5, max = 40)
+  @Column(unique = true)
   @NotNull
   private String username;
 
 
   private String password;
 
-  @Column (nullable = false)
+  @Column(nullable = false)
   private String status;
 
   private BigDecimal balance;
@@ -49,11 +58,11 @@ public class User implements UserDetails {
 //  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
   private Instant updatedAt;
 
-  @ManyToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinTable (
-          name = "tb_users_roles",
-          joinColumns = @JoinColumn (name = "user_id"),
-          inverseJoinColumns = @JoinColumn (name = "role_id")
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "tb_users_roles",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   private Set<Role> roles;
 
@@ -68,6 +77,7 @@ public class User implements UserDetails {
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }
+
   public User(UUID userId, String username, String password, String status, BigDecimal balance) {
     this.userId = userId;
     this.username = username;
@@ -101,7 +111,7 @@ public class User implements UserDetails {
     this.userId = userId;
   }
 
-  public @NotBlank @Email @Size (min = 5, max = 40) String getUsername() {
+  public @NotBlank @Email @Size(min = 5, max = 40) String getUsername() {
 
     return username;
   }
@@ -126,7 +136,7 @@ public class User implements UserDetails {
     return UserDetails.super.isEnabled();
   }
 
-  public void setUsername(@NotBlank @Email @Size (min = 5, max = 40) String username) {
+  public void setUsername(@NotBlank @Email @Size(min = 5, max = 40) String username) {
     this.username = username;
   }
 
@@ -135,12 +145,12 @@ public class User implements UserDetails {
     return roles;
   }
 
-  public @NotBlank @Size (min = 10, max = 100) String getPassword() {
+  public @NotBlank @Size(min = 10, max = 100) String getPassword() {
 
     return password;
   }
 
-  public void setPassword(@NotBlank @Size (min = 10, max = 100) String password) {
+  public void setPassword(@NotBlank @Size(min = 10, max = 100) String password) {
     this.password = password;
   }
 
