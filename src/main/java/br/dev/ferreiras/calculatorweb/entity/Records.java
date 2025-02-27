@@ -20,17 +20,15 @@ import java.time.Instant;
 @Entity
 @SQLDelete(sql = "UPDATE tb_records SET deleted=true where record_id = ?")
 @FilterDef(
-        name = "deletedTb_recordsFilter",
-        parameters = @ParamDef(name = "isDeleted", type = org.hibernate.type.descriptor.java.BooleanJavaType.class)
+    name = "deletedTb_recordsFilter",
+    parameters = @ParamDef(name = "isDeleted", type = org.hibernate.type.descriptor.java.BooleanJavaType.class)
 )
 @Filter(
-        name = "deletedTb_recordsFilter",
-        condition = "deleted = :isDeleted"
+    name = "deletedTb_recordsFilter",
+    condition = "deleted = :isDeleted"
 )
-@Table (name = "tb_records")
+@Table(name = "tb_records")
 public class Records implements Serializable {
-
-  private static final long serialVersionUUID = 1L;
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)

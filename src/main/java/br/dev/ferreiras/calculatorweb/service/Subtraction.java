@@ -1,17 +1,23 @@
 package br.dev.ferreiras.calculatorweb.service;
 
-import br.dev.ferreiras.calculatorweb.contracts.TwoOperandsMathOperations;
+import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperands;
 
 import java.math.BigDecimal;
 
-public class Subtraction implements TwoOperandsMathOperations {
+public class Subtraction implements AnyNumberOfOperands {
     /**
-     * @param operandOne first operand
-     * @param operandTwo second operand
+     * @param operands ...
      * @return subtraction of two operands
      */
     @Override
-    public BigDecimal operation(final BigDecimal operandOne, final BigDecimal operandTwo) {
-        return operandOne.subtract(operandTwo);
+    public BigDecimal mathOperations(final BigDecimal ...operands) {
+
+        BigDecimal result =  BigDecimal.ZERO;
+
+        for (BigDecimal operand : operands) {
+            result = result.subtract(operand);
+        }
+
+        return result;
     }
 }
