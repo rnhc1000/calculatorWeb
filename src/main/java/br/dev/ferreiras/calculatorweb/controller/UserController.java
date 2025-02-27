@@ -27,125 +27,155 @@ import java.util.Optional;
 @RequestMapping(path = "api/v1")
 public class UserController {
 
-    private final UserService userService;
+  private final UserService userService;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+  private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    public UserController(final UserService userService) {
-        this.userService = userService;
+  public UserController(final UserService userService) {
+    this.userService = userService;
+  }
+
+  @Operation(
+      summary = "Create a regular user",
+      description = "Create a regular user(roleUser) given his iemail, password, status and initial balance",
+      responses = {
+          @ApiResponse(responseCode = "201", description = "User created",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = LoadBalanceResponseDto.class))),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)
+      }
+  )
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  @PostMapping("/users")
+  public ResponseEntity<Object> newUser(@RequestBody final UserResponseDto userResponseDto) {
+    final LoadBalanceResponseDto userData = this.userService.addNewUser(userResponseDto);
+
+    return ResponseEntity.status(HttpStatus.CREATED).body(userData);
+  }
+
+  @Operation(
+      summary = "List registered users",
+      description = "Return all users persisted into the database",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "List of Registered Users",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = User.class))),
+          @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse(responseCode = "404", description = "Users not found", content = @Content),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
+      }
+  )
+  @GetMapping("/users")
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  public ResponseEntity<List<User>> listUsers() {
+    final var users = this.userService.findAllUsers();
+
+    return ResponseEntity.ok(users);
+  }
+
+  @Operation(
+      summary = "Get a user by its name",
+      description = "Return user details given its name",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Got the user requested by its id",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = User.class))),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse(responseCode = "404", description = "Not processable", content = @Content)
+      }
+  )
+  @GetMapping("/users/{username}")
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  public ResponseEntity<UserResponseDto> findById(@Parameter(description = "user to be fetched") @PathVariable final String username) {
+
+    final Optional<User> user = this.userService.getUsername(username);
+    return ResponseEntity.ok(new UserResponseDto(
+        user.orElseThrow().getUsername(),
+        user.orElseThrow().getPassword(),
+        user.orElseThrow().getStatus(),
+        user.orElseThrow().getBalance())
+    );
+  }
+
+  @Operation(
+      summary = "Load wallet of a user",
+      description = "Load user wallet by the amount informed, given username",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Wallet loaded",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = LoadBalanceResponseDto.class))),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse(responseCode = "422", description = "Not Processable!", content = @Content)
+      }
+  )
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  @PostMapping("/user/load")
+  public ResponseEntity<Integer> loadBalance(@RequestBody final LoadBalanceRequestDto loadBalanceDto) {
+    final var useCheck = loadBalanceDto.username();
+    UserController.logger.info("username, {}", useCheck);
+
+    if (this.userService.getUsername(useCheck).isEmpty()) {
+      UserController.logger.info("User does not exist!");
+      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @Operation(summary = "Create a regular user")
-    @ApiResponse(responseCode = "201", description = "User created",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
-    @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    @PostMapping("/users")
-    public ResponseEntity<Object> newUser(@RequestBody final UserResponseDto userResponseDto) {
-        final LoadBalanceResponseDto userData = this.userService.addNewUser(userResponseDto);
+    final String username = loadBalanceDto.username();
+    final BigDecimal balance = loadBalanceDto.balance();
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(userData);
+    final int response = this.userService.updateBalance(username, balance);
+
+    return ResponseEntity.ok(response);
+  }
+
+  @Operation(
+      summary = "Get balance of an user",
+      description = "Return the balance available in users wallet",
+      responses = {
+          @ApiResponse(responseCode = "201", description = "Balance returned",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = LoadBalanceResponseDto.class))),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse(responseCode = "422", description = "Not processable!", content = @Content)
+      }
+  )
+  @PostMapping(path = "/user/balance")
+  public ResponseEntity<LoadBalanceResponseDto> getBalance(@RequestBody final LoadBalanceRequestDto loadBalanceRequestDto) {
+
+    final var useCheck = loadBalanceRequestDto.username();
+    UserController.logger.info("Username to know the balance, {}", useCheck);
+
+    if (this.userService.getUsername(useCheck).isEmpty()) {
+      UserController.logger.info("Username does not exist!");
+      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    @Operation(summary = "List registered users")
-    @ApiResponse(responseCode = "200", description = "List of Registered Users",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
-    @ApiResponse(responseCode = "404", description = "Users not found", content = @Content)
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @GetMapping("/users")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    public ResponseEntity<List<User>> listUsers() {
-        final var users = this.userService.findAllUsers();
+    final String username = loadBalanceRequestDto.username();
+    final BigDecimal balance = this.userService.getBalance(username);
 
-        return ResponseEntity.ok(users);
-    }
+    return ResponseEntity.ok(new LoadBalanceResponseDto(username, balance));
+  }
 
-    @Operation(summary = "Get a user by its name")
-    @ApiResponse(responseCode = "200", description = "Got the user requested by its id",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
-    @ApiResponse(responseCode = "404", description = "Not processable", content = @Content)
-    @GetMapping("/users/{username}")
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    public ResponseEntity<UserResponseDto> findById(@Parameter(description = "user to be fetched") @PathVariable final String username) {
+  @Operation(
+      summary = "Update the status of an user",
+      description = "Users statutes can be set ACTIVE or INACTIVE",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "User status changed",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = UserResponseDto.class))),
+          @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
+          @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)
+      }
+  )
+  @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
+  @PostMapping("/users/status")
+  ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto) {
+    final UserResponseDto user = this.userService.activateUser(userRequestDto);
 
-        final Optional<User> user = this.userService.getUsername(username);
-        return ResponseEntity.ok(new UserResponseDto(
-                user.orElseThrow().getUsername(),
-                user.orElseThrow().getPassword(),
-                user.orElseThrow().getStatus(),
-                user.orElseThrow().getBalance())
-        );
-    }
-
-    @Operation(summary = "Load wallet of a user")
-    @ApiResponse(responseCode = "200", description = "Wallet loaded",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
-    @ApiResponse(responseCode = "422", description = "Not Processable!", content = @Content)
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    @PostMapping("/user/load")
-    public ResponseEntity<Integer> loadBalance(@RequestBody final LoadBalanceRequestDto loadBalanceDto) {
-        final var useCheck = loadBalanceDto.username();
-        UserController.logger.info("username, {}", useCheck);
-
-        if (this.userService.getUsername(useCheck).isEmpty()) {
-            UserController.logger.info("User does not exist!");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
-        final String username = loadBalanceDto.username();
-        final BigDecimal balance = loadBalanceDto.balance();
-
-        final int response = this.userService.updateBalance(username, balance);
-
-        return ResponseEntity.ok(response);
-    }
-
-    @Operation(summary = "Get balance of an user")
-    @ApiResponse(responseCode = "201", description = "Balance returned",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @ApiResponse(responseCode = "422", description = "Not processable!", content = @Content)
-    @PostMapping(path = "/user/balance")
-    public ResponseEntity<LoadBalanceResponseDto> getBalance(@RequestBody final LoadBalanceRequestDto loadBalanceRequestDto) {
-
-        final var useCheck = loadBalanceRequestDto.username();
-        UserController.logger.info("Username to know the balance, {}", useCheck);
-
-        if (this.userService.getUsername(useCheck).isEmpty()) {
-            UserController.logger.info("Username does not exist!");
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
-        }
-
-        final String username = loadBalanceRequestDto.username();
-        final BigDecimal balance = this.userService.getBalance(username);
-
-        return ResponseEntity.ok(new LoadBalanceResponseDto(username, balance));
-    }
-
-    @Operation(summary = "Update the status of an user")
-    @ApiResponse(responseCode = "201", description = "User created",
-            content = @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = UserController.class)))
-    @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content)
-    @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content)
-    @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)
-    @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
-    @PostMapping("/users/status")
-    ResponseEntity<UserResponseDto> updateUserStatus(@RequestBody final UserRequestDto userRequestDto) {
-        final UserResponseDto user = this.userService.activateUser(userRequestDto);
-
-        return ResponseEntity.ok(new UserResponseDto(user.username(), user.status()));
-    }
+    return ResponseEntity.ok(new UserResponseDto(user.username(), user.status()));
+  }
 }

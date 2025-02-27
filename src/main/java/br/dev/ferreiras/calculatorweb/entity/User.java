@@ -1,18 +1,17 @@
 package br.dev.ferreiras.calculatorweb.entity;
 
+import br.dev.ferreiras.calculatorweb.contracts.AuditableEntity;
 import br.dev.ferreiras.calculatorweb.dto.LoginRequestDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -29,7 +28,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "tb_users")
-public class User implements UserDetails {
+public class User extends AuditableEntity implements UserDetails {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
@@ -42,7 +41,6 @@ public class User implements UserDetails {
   @NotNull
   private String username;
 
-
   private String password;
 
   @Column(nullable = false)
@@ -50,13 +48,13 @@ public class User implements UserDetails {
 
   private BigDecimal balance;
 
-  @CreationTimestamp
-  @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
-  private Instant createdAt;
-
-  @CreationTimestamp
-//  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-  private Instant updatedAt;
+//  @CreationTimestamp
+//  @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
+//  private Instant createdAt;
+//
+//  @CreationTimestamp
+////  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+//  private Instant updatedAt;
 
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(
@@ -67,15 +65,14 @@ public class User implements UserDetails {
   private Set<Role> roles;
 
   public User(UUID userId, Set<Role> roles, String username, String password,
-              String status, BigDecimal balance, Instant createdAt, Instant updatedAt) {
+              String status, BigDecimal balance) {
     this.userId = userId;
     this.roles = roles;
     this.username = username;
     this.password = password;
     this.status = status;
     this.balance = balance;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+
   }
 
   public User(UUID userId, String username, String password, String status, BigDecimal balance) {
@@ -162,21 +159,21 @@ public class User implements UserDetails {
     this.status = status;
   }
 
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public Instant getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public void setUpdatedAt(Instant updatedAt) {
-    this.updatedAt = updatedAt;
-  }
+//  public Instant getCreatedAt() {
+//    return createdAt;
+//  }
+//
+//  public void setCreatedAt(Instant createdAt) {
+//    this.createdAt = createdAt;
+//  }
+//
+//  public Instant getUpdatedAt() {
+//    return updatedAt;
+//  }
+//
+//  public void setUpdatedAt(Instant updatedAt) {
+//    this.updatedAt = updatedAt;
+//  }
 
 
   public Set<Role> getRoles() {
@@ -196,11 +193,16 @@ public class User implements UserDetails {
   public boolean equals(final Object o) {
     if (this == o) return true;
     if (!(o instanceof User user)) return false;
-    return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(status, user.status) && (balance == null ? user.balance == null : balance.compareTo(user.balance) == 0) && Objects.equals(createdAt, user.createdAt) && Objects.equals(roles, user.roles);
+    return Objects.equals(userId, user.userId)
+           && Objects.equals(username, user.username)
+           && Objects.equals(password, user.password)
+           && Objects.equals(status, user.status)
+           && (balance == null ? user.balance == null : balance.compareTo(user.balance) == 0)
+          && Objects.equals(roles, user.roles);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, username, password, status, balance, createdAt, roles);
+    return Objects.hash(userId, username, password, status, balance, roles);
   }
 }

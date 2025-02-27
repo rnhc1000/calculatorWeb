@@ -15,7 +15,9 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Set;
 
-/** This class provides a user with administrator privileges with an initial balance of $1000.00
+/**
+ * This class provides a user with administrator privileges with an initial balance of $1000.00
+ *
  * @author ricardo@ferreiras.dev.br
  * @version 1.1.030901
  * @since 08/2024
@@ -41,9 +43,9 @@ public class AdminUserConfiguration implements CommandLineRunner {
   }
 
   /**
-   *
    * Override run method from CommandLineRunner interface to create a
    * user with Role:Admin if it already does not exist persisted into the database
+   *
    * @throws Exception Database Exception
    */
 
@@ -53,29 +55,48 @@ public class AdminUserConfiguration implements CommandLineRunner {
 
     final Role roleAdmin = this.roleRepository.findByRole(Role.Roles.ROLE_ADMIN.name());
 
-    AdminUserConfiguration.logger.info("RoleAdmin:-> {}", roleAdmin);
+    AdminUserConfiguration.logger.info("RoleAdmin:-> {}", roleAdmin.getRole());
 
-    final var userAdmin = this.userRepository.findByUsername("admin@calculatorweb.com");
-       //.orElseThrow( () -> new ResourceNotFoundException("Username not found!"));
+    final var userAdmin = this.userRepository.findByUsername("admin@calculatorweb.com")
+        .orElseGet(() -> {
+
+          final var user = new User();
+
+          user.setUsername("admin@calculatorweb.com");
+          user.setPassword(this.bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
+          user.setRoles(Set.of(roleAdmin));
+          user.setBalance(new BigDecimal("1000.00"));
+          user.setStatus("ACTIVE");
+          user.setCreatedBy("ricardo@ferreiras.dev.br");
+          user.setCreatedDate(Instant.now());
+          user.setLastModifiedBy("ricardo@ferreiras.dev.br");
+          user.setLastModifiedDate(Instant.now());
+          this.userRepository.save(user);
+          return user;
+        });
 
     AdminUserConfiguration.logger.info("UserAdmin:-> {}", userAdmin);
 
-    userAdmin.ifPresentOrElse(
-            user -> AdminUserConfiguration.logger.info("Administrator already exists!"),
-            () -> {
+//    if (userAdmin.isEmpty()) {
+//    userAdmin.ifPresentOrElse(
+//        (user) -> {
+//          AdminUserConfiguration.logger.info("Administrator already exists!, {}", user);
+//        },
+//        () -> {
 
-              final var user = new User();
-
-              user.setUsername("admin@calculatorweb.com");
-              user.setPassword(this.bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
-              user.setRoles(Set.of(roleAdmin));
-              user.setBalance(new BigDecimal("1000.00"));
-              user.setStatus("ACTIVE");
-              user.setCreatedAt(Instant.now());
-
-              this.userRepository.save(user);
-              AdminUserConfiguration.logger.info("Administrator created");
-            }
-    );
+//      final var user = new User();
+//
+//      user.setUsername("admin@calculatorweb.com");
+//      user.setPassword(this.bCryptPasswordEncoder.encode("@c4lc5l4t0r@"));
+//      user.setRoles(Set.of(roleAdmin));
+//      user.setBalance(new BigDecimal("1000.00"));
+//      user.setStatus("ACTIVE");
+//      this.userRepository.save(user);
+//      AdminUserConfiguration.logger.info("Administrator created");
+//    } else {
+//
+//      AdminUserConfiguration.logger.info("Administrator already exists!, {}", userAdmin);
+//    }
+//        },
   }
 }

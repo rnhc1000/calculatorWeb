@@ -1,17 +1,22 @@
 package br.dev.ferreiras.calculatorweb.service;
 
-import br.dev.ferreiras.calculatorweb.contracts.TwoOperandsMathOperations;
+import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperands;
 
 import java.math.BigDecimal;
 
-public class Multiplication implements TwoOperandsMathOperations {
+public class Multiplication implements AnyNumberOfOperands {
     /**
-     * @param operandOne first operand
-     * @param operandTwo second operand
+     * @param operands first operand, second operand
      * @return product of two operands
      */
     @Override
-    public BigDecimal operation(final BigDecimal operandOne, final BigDecimal operandTwo) {
-        return operandOne.multiply(operandTwo);
+    public BigDecimal mathOperations(final BigDecimal ...operands) {
+
+        BigDecimal result = BigDecimal.ONE;
+        for (BigDecimal operand : operands) {
+            result = result.multiply(operand);
+        }
+
+        return result;
     }
 }
