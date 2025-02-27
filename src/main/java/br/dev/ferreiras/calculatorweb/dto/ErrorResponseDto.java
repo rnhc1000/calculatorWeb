@@ -2,5 +2,5 @@ package br.dev.ferreiras.calculatorweb.dto;
 
 import java.time.Instant;
 
-public record ErrorResponseDto(int httpCode, String message, Instant timeStamp) {
+public record ErrorResponseDto(Instant timeStamp,  int status, String message, String path) {
 }

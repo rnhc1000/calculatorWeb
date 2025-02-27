@@ -1,26 +1,28 @@
 package br.dev.ferreiras.calculatorweb.service;
 
-import br.dev.ferreiras.calculatorweb.contracts.TwoOperandsMathOperations;
+import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperands;
 import br.dev.ferreiras.calculatorweb.service.exceptions.InvalidMathRequestException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Division implements TwoOperandsMathOperations {
+public class Division implements AnyNumberOfOperands {
     /**
-     * @param operandOne > 0 || < 0 || = 0
-     * @param operandTwo > 0
+     * @param operands > 0 || < 0 || = 0
      * @return operandOne / operandTwo
      * @throws InvalidMathRequestException no / by zero
      */
     @Override
-    public BigDecimal operation(final BigDecimal operandOne, final BigDecimal operandTwo) {
+    public BigDecimal mathOperations(final BigDecimal ...operands) {
 
-        BigDecimal division = BigDecimal.ZERO;
+        BigDecimal result = BigDecimal.ONE;
 
         try {
 
-            division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
+            for (BigDecimal operand : operands) {
+//                division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
+                result = result.divide(operand, 4, RoundingMode.CEILING);
+            }
 
         } catch (final ArithmeticException ex) {
 
@@ -28,6 +30,6 @@ public class Division implements TwoOperandsMathOperations {
 
         }
 
-        return division;
+        return result;
     }
 }

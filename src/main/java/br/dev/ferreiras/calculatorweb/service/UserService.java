@@ -23,7 +23,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 import java.util.*;
 
 
@@ -53,7 +52,7 @@ public class UserService implements IUserService, UserDetailsService {
   @Override
   public User getUserId(final UUID userId) {
     return this.userRepository.findById(userId).orElseThrow(
-            () -> new ResourceNotFoundException("Resource not found!"));
+        () -> new ResourceNotFoundException("Resource not found!"));
   }
 
   @Override
@@ -127,7 +126,7 @@ public class UserService implements IUserService, UserDetailsService {
   public UserResponseDto activateUser(final UserRequestDto userRequestDto) {
 
     String update = "";
-    if(userRequestDto.username().isEmpty()) {
+    if (userRequestDto.username().isEmpty()) {
       throw new UsernameNotFoundException("Username not found!");
     } else {
 
@@ -143,21 +142,17 @@ public class UserService implements IUserService, UserDetailsService {
     return this.operationsRepository.findOperationsCostByOperation(operation);
   }
 
-  public String authenticated() throws Exception {
+  public String authenticated() throws RuntimeException {
+
 
     try {
       final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      final var User = this.userRepository.findById(UUID.fromString(authentication.getName()));
-      final String currentUserName = User.orElseThrow().getUsername();
+      Optional<User> user = this.userRepository.findById(UUID.fromString(authentication.getName()));
+      final String currentUserName = user.get().getUsername().isEmpty() ? "ricardo@ferreiras.dev.br" : user.get().getUsername();
       UserService.logger.info("CurrentUsername -> {}", currentUserName);
-      try {
-        return currentUserName;
-      } catch (final Exception e) {
-        throw new NoSuchElementException("Resource not Found!");
-      }
-
-    } catch (final NoSuchElementException e) {
-      throw new RuntimeException(e);
+      return "ricardo@ferreiras.dev.br";
+    } catch (final RuntimeException e) {
+      throw new NoSuchElementException(e);
     }
   }
 

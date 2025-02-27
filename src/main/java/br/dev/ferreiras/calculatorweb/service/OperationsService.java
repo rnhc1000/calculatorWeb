@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -35,6 +36,9 @@ public class OperationsService {
   private final UserService userService;
   private final RecordsService recordsService;
   private final OperationsRepository operationsRepository;
+
+  @Autowired
+  private AdditionService additionService;
   private static final Logger logger = LoggerFactory.getLogger(OperationsService.class);
   private static final String throwExceptionOutOfBalance = "Insufficient funds to do maths! Reload your wallet!";
   final BigDecimal BALANCE_NEGATIVE = new BigDecimal("8000863390488707.59991366095112916");
@@ -59,7 +63,7 @@ public class OperationsService {
     String result = "0";
 
     final var user = this.userService.getUsername(username);
-    OperationsService.logger.info("Usuario: {}", user.orElseThrow().getUsername());
+    OperationsService.logger.info("User: {}", user.orElseThrow().getUsername());
 
     BigDecimal balance = this.userService.getBalance(username);
     OperationsService.logger.info("Balance: {}", balance);
@@ -90,6 +94,7 @@ public class OperationsService {
       } catch (final JsonProcessingException e) {
         throw new RandomProcessingException("JSON Processing error");
       }
+
       return new ResponseRandomDto(result, balance);
     }  else {
       throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
@@ -113,7 +118,7 @@ public class OperationsService {
     BigDecimal result = new BigDecimal("0");
 
     final var user = this.userService.getUsername(username);
-    OperationsService.logger.info("usuario: {}", user.orElseThrow().getUsername());
+    OperationsService.logger.info("User: {}", user.orElseThrow().getUsername());
 
     var balance = this.userService.getBalance(username);
     OperationsService.logger.info("balance: {}", balance);
@@ -131,7 +136,7 @@ public class OperationsService {
           operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.addOperands(operandOne, operandTwo);
+          result = this.additionService.mathOperations(operandOne, operandTwo);
           this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
 
         } else {

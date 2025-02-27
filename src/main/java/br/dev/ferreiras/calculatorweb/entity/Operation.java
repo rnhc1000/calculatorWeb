@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 @Table (name = "tb_operations")
 public class Operation implements Serializable {
 
-  private static final long serialVersionUUID = 1L;
-
   @Id
   @GeneratedValue (strategy = GenerationType.SEQUENCE)
   @Column (name = "operation_id")

@@ -74,7 +74,7 @@ public class MathOperationsService {
                     operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
                     balance = balance.subtract(cost);
                     this.userService.updateBalance(username, balance);
-                    final Addition addition = new Addition();
+                    final AdditionService addition = new AdditionService();
                     result = addition.mathOperations(operandOne, operandTwo);
                     this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, MathOperationsService.deleted);
 

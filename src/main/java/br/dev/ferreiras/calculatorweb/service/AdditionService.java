@@ -1,14 +1,13 @@
 package br.dev.ferreiras.calculatorweb.service;
 
-import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperations;
+import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperands;
 
 import java.math.BigDecimal;
 
-public class Addition implements AnyNumberOfOperations {
+public class AdditionService implements AnyNumberOfOperands {
 
   /**
-   * @param operands ...first operand
-   * @param operands ...second operand
+   * @param operands ...first operand ....second operand
    * @return sum of two operands
    */
   @Override
@@ -17,6 +16,7 @@ public class Addition implements AnyNumberOfOperations {
     for (final BigDecimal operand : operands) {
       sum = sum.add(operand);
     }
+
     return sum;
   }
 }
