@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -47,5 +49,15 @@ public class CalculatorWebApplication implements CommandLineRunner {
           totalMemory
       );
     }
+  }
+
+  public List<String> checkSystem() {
+    final String javaVersion = System.getProperty("java_version");
+    final int numberOfCores = Runtime.getRuntime().availableProcessors();
+    final List<String> requirements = new ArrayList<>();
+    requirements.add(javaVersion);
+    requirements.add(Integer.toString(numberOfCores));
+
+    return requirements;
   }
 }

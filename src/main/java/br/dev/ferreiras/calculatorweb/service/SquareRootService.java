@@ -6,10 +6,10 @@ import br.dev.ferreiras.calculatorweb.service.exceptions.InvalidMathRequestExcep
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public class SquareRoot implements AnyNumberOfOperands {
+public class SquareRootService implements AnyNumberOfOperands {
 
     /**
-     * @param operandOne must be > 0
+     * @param operands must be > 0
      * @return square root of operandOne
      * @throws InvalidMathRequestException no negative numbers supported
      */

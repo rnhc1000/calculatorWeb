@@ -24,7 +24,7 @@ public class RecordsService {
 
   private final EntityManager entityManager;
 
-  public RecordsService(final RecordsRepository recordsRepository, EntityManager entityManager) {
+  public RecordsService(final RecordsRepository recordsRepository, final EntityManager entityManager) {
     this.recordsRepository = recordsRepository;
 
       this.entityManager = entityManager;

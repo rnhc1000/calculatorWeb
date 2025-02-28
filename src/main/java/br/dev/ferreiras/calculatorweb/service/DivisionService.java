@@ -6,7 +6,7 @@ import br.dev.ferreiras.calculatorweb.service.exceptions.InvalidMathRequestExcep
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Division implements AnyNumberOfOperands {
+public class DivisionService implements AnyNumberOfOperands {
     /**
      * @param operands > 0 || < 0 || = 0
      * @return operandOne / operandTwo
@@ -20,13 +20,13 @@ public class Division implements AnyNumberOfOperands {
         try {
 
             for (BigDecimal operand : operands) {
-//                division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
+
                 result = result.divide(operand, 4, RoundingMode.CEILING);
             }
 
         } catch (final ArithmeticException ex) {
 
-            throw new InvalidMathRequestException("/ by zero");
+            throw new InvalidMathRequestException("Only positive numbers!");
 
         }
 

@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,119 +21,122 @@ import java.util.Optional;
 @RequestMapping(path = "api/v1")
 public class RecordsController {
 
-    private RecordsService recordsService;
+  private final RecordsService recordsService;
 
-    private UserService userService;
+  private final UserService userService;
 
-    public RecordsController(final RecordsService recordsService, final UserService userService) {
-        this.recordsService = recordsService;
-        this.userService = userService;
-    }
+  private static final String usernameNotFound = "Username not found!";
 
-    public static final Logger logger = LoggerFactory.getLogger(RecordsController.class);
+  public RecordsController(final RecordsService recordsService, final UserService userService) {
+    this.recordsService = recordsService;
+    this.userService = userService;
+  }
 
-    @Operation(summary = "Fetch 10 records per page")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Get up to 10 messages per page.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))})})
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/records")
-    public ResponseEntity<RecordsDto> getAllMessages(
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "20") int size) {
+  public static final Logger logger = LoggerFactory.getLogger(RecordsController.class);
 
-        RecordsController.logger.info("Page Number -> {}, Size of Each Page -> {}", page, size);
+  @Operation(
+      summary = "Fetch 20 records per page",
+      description = "Fetch 20 records per page",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Get up to 20 records per page.",
+              content = {@Content(mediaType = "application/json",
+                  schema = @Schema(implementation = RecordsController.class))}
+          )})
+  @GetMapping(value = "/records")
+  public ResponseEntity<RecordsDto> getAllMessages(
+      @RequestParam(defaultValue = "0", name = "page") final int page,
+      @RequestParam(defaultValue = "20", name = "size") final int size) {
 
-        return this.recordsService.getPagedRecords(page, size);
-    }
+    RecordsController.logger.info("Page Number -> {}, Size of Each Page -> {}", page, size);
 
-    @Operation(summary = "Fetch 12 records per page provided the username authenticated")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Get up to 12 messages per page.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))}),
-            @ApiResponse(responseCode = "404", description = "Resource not found!",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))})
-    })
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/user/records")
-    public ResponseEntity<RecordsDto> getRecordsByUsername(
-            @RequestParam(defaultValue = "0") final int page,
-            @RequestParam(defaultValue = "10") final int size
-    ) throws Exception {
+    return this.recordsService.getPagedRecords(page, size);
+  }
 
-        final String user = Optional.ofNullable(this.userService.authenticated())
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("Username not found:"));
-        final boolean isDeleted = false;
-        RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}", page, size, user, isDeleted);
+  @Operation(
+      summary = "Fetch 20 records per page",
+      description = "Fetch 20 records per page provided the username authenticated",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Get up to 12 messages per page.",
+              content = {@Content(mediaType = "application/json",
+                  schema = @Schema(implementation = RecordsDto.class))}),
+          @ApiResponse(responseCode = "404", description = "Resource not found!",
+              content = {@Content(mediaType = "application/json")})
+      })
+  @GetMapping(value = "/user/records")
+  public ResponseEntity<RecordsDto> getRecordsByUsername(
+      @RequestParam(defaultValue = "0") final int page,
+      @RequestParam(defaultValue = "20") final int size
+  ) {
+    final String user = Optional.ofNullable(this.userService.authenticated())
+        .orElseThrow(() ->
+            new UsernameNotFoundException(RecordsController.usernameNotFound));
+    final boolean isDeleted = false;
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}", page, size, user, isDeleted);
 
-        return this.recordsService.findRecordsByUsername(page, size, user);
-    }
+    return this.recordsService.findRecordsByUsername(page, size, user);
+  }
 
-    @Operation(summary = "Fetch 12 records per page provided the username authenticated")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Get up to 12 messages per page.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))}),
-            @ApiResponse(responseCode = "404", description = "Resource not found!",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))})
-    })
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping(value = "/user/operations")
-    public ResponseEntity<List<RecordsDto>> getRecordsByUsernameStatus(
-            @RequestParam(defaultValue = "0") final int page,
-            @RequestParam(defaultValue = "10") final int size,
-            @RequestParam(defaultValue = "false") boolean isDeleted
-    ) throws Exception {
+  @Operation(
+      summary = "Fetch 20 records per page",
+      description = "Fetch 20 records per page provided the username authenticated",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Get up to 20 messages per page.",
+              content = {@Content(mediaType = "application/json",
+                  schema = @Schema(implementation = RecordsDto.class))}),
+          @ApiResponse(responseCode = "404", description = "Resource not found!",
+              content = {@Content(mediaType = "application/json")})
+      })
+  @GetMapping(value = "/user/operations")
+  public ResponseEntity<List<RecordsDto>> getRecordsByUsernameStatus(
+      @RequestParam(defaultValue = "0", name = "page") final int page,
+      @RequestParam(defaultValue = "20", name = "size") final int size,
+      @RequestParam(defaultValue = "false", name = "isDeleted") boolean isDeleted
+  ) {
 
-        final String user = Optional.ofNullable(this.userService.authenticated())
-                .orElseThrow(() ->
-                        new UsernameNotFoundException("Username not found:"));
-        isDeleted = false;
-        RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {},  isDeleted: {}", page, size, user, isDeleted);
+    final String user = Optional.ofNullable(this.userService.authenticated())
+        .orElseThrow(() ->
+            new UsernameNotFoundException(RecordsController.usernameNotFound));
+    isDeleted = false;
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {},  isDeleted: {}", page, size, user, isDeleted);
 
-        return ResponseEntity.ok(this.recordsService.findRecordsByUsernameStatus(page, size, user));
-    }
+    return ResponseEntity.ok(this.recordsService.findRecordsByUsernameStatus(page, size, user));
+  }
 
-    @Operation(summary = "Soft delete a record")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Record soft deleted @database.",
-                    content = {@Content(mediaType = "application/json")})})
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @PutMapping("/user/operations/{id}")
-    public ResponseEntity<HttpStatus> updateRecord(@PathVariable("id") final Long id) {
+  @Operation(summary = "Soft delete a record",
+      description = "Set the status of a record to soft deleted",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Record soft deleted @database.",
+              content = {@Content(mediaType = "application/json")})
+      })
+  @PutMapping("/user/operations/{id}")
+  public ResponseEntity<HttpStatus> updateRecord(@PathVariable("id") final Long id) {
 
-        this.recordsService.deleteRecordById(id);
+    this.recordsService.deleteRecordById(id);
 
-        return ResponseEntity.ok(HttpStatus.ACCEPTED);
-    }
+    return ResponseEntity.ok(HttpStatus.ACCEPTED);
+  }
 
-    @Operation(summary = "Fetch records soft-deleted provided the username authenticated")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Return soft deleted records.",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))}),
-            @ApiResponse(responseCode = "404", description = "Resource not found!",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RecordsController.class))})
-    })
-    @GetMapping(value="/deleted")
-    public ResponseEntity<List<RecordsDto>> getSoftDeletedRecords(
-            @RequestParam final int page,
-            @RequestParam final int size,
-            @RequestParam final String username
-    ) throws Exception {
+  @Operation(summary = "Fetch records soft-deleted",
+      description = "Fetch records soft-deleted provided the username authenticated",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Return soft deleted records.",
+              content = {@Content(mediaType = "application/json",
+                  schema = @Schema(implementation = RecordsDto.class))}),
+          @ApiResponse(responseCode = "404", description = "Resource not found!",
+              content = {@Content(mediaType = "application/json")})
+      })
+  @GetMapping(value = "/deleted")
+  public ResponseEntity<List<RecordsDto>> getSoftDeletedRecords(
+      @RequestParam final int page,
+      @RequestParam final int size,
+      @RequestParam final String username
+  ) {
 
+    final String user = Optional.ofNullable(this.userService.authenticated())
+        .orElseThrow(() ->
+            new UsernameNotFoundException(RecordsController.usernameNotFound));
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}", page, size, user);
 
-            final String user = Optional.ofNullable(this.userService.authenticated())
-                    .orElseThrow(() ->
-                            new UsernameNotFoundException("Username not found:"));
-        RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}", page, size, user);
-
-        return ResponseEntity.ok(this.recordsService.findSoftDeletedRecords(page, size, user));
-    }
+    return ResponseEntity.ok(this.recordsService.findSoftDeletedRecords(page, size, user));
+  }
 }
