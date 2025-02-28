@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableJpaAuditing
+@EnableHypermediaSupport(type = {EnableHypermediaSupport.HypermediaType.HAL})
 public class CalculatorWebApplication implements CommandLineRunner {
 
   private static final Logger logger = LoggerFactory.getLogger(CalculatorWebApplication.class);

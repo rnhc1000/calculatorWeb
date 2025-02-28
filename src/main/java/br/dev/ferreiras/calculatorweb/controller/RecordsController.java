@@ -80,7 +80,7 @@ public class RecordsController {
       summary = "Fetch 20 records per page",
       description = "Fetch 20 records per page provided the username authenticated",
       responses = {
-          @ApiResponse(responseCode = "200", description = "Get up to 20 messages per page.",
+          @ApiResponse(responseCode = "200", description = "Get up to 20 records per page.",
               content = {@Content(mediaType = "application/json",
                   schema = @Schema(implementation = RecordsDto.class))}),
           @ApiResponse(responseCode = "404", description = "Resource not found!",

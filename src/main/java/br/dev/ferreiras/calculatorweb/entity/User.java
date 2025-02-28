@@ -20,9 +20,9 @@ import java.util.UUID;
 @ClassPreamble(
     author = "Ricardo Ferreira",
     date = "2025-01-01",
-    currentRevision = 2,
-    lastModified = "2025-01-01",
-    reviewers = {"Ricardo Ferreira", "NDT Team"},
+    currentRevision = 4,
+    lastModified = "2025-02-28",
+    reviewers = {"Ricardo Ferreira", "757 Team"},
     description = "User Entity"
 )
 
@@ -48,14 +48,6 @@ public class User extends AuditableEntity implements UserDetails {
 
   private BigDecimal balance;
 
-//  @CreationTimestamp
-//  @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
-//  private Instant createdAt;
-//
-//  @CreationTimestamp
-////  @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-//  private Instant updatedAt;
-
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(
       name = "tb_users_roles",
@@ -63,17 +55,6 @@ public class User extends AuditableEntity implements UserDetails {
       inverseJoinColumns = @JoinColumn(name = "role_id")
   )
   private Set<Role> roles;
-
-  public User(UUID userId, Set<Role> roles, String username, String password,
-              String status, BigDecimal balance) {
-    this.userId = userId;
-    this.roles = roles;
-    this.username = username;
-    this.password = password;
-    this.status = status;
-    this.balance = balance;
-
-  }
 
   public User(UUID userId, String username, String password, String status, BigDecimal balance) {
     this.userId = userId;
@@ -148,39 +129,27 @@ public class User extends AuditableEntity implements UserDetails {
   }
 
   public void setPassword(@NotBlank @Size(min = 10, max = 100) String password) {
+
     this.password = password;
   }
 
   public String getStatus() {
+
     return status;
   }
 
   public void setStatus(String status) {
+
     this.status = status;
   }
 
-//  public Instant getCreatedAt() {
-//    return createdAt;
-//  }
-//
-//  public void setCreatedAt(Instant createdAt) {
-//    this.createdAt = createdAt;
-//  }
-//
-//  public Instant getUpdatedAt() {
-//    return updatedAt;
-//  }
-//
-//  public void setUpdatedAt(Instant updatedAt) {
-//    this.updatedAt = updatedAt;
-//  }
-
-
   public Set<Role> getRoles() {
+
     return roles;
   }
 
   public void setRoles(Set<Role> roles) {
+
     this.roles = roles;
   }
 
@@ -204,5 +173,17 @@ public class User extends AuditableEntity implements UserDetails {
   @Override
   public int hashCode() {
     return Objects.hash(userId, username, password, status, balance, roles);
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+           "userId=" + userId +
+           ", username='" + username + '\'' +
+           ", password='" + password + '\'' +
+           ", status='" + status + '\'' +
+           ", balance=" + balance +
+           ", roles=" + roles +
+           '}';
   }
 }

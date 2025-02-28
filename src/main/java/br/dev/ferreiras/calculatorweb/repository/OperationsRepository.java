@@ -3,12 +3,12 @@ package br.dev.ferreiras.calculatorweb.repository;
 import br.dev.ferreiras.calculatorweb.entity.Operation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Repository
+@RepositoryRestResource
 public interface OperationsRepository extends JpaRepository<Operation, Long> {
 
   @Query ("""
