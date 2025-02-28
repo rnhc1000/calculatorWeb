@@ -1,6 +1,7 @@
 package br.dev.ferreiras.calculatorweb.controller.handlers;
 
 import br.dev.ferreiras.calculatorweb.dto.ErrorResponseDto;
+import br.dev.ferreiras.calculatorweb.service.exceptions.IllegalArgumentException;
 import br.dev.ferreiras.calculatorweb.service.exceptions.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +42,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {ResourceNotFoundException.class})
-  public ResponseEntity<ErrorResponseDto> resourceNotFound(final ResourceNotFoundException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> resourceNotFound(final ResourceNotFoundException exception,
+                                                           final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.NOT_FOUND.value(),
@@ -52,8 +54,22 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(errorResponseDto);
   }
 
+  @ExceptionHandler(value = {IllegalArgumentException.class})
+  public ResponseEntity<ErrorResponseDto> illegalArgument(final IllegalArgumentException exception,
+                                                          final HttpServletRequest request) {
+    final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+        Instant.now(),
+        HttpStatus.BAD_REQUEST.value(),
+        exception.getMessage(),
+        request.getRequestURI()
+    );
+
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(errorResponseDto);
+  }
+
   @ExceptionHandler(value = {AccessDeniedException.class})
-  public ResponseEntity<ErrorResponseDto> notAuthorized(final AccessDeniedException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> notAuthorized(final AccessDeniedException exception,
+                                                        final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.UNAUTHORIZED.value(),
@@ -65,7 +81,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {ForbiddenException.class})
-  public ResponseEntity<ErrorResponseDto> accessForbidden(final ForbiddenException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> accessForbidden(final ForbiddenException exception,
+                                                          final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.FORBIDDEN.value(),
@@ -82,7 +99,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   signaling the absence of necessary permissions to access a resource.
    */
   @ExceptionHandler(value = {DatabaseException.class})
-  public ResponseEntity<ErrorResponseDto> database(final DatabaseException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> database(final DatabaseException exception,
+                                                   final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.METHOD_NOT_ALLOWED.value(),
@@ -94,7 +112,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {BadCredentialsException.class})
-  public ResponseEntity<ErrorResponseDto> badCredentials(final BadCredentialsException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> badCredentials(final BadCredentialsException exception,
+                                                         final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.FORBIDDEN.value(),
@@ -106,7 +125,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {InvalidMathRequestException.class})
-  public ResponseEntity<Object> forbidden(final InvalidMathRequestException exception, final HttpServletRequest request) {
+  public ResponseEntity<Object> forbidden(final InvalidMathRequestException exception,
+                                          final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.UNPROCESSABLE_ENTITY.value(),
@@ -118,7 +138,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {OutOfBalanceException.class})
-  public ResponseEntity<ErrorResponseDto> outOfBalance(final OutOfBalanceException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> outOfBalance(final OutOfBalanceException exception,
+                                                       final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.PAYMENT_REQUIRED.value(),
@@ -130,7 +151,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {UserAlreadyExistsException.class})
-  public ResponseEntity<ErrorResponseDto> userAlreadyExists(final UserAlreadyExistsException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> userAlreadyExists(final UserAlreadyExistsException exception,
+                                                            final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.UNPROCESSABLE_ENTITY.value(),
@@ -142,7 +164,8 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(value = {UsernameNotFoundException.class})
-  public ResponseEntity<ErrorResponseDto> userNotFound(final UsernameNotFoundException exception, final HttpServletRequest request) {
+  public ResponseEntity<ErrorResponseDto> userNotFound(final UsernameNotFoundException exception,
+                                                       final HttpServletRequest request) {
     final ErrorResponseDto errorResponseDto = new ErrorResponseDto(
         Instant.now(),
         HttpStatus.UNPROCESSABLE_ENTITY.value(),

@@ -13,7 +13,6 @@ import java.util.UUID;
 
 public interface IUserService {
   User getUserId(UUID id);
-  void saveUser(User user);
   List<User> findAllUsers();
   Optional<User> getUsername(String username);
   Role getRole();

@@ -1,108 +1,109 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.4.3'
-	id 'io.spring.dependency-management' version '1.1.6'
-	id "org.flywaydb.flyway" version "10.17.1"
-  	id("org.sonarqube") version "5.1.0.4882"
-	id("jacoco")
+    id 'java'
+    id 'org.springframework.boot' version '3.4.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id "org.flywaydb.flyway" version "10.17.1"
+    id("org.sonarqube") version "5.1.0.4882"
+    id("jacoco")
 }
 
 group = 'br.dev.ferreiras'
 version = '2025.02.26.01'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 javadoc {
-	destinationDir = file("src/main/resources/static/api-docs") as File
+    destinationDir = file("src/main/resources/static/api-docs") as File
 }
-					
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.8.5'
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.8.5'
 
-
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	implementation 'org.flywaydb:flyway-core'
-	implementation 'org.flywaydb:flyway-mysql'
-	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct
-	implementation 'org.mapstruct:mapstruct:1.6.0'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
+    // https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+    implementation 'org.mapstruct:mapstruct:1.6.0'
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '3.4.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas', version: '3.4.3'
 
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
 
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-resource-server
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-resource-server', version: '3.4.3'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-resource-server', version: '3.4.3'
 
 //	 https:mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310
-	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
 
-	implementation "org.springframework.boot:spring-boot-starter-log4j2"
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
-	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.3.3'
+    implementation "org.springframework.boot:spring-boot-starter-log4j2"
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '3.3.3'
 // https://mvnrepository.com/artifact/org.jooq/jooq
-	implementation group: 'org.jooq', name: 'jooq', version: '3.19.13'
+    implementation group: 'org.jooq', name: 'jooq', version: '3.19.13'
 
-	// https://mvnrepository.com/artifact/org.apache.maven.reporting/maven-reporting-api
-	implementation group: 'org.apache.maven.reporting', name: 'maven-reporting-api', version: '4.0.0'
+    // https://mvnrepository.com/artifact/org.apache.maven.reporting/maven-reporting-api
+    implementation group: 'org.apache.maven.reporting', name: 'maven-reporting-api', version: '4.0.0'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-rest
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '3.4.3'
 
 
-	modules {
-		module("org.springframework.boot:spring-boot-starter-logging") {
-			replacedBy("org.springframework.boot:spring-boot-starter-log4j2", "Use Log4j2 instead of Logback")
-		}
-	}
+    modules {
+        module("org.springframework.boot:spring-boot-starter-logging") {
+            replacedBy("org.springframework.boot:spring-boot-starter-log4j2", "Use Log4j2 instead of Logback")
+        }
+    }
 
-	// https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin
-	implementation group: 'org.jacoco', name: 'jacoco-maven-plugin', version: '0.8.12'
+    // https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin
+    implementation group: 'org.jacoco', name: 'jacoco-maven-plugin', version: '0.8.12'
 
-	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.17.0'
 
-	// https://mvnrepository.com/artifact/com.h2database/h2
-	testImplementation group: 'com.h2database', name: 'h2', version: '2.3.232'
+    // https://mvnrepository.com/artifact/com.h2database/h2
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.3.232'
 
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
-	testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.3.3'
-	// https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
-	testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.2'
-	// https://mvnrepository.com/artifact/org.mockito/mockito-core
-	testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.2'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.3.3'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.11.2'
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.14.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 jacocoTestReport {
-	reports {
-		xml.required = false
-		csv.required = false
-		html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
-	}
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

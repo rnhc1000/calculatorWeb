@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -28,7 +27,7 @@ import java.time.Instant;
     condition = "deleted = :isDeleted"
 )
 @Table(name = "tb_records")
-public class Records implements Serializable {
+public class Records {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE)

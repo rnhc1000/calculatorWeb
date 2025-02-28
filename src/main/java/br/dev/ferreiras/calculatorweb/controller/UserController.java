@@ -18,8 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.math.BigDecimal;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +51,15 @@ public class UserController {
   )
   @PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
   @PostMapping("/users")
-  public ResponseEntity<Object> newUser(@RequestBody final UserResponseDto userResponseDto) {
+  public ResponseEntity<LoadBalanceResponseDto> newUser(@RequestBody final UserResponseDto userResponseDto) {
     final LoadBalanceResponseDto userData = this.userService.addNewUser(userResponseDto);
+    final URI uri = ServletUriComponentsBuilder
+        .fromCurrentRequest()
+        .path("/{username}")
+        .buildAndExpand(userResponseDto.username())
+        .toUri();
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(userData);
+    return ResponseEntity.created(uri).body(userData);
   }
 
   @Operation(

@@ -6,9 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
+@RepositoryRestResource
 public interface RecordsRepository extends JpaRepository<Records, Long> {
   /**
    * @param username username associated to his records

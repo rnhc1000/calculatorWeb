@@ -23,13 +23,14 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 
 @Service
 public class UserService implements IUserService, UserDetailsService {
 
-  public UserService(final UserRepository userRepository, final RoleRepository roleRepository, final JwtEncoder jwtEncoder, final OperationsRepository operationsRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+  public UserService(UserRepository userRepository, RoleRepository roleRepository, JwtEncoder jwtEncoder, OperationsRepository operationsRepository, final BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.userRepository = userRepository;
     this.roleRepository = roleRepository;
     this.jwtEncoder = jwtEncoder;
@@ -50,15 +51,16 @@ public class UserService implements IUserService, UserDetailsService {
   private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
   @Override
-  public User getUserId(final UUID userId) {
+  public User getUserId(UUID userId) {
     return this.userRepository.findById(userId).orElseThrow(
         () -> new ResourceNotFoundException("Resource not found!"));
   }
 
-  @Override
-  public void saveUser(final User user) {
-    this.userRepository.save(user);
-  }
+//  @Override
+//  public User saveUser(final User user) {
+//
+//    return this.userRepository.save(user);
+//  }
 
   @Override
   public List<User> findAllUsers() {
@@ -72,49 +74,67 @@ public class UserService implements IUserService, UserDetailsService {
    */
 
   @Override
-  public Optional<User> getUsername(final String username) {
+  public Optional<User> getUsername(String username) {
 
-    return this.userRepository.findByUsername(username);
+    return userRepository.findByUsername(username);
   }
 
   @Override
   public Role getRole() {
 
-    return this.roleRepository.findByRole(Role.Roles.ROLE_USER.name());
+    return roleRepository.findByRole(Role.Roles.ROLE_USER.name());
   }
 
-  public int updateBalance(final String username, final BigDecimal balance) {
+  public int updateBalance(String username, BigDecimal balance) {
 
-    return this.userRepository.saveBalance(username, balance);
-  }
-
-  @Override
-  public BigDecimal getBalance(final String username) {
-
-    return this.userRepository.findByUsernameBalance(username);
+    return userRepository.saveBalance(username, balance);
   }
 
   @Override
-  public BigDecimal getOperationCostById(final Long operationId) {
+  public BigDecimal getBalance(String username) {
 
-    return this.operationsRepository.findOperationsCostById(operationId);
+    return userRepository.findByUsernameBalance(username);
+  }
+
+  @Override
+  public BigDecimal getOperationCostById(Long operationId) {
+
+    return operationsRepository.findOperationsCostById(operationId);
   }
 
   @Override
   public LoadBalanceResponseDto addNewUser(final UserResponseDto userDto) {
+    final User user = new User();
     if (this.getUsername(userDto.username()).isPresent()) {
       throw new UserAlreadyExistsException("User already exists!");
     } else {
-      final var userRole = this.getRole();
-      final var user = new User();
+      UserService.logger.info("::: Adding a new user! :::");
+
+      final Role userRole = this.getRole();
+
       user.setUsername(userDto.username());
       user.setPassword(this.bCryptPasswordEncoder.encode(userDto.password()));
       user.setBalance(userDto.balance());
       user.setStatus(userDto.status());
       user.setRoles(Set.of(userRole));
-      this.saveUser(user);
+      user.setCreatedBy("ricardo@ferreiras.dev.br");
+      user.setCreatedDate(Instant.now());
+      user.setLastModifiedBy("ricardo@ferreiras.dev.br");
+      user.setLastModifiedDate(Instant.now());
+      UserService.logger.info("::: User: {} :::", user);
 
-      return new LoadBalanceResponseDto(userDto.username(), userDto.balance());
+      User result = new User();
+
+      try {
+        UserService.logger.info("::: Try-Catch code: :::");
+        result = this.userRepository.save(user);
+        UserService.logger.info("::: Result: {}", result);
+
+      } catch(RuntimeException ex) {
+        throw new IllegalArgumentException("Entity can not be null!");
+      }
+
+      return new LoadBalanceResponseDto(result.getUsername(), result.getBalance());
     }
   }
 
@@ -123,35 +143,35 @@ public class UserService implements IUserService, UserDetailsService {
    * @return status ACTIVE or INACTIVE
    */
   @Override
-  public UserResponseDto activateUser(final UserRequestDto userRequestDto) {
+  public UserResponseDto activateUser(UserRequestDto userRequestDto) {
 
     String update = "";
     if (userRequestDto.username().isEmpty()) {
       throw new UsernameNotFoundException("Username not found!");
     } else {
 
-      update = this.userRepository.updateStatus(userRequestDto.username(), userRequestDto.status());
+      update = userRepository.updateStatus(userRequestDto.username(), userRequestDto.status());
 
     }
 
     return new UserResponseDto(userRequestDto.username(), update);
   }
 
-  public BigDecimal getOperationCostByOperation(final String operation) {
+  public BigDecimal getOperationCostByOperation(String operation) {
 
-    return this.operationsRepository.findOperationsCostByOperation(operation);
+    return operationsRepository.findOperationsCostByOperation(operation);
   }
 
   public String authenticated() throws RuntimeException {
 
 
     try {
-      final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      Optional<User> user = this.userRepository.findById(UUID.fromString(authentication.getName()));
-      final String currentUserName = user.get().getUsername().isEmpty() ? "ricardo@ferreiras.dev.br" : user.get().getUsername();
-      UserService.logger.info("CurrentUsername -> {}", currentUserName);
+      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+      final Optional<User> user = userRepository.findById(UUID.fromString(authentication.getName()));
+      String currentUserName = user.get().getUsername().isEmpty() ? "ricardo@ferreiras.dev.br" : user.get().getUsername();
+      logger.info("CurrentUsername -> {}", currentUserName);
       return "ricardo@ferreiras.dev.br";
-    } catch (final RuntimeException e) {
+    } catch (RuntimeException e) {
       throw new NoSuchElementException(e);
     }
   }
@@ -163,8 +183,8 @@ public class UserService implements IUserService, UserDetailsService {
 //  }
 
   @Override
-  public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-    final Optional<User> user = this.userRepository.findByUsername(username);
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    Optional<User> user = userRepository.findByUsername(username);
     if (user.isEmpty()) {
       throw new UsernameNotFoundException("User not found");
     }
