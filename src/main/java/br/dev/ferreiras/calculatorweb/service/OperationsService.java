@@ -7,18 +7,15 @@ import br.dev.ferreiras.calculatorweb.repository.OperationsRepository;
 import br.dev.ferreiras.calculatorweb.service.exceptions.InvalidMathRequestException;
 import br.dev.ferreiras.calculatorweb.service.exceptions.OutOfBalanceException;
 import br.dev.ferreiras.calculatorweb.service.exceptions.RandomProcessingException;
+import br.dev.ferreiras.calculatorweb.service.exceptions.UsernameNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,21 +33,23 @@ public class OperationsService {
   private final UserService userService;
   private final RecordsService recordsService;
   private final OperationsRepository operationsRepository;
+  private final BalanceService balanceService;
 
-  @Autowired
-  private AdditionService additionService;
   private static final Logger logger = LoggerFactory.getLogger(OperationsService.class);
   private static final String throwExceptionOutOfBalance = "Insufficient funds to do maths! Reload your wallet!";
-  final BigDecimal BALANCE_NEGATIVE = new BigDecimal("8000863390488707.59991366095112916");
+  final BigDecimal negativeBalance = new BigDecimal("8000863390488707.59991366095112916");
 
-  public OperationsService(final UserService userService, final RandomService randomService, final RecordsService recordsService, final OperationsRepository operationsRepository) {
+  public OperationsService(final UserService userService, final RandomService randomService,
+                           final RecordsService recordsService, final OperationsRepository operationsRepository,
+                           final BalanceService balanceService) {
     this.userService = userService;
     this.randomService = randomService;
     this.recordsService = recordsService;
     this.operationsRepository = operationsRepository;
+    this.balanceService = balanceService;
   }
 
-  private static boolean deleted = false;
+
   /**
    * @param username requires username - email
    * @param operator define the operator
@@ -58,12 +57,13 @@ public class OperationsService {
    */
   public ResponseRandomDto executeOperations(final String username, final String operator) {
 
-    if (null == operator) new OperationsResponseDto(this.BALANCE_NEGATIVE, BigDecimal.ZERO);
+    if (null == operator) new OperationsResponseDto(this.negativeBalance, BigDecimal.ZERO);
 
     String result = "0";
 
-    final var user = this.userService.getUsername(username);
-    OperationsService.logger.info("User: {}", user.orElseThrow().getUsername());
+    final var user = this.userService.getUsername(username).orElseThrow(
+        () -> new UsernameNotFoundException("Username invalid!"));
+    logger.info("User Authenticated: {}", user.getUsername());
 
     BigDecimal balance = this.userService.getBalance(username);
     OperationsService.logger.info("Balance: {}", balance);
@@ -71,7 +71,7 @@ public class OperationsService {
     final BigDecimal cost = this.userService.getOperationCostByOperation(operator);
     OperationsService.logger.info("Cost: {}", cost);
 
-    if (0 <= balance.compareTo(cost)) {
+    if (this.balanceService.balanceCheck(operator, balance)) {
 
       balance = balance.subtract(cost);
       this.userService.updateBalance(username, balance);
@@ -96,7 +96,7 @@ public class OperationsService {
       }
 
       return new ResponseRandomDto(result, balance);
-    }  else {
+    } else {
       throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
     }
 
@@ -110,13 +110,11 @@ public class OperationsService {
    * @return string result
    */
   public OperationsResponseDto executeOperations(
-          BigDecimal operandOne, BigDecimal operandTwo,
-          final String operator, final String username) {
-
-    if (null == operator) new OperationsResponseDto(this.BALANCE_NEGATIVE, BigDecimal.ZERO);
+      final BigDecimal operandOne, final BigDecimal operandTwo,
+      final String operator, final String username) {
 
     BigDecimal result = new BigDecimal("0");
-
+    final boolean deleted = false;
     final var user = this.userService.getUsername(username);
     OperationsService.logger.info("User: {}", user.orElseThrow().getUsername());
 
@@ -126,77 +124,74 @@ public class OperationsService {
     final var cost = this.userService.getOperationCostByOperation(operator);
     OperationsService.logger.info("cost: {}", cost);
 
+
     switch (operator) {
 
-      case "addition" -> {
+      case "addition", "" -> {
 
-        if (0 <= balance.compareTo(cost)) {
-
-          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
-          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+        if (this.balanceService.balanceCheck(operator, balance)) {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.additionService.mathOperations(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
+          final AdditionService additionService = new AdditionService();
+          result = additionService.mathOperations(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo,
+              operator, result, cost, deleted);
 
         } else {
 
-          result = this.BALANCE_NEGATIVE;
           throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
         }
       }
 
       case "subtraction" -> {
 
-        if (0 < balance.compareTo(cost)) {
-          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
-          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+        if (this.balanceService.balanceCheck(operator, balance)) {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.subtractOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
+          final SubtractionService subtractionService = new SubtractionService();
+          result = subtractionService.mathOperations(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo,
+              operator, result, cost, deleted);
 
         } else {
 
-          result = this.BALANCE_NEGATIVE;
           throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
         }
       }
 
       case "multiplication" -> {
 
-        if (balance.compareTo(cost) > 0) {
-          operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
-          operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
+        if (this.balanceService.balanceCheck(operator, balance)) {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.multiplyOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
+          final MultiplicationService multiplicationService = new MultiplicationService();
+          result = multiplicationService.mathOperations(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo,
+              operator, result, cost, deleted);
 
         } else {
 
-          result = this.BALANCE_NEGATIVE;
           throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
 
         }
       }
 
       case "division" -> {
-        operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
-        operandTwo = (null == operandTwo ? BigDecimal.ZERO : operandTwo);
-        if (0 == operandTwo.compareTo(BigDecimal.ZERO)) {
+
+        if (operandTwo.compareTo(BigDecimal.ZERO) == 0) {
           logger.info("Comparison ok-> Negative Number, {}", operandTwo);
           throw new InvalidMathRequestException("Illegal math operation!");
         }
-        if (0 <= balance.compareTo(cost)) {
+        if (this.balanceService.balanceCheck(operator, balance)) {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.divideOperands(operandOne, operandTwo);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
+          final DivisionService divisionService = new DivisionService();
+          result = divisionService.mathOperations(operandOne, operandTwo);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo,
+              operator, result, cost, deleted);
 
         } else {
 
-          result = this.BALANCE_NEGATIVE;
           logger.info("Result -> Negative Number, {}", operandTwo);
 
           throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
@@ -205,32 +200,30 @@ public class OperationsService {
       }
 
       case "square_root" -> {
-        operandOne = (null == operandOne ? BigDecimal.ZERO : operandOne);
-        if (0 > operandOne.compareTo(BigDecimal.ZERO)) {
+        if (operandOne.signum() < 0) {
 
           throw new InvalidMathRequestException("Illegal math operation!");
         }
 
-        if (0 <= balance.compareTo(cost)) {
+        if (this.balanceService.balanceCheck(operator, balance)) {
           balance = balance.subtract(cost);
           this.userService.updateBalance(username, balance);
-          result = this.squareRoot(operandOne);
-          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo, operator, result, cost, OperationsService.deleted);
+          final SquareRootService squareRootService = new SquareRootService();
+          result = squareRootService.mathOperations(operandOne);
+          this.recordsService.saveRecordsRandom(username, operandOne, operandTwo,
+              operator, result, cost, deleted);
 
         } else {
 
-          result = this.BALANCE_NEGATIVE;
           throw new OutOfBalanceException(OperationsService.throwExceptionOutOfBalance);
 
         }
       }
 
-      case null -> {
-      }
+      case null, default -> {
 
-      default -> {
+        return new OperationsResponseDto(result, balance);
 
-        result = this.BALANCE_NEGATIVE;
       }
 
     }
@@ -239,93 +232,13 @@ public class OperationsService {
   }
 
   /**
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return sum of two operands
-   */
-  public BigDecimal addOperands(final BigDecimal operandOne, final BigDecimal operandTwo) {
-    return operandOne.add(operandTwo);
-  }
-
-  /**
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return subtraction of two operands
-   */
-  public BigDecimal subtractOperands(final BigDecimal operandOne, final BigDecimal operandTwo) {
-    return operandOne.subtract(operandTwo);
-  }
-
-  /**
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return product of two operands
-   */
-  public BigDecimal multiplyOperands(final BigDecimal operandOne, final BigDecimal operandTwo) {
-    return operandOne.multiply(operandTwo);
-  }
-
-  /**
-   * @param operandOne first operand
-   * @param operandTwo second operand
-   * @return division of two operands
-   * @throws InvalidMathRequestException no / by zero
-   */
-  public BigDecimal divideOperands(final BigDecimal operandOne, final BigDecimal operandTwo) {
-    BigDecimal division = BigDecimal.ZERO;
-
-    try {
-
-      division = operandOne.divide(operandTwo, 4, RoundingMode.CEILING);
-
-    } catch (final ArithmeticException ex) {
-
-      OperationsService.logger.info("/ by zero not allowed");
-      //OperationsService.logger.info(String.valueOf(ex));
-
-      throw new InvalidMathRequestException("/ by zero");
-
-    }
-    return division;
-  }
-
-  /**
-   * @param operandOne first operand
-   * @return square root of first operand
-   * @throws InvalidMathRequestException no negative numbers supported
-   */
-  public BigDecimal squareRoot(final BigDecimal operandOne) {
-    final MathContext mathContext = new MathContext(4);
-    BigDecimal square = BigDecimal.ZERO;
-    try {
-
-      square = operandOne.sqrt(mathContext);
-
-    } catch (final ArithmeticException ex) {
-
-      OperationsService.logger.info("Square root of negative numbers not allowed");
-      throw new InvalidMathRequestException("Only positive numbers");
-
-    }
-
-    return square;
-  }
-
-  /**
    * @return list of operators implemented
    */
   public List<Object> getOperationsCost() {
+
     return this.operationsRepository.findAllCosts();
   }
 
-  public List<String> checkSystem() {
-    final String javaVersion = System.getProperty("java_version");
-    final int numberOfCores = Runtime.getRuntime().availableProcessors();
-    final List<String> requirements = new ArrayList<>();
-    requirements.add(javaVersion);
-    requirements.add(Integer.toString(numberOfCores));
 
-    return requirements;
-  }
 }
 

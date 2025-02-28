@@ -4,7 +4,7 @@ import br.dev.ferreiras.calculatorweb.contracts.AnyNumberOfOperands;
 
 import java.math.BigDecimal;
 
-public class Subtraction implements AnyNumberOfOperands {
+public class SubtractionService implements AnyNumberOfOperands {
     /**
      * @param operands ...
      * @return subtraction of two operands
