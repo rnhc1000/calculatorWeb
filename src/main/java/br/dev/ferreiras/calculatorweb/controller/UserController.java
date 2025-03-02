@@ -43,7 +43,7 @@ public class UserController {
       responses = {
           @ApiResponse(responseCode = "201", description = "User created",
               content = @Content(mediaType = "application/json",
-                  schema = @Schema(implementation = LoadBalanceResponseDto.class))),
+                  schema = @Schema(implementation = LoadBalanceRequestDto.class))),
           @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
           @ApiResponse(responseCode = "403", description = "Access Denied!", content = @Content),
           @ApiResponse(responseCode = "422", description = "User already exists!", content = @Content)

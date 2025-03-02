@@ -18,17 +18,17 @@ public interface RecordsRepository extends JpaRepository<Records, Long> {
 
   @Query(
       """
-                  SELECT r FROM Records r where r.username = ?1% AND r.deleted = false
+                  SELECT r FROM Records r where r.username = :username AND r.deleted = false
           """
   )
-  Page<Records> findRecordsByUsername(@Param(value = "username") String username, Pageable paging);
+  Page<Records> findRecordsByUsername(@Param("username") String username, Pageable paging);
 
   @Query(
       """
-                  SELECT r FROM Records r where r.username = ?1% AND r.deleted = true
+                  SELECT r FROM Records r where r.username = :username AND r.deleted = true
           """
   )
-  Page<Records> findSoftDeletedRecordsByUsername(@Param(value = "username") String username, Pageable paging);
+  Page<Records> findSoftDeletedRecordsByUsername(@Param("username") String username, Pageable paging);
 
 
 }

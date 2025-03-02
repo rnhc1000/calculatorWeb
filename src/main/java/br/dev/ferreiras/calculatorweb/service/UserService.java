@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.stereotype.Service;
 
@@ -159,22 +160,30 @@ public class UserService implements IUserService, UserDetailsService {
 
   public BigDecimal getOperationCostByOperation(String operation) {
 
-    return operationsRepository.findOperationsCostByOperation(operation);
+    return this.operationsRepository.findOperationsCostByOperation(operation);
   }
 
-  public String authenticated() throws RuntimeException {
+  public Optional<String> getLoggedUsername() {
+    final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    final Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
+    final String userAuthenticated = jwtPrincipal.getClaim("username");
 
-
-    try {
-      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-      final Optional<User> user = userRepository.findById(UUID.fromString(authentication.getName()));
-      String currentUserName = user.get().getUsername().isEmpty() ? "ricardo@ferreiras.dev.br" : user.get().getUsername();
-      logger.info("CurrentUsername -> {}", currentUserName);
-      return "ricardo@ferreiras.dev.br";
-    } catch (RuntimeException e) {
-      throw new NoSuchElementException(e);
-    }
+    return userAuthenticated.describeConstable();
   }
+
+//  public String authenticated() throws RuntimeException {
+//
+//
+//    try {
+//      Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//      final Optional<User> user = userRepository.findById(UUID.fromString(authentication.getName()));
+//      String currentUserName = user.get().getUsername().isEmpty() ? "ricardo@ferreiras.dev.br" : user.get().getUsername();
+//      logger.info("CurrentUsername -> {}", currentUserName);
+//      return "ricardo@ferreiras.dev.br";
+//    } catch (RuntimeException e) {
+//      throw new NoSuchElementException(e);
+//    }
+//  }
 
 //    @Transactional (readOnly = true)
 //  public UserDto getMe() {

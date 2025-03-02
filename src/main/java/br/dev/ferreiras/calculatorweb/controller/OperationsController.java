@@ -54,7 +54,9 @@ public class OperationsController {
       summary = "Given username and operator return a random string",
       description = "Given username and operator return a random string, and associated balance from random.org",
       responses = {
-          @ApiResponse(responseCode = "200", description = "Got the result", content = @Content(mediaType = "application/json", schema = @Schema(implementation = OperationsController.class))),
+          @ApiResponse(responseCode = "200", description = "Got the result",
+              content = @Content(mediaType = "application/json",
+                  schema = @Schema(implementation = ResponseRandomDto.class))),
           @ApiResponse(responseCode = "401", description = "Not authorized", content = @Content),
       })
   @PostMapping("/randomize")

@@ -25,7 +25,9 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
-/** Calculator Web API Security Configuration
+/**
+ * Calculator Web API Security Configuration
+ *
  * @author ricardo@ferreiras.dev.br
  * @version 1.1.030901
  * @since 08/2024
@@ -36,10 +38,10 @@ import java.security.interfaces.RSAPublicKey;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-  @Value ("${jwt.public.key}")
+  @Value("${jwt.public.key}")
   private RSAPublicKey rsaPublicKey;
 
-  @Value ("${jwt.private.key}")
+  @Value("${jwt.private.key}")
   private RSAPrivateKey rsaPrivateKey;
 
   /**
@@ -48,18 +50,18 @@ public class SecurityConfig {
    */
   private static final String[] WHITELIST = {
 
-          "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
-          "/swagger-resources/**", "/actuator/**", "/api/v1/login", "/",
-          "/api/v1/home", "api/v1/csrf", "/error", "/api/v1/error",
-          "401-error/**", "404-error/**"
+      "/swagger-ui/**", "/api-docs/**", "/swagger-docs/**",
+      "/swagger-resources/**", "/actuator/**", "/api/v1/login", "/",
+      "/api/v1/home", "api/v1/csrf", "/error", "/api/v1/error",
+      "401-error/**", "404-error/**"
   };
 
   /**
    * @param httpSecurity handler to deal with the requests
    * @return object defining the security framework
    * @throws Exception RuntimeException
-   * Session management from ALWAYS -> STATELESS so the token hash is checked at every exchange
-   * between client and server
+   *                   Session management from ALWAYS -> STATELESS so the token hash is checked at every exchange
+   *                   between client and server
    */
   @Bean
   public SecurityFilterChain securityFilterChain(final HttpSecurity httpSecurity) throws Exception {
@@ -67,22 +69,24 @@ public class SecurityConfig {
 //    CsrfTokenRequestAttributeHandler csrfTokenRequestAttributeHandler = new CsrfTokenRequestAttributeHandler();
 
     httpSecurity
-            .securityContext(contextConfig -> contextConfig.requireExplicitSave(false) )
-            .sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
+        .securityContext(contextConfig -> contextConfig
+            .requireExplicitSave(false))
+        .sessionManagement(sessionConfig -> sessionConfig
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .addFilterBefore(new ForwardedHeaderFilter(), ForceEagerSessionCreationFilter.class)
 //                .csrf(csrfConfig -> csrfConfig
 //                        .csrfTokenRequestHandler(csrfTokenRequestAttributeHandler)
 //                        .ignoringRequestMatchers("/api/v1/login", "/api/v1/csrf")
 //                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
 //                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class)
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(SecurityConfig.WHITELIST).permitAll()
-                        .anyRequest().authenticated()
-                )
-                .csrf(AbstractHttpConfigurer::disable)
-
-                .oauth2ResourceServer((oauth2 -> oauth2.jwt(Customizer.withDefaults())));
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        .authorizeHttpRequests(authorize -> authorize
+            .requestMatchers(SecurityConfig.WHITELIST).permitAll()
+            .anyRequest().authenticated()
+        )
+        .csrf(AbstractHttpConfigurer::disable)
+        .cors(Customizer.withDefaults())
+        .oauth2ResourceServer((oauth2 ->
+            oauth2.jwt(Customizer.withDefaults())));
 
     return httpSecurity.build();
   }
@@ -93,7 +97,9 @@ public class SecurityConfig {
   @Bean
   public JwtEncoder jwtEncoder() {
 
-    final JWK jwk = new RSAKey.Builder(this.rsaPublicKey).privateKey(this.rsaPrivateKey).build();
+    final JWK jwk = new RSAKey.Builder(this.rsaPublicKey)
+        .privateKey(this.rsaPrivateKey)
+        .build();
     final var jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
 
     return new NimbusJwtEncoder(jwks);
