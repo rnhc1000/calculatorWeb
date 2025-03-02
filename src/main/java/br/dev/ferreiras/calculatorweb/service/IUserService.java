@@ -15,6 +15,7 @@ public interface IUserService {
   User getUserId(UUID id);
   List<User> findAllUsers();
   Optional<User> getUsername(String username);
+  Optional<String> getLoggedUsername();
   Role getRole();
   int updateBalance(String username, BigDecimal balance);
   BigDecimal getBalance(String username);

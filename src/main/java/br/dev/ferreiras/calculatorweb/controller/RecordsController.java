@@ -64,15 +64,18 @@ public class RecordsController {
       })
   @GetMapping(value = "/user/records")
   public ResponseEntity<RecordsDto> getRecordsByUsername(
-      @RequestParam(defaultValue = "0") final int page,
-      @RequestParam(defaultValue = "20") final int size
+      @RequestParam(defaultValue = "1") final int page,
+      @RequestParam(defaultValue = "20") final int size,
+      @RequestParam(defaultValue = "asc") final String sort
   ) {
-    final String user = Optional.ofNullable(this.userService.authenticated())
+    final String user = String.valueOf(Optional.of(this.userService.getLoggedUsername())
         .orElseThrow(() ->
-            new UsernameNotFoundException(RecordsController.usernameNotFound));
+            new UsernameNotFoundException(RecordsController.usernameNotFound)));
     final boolean isDeleted = false;
-    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}", page, size, user, isDeleted);
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}, Deleted? {}",
+        page, size, user, isDeleted);
 
+    logger.info("::: Username: {} :::", user);
     return this.recordsService.findRecordsByUsername(page, size, user);
   }
 
@@ -93,11 +96,12 @@ public class RecordsController {
       @RequestParam(defaultValue = "false", name = "isDeleted") boolean isDeleted
   ) {
 
-    final String user = Optional.ofNullable(this.userService.authenticated())
+    final String user = String.valueOf(Optional.ofNullable(this.userService.getLoggedUsername())
         .orElseThrow(() ->
-            new UsernameNotFoundException(RecordsController.usernameNotFound));
+            new UsernameNotFoundException(RecordsController.usernameNotFound)));
     isDeleted = false;
-    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {},  isDeleted: {}", page, size, user, isDeleted);
+    RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {},  isDeleted: {}",
+        page, size, user, isDeleted);
 
     return ResponseEntity.ok(this.recordsService.findRecordsByUsernameStatus(page, size, user));
   }
@@ -132,9 +136,9 @@ public class RecordsController {
       @RequestParam final String username
   ) {
 
-    final String user = Optional.ofNullable(this.userService.authenticated())
+    final String user = String.valueOf(Optional.ofNullable(this.userService.getLoggedUsername())
         .orElseThrow(() ->
-            new UsernameNotFoundException(RecordsController.usernameNotFound));
+            new UsernameNotFoundException(RecordsController.usernameNotFound)));
     RecordsController.logger.info("Page Number: {} , Size of Each Page: {} , User: {}", page, size, user);
 
     return ResponseEntity.ok(this.recordsService.findSoftDeletedRecords(page, size, user));

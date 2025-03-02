@@ -27,6 +27,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 //    return Optional.of(this.userService.authenticated()).orElseGet(
 //        () -> "ricardo@ferreira.dev.br").describeConstable();
 
-    return "ricardo@ferreiras.dev.br".describeConstable();
-    }
+//    return "ricardo@ferreiras.dev.br".describeConstable();
+    return this.userService.getLoggedUsername();
+  }
 }
